@@ -22,7 +22,7 @@ const Header = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:3000/getCustomer/" + id, requestOptions)
+    fetch(import.meta.env.VITE_APP_API+"/getCustomer/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {

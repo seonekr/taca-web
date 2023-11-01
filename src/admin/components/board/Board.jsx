@@ -14,7 +14,7 @@ const Board = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3000/authen",
+      url: import.meta.env.VITE_APP_API+"/authen",
       headers: {
         Authorization: "Bearer " + token,
       },

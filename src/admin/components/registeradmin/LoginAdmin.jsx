@@ -25,7 +25,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavsior
     axios
-      .post("http://localhost:3000/admin", {
+      .post(import.meta.env.VITE_APP_API+"/admin", {
         email: email,
         password: password,
       })
