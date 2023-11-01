@@ -14,7 +14,7 @@ const Board = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/authen",
+      url: "http://localhost:3000/authen",
       headers: {
         Authorization: "Bearer " + token,
       },

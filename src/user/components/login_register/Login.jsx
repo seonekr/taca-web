@@ -26,7 +26,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavsior
     axios
-      .post("http://localhost:3001/login", {
+      .post("http://localhost:3000/login", {
         email: email,
         password: password,
       })

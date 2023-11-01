@@ -28,7 +28,7 @@ const AdminMenu = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:3001/getAdmin/" + id, requestOptions)
+    fetch("http://localhost:3000/getAdmin/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
