@@ -1,0 +1,125 @@
+#post {
+    position: absolute;
+    width: 70%;
+}
+
+/* input text */
+#post .post-form {
+    transform: translate(30%, 0%);
+    margin-top: 5rem;
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+}
+#post .post-form .input-box {
+    width: 100%;
+}
+#post .post-form .input-box .box {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    margin-right: 5rem;
+}
+#post .post-form .input-box .box:last-child {
+    display: grid;
+}
+#post .post-form .input-box .box textarea {
+    resize: none;
+    overflow: auto;
+    padding: 1rem 1rem;
+}
+#post .post-form .input-box .box textarea:focus {
+    outline: none;
+}
+#post .post-form .input-box .box input {
+    border: 1px solid #ccc;
+    margin-top: 0.2rem;
+    padding: 0.2rem 1rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+}
+
+/* input image */
+#post .post-form .input-img {
+    width: 800px;
+    margin-top: 2rem;
+}
+.image {
+    width: 100%;
+    display: grid;
+    height: 25vh;
+    border: 1px solid #ccc;
+    align-items: center;
+    overflow: hidden;
+}
+#post .post-form .input-img .image label p {
+    display: grid;
+    background-color: #3498DB;
+    border-radius: 4px;
+    width: fit-content;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    margin: auto;
+}
+#post .post-form .input-img .image img {
+    width: 100%;
+    height: 30vh;
+    cursor: pointer;
+    object-fit: contain;
+}
+#post .post-form .input-img .image #img {
+    display: none;
+}
+
+/* Gallery */
+#post .post-form .input-img  .gallery {
+    margin-top: 1rem;
+}
+#post .post-form .input-img  .gallery .gallery-box {
+    /* width: 100%; */
+    height: 15vh;
+    resize: vertical;
+    display: flex;
+    border: 1px solid #ccc;
+    align-items: center;
+    overflow: hidden;
+}
+#post .post-form .input-img  .gallery .gallery-box img {
+    width: 100%;
+    height: 20vh;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+/* Add gallery button */
+#post .post-form .input-img  .gallery .gallery-box .add-gallery {
+    background-color: #3498DB;
+    border-radius: 4px;
+    margin: auto;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+}
+#post .post-form .input-img  .gallery .gallery-box .add-more {
+    cursor: pointer;
+}
+#post .post-form .input-img  .gallery #gallery {
+    display: none;
+}
+
+/* Submit button */
+#post .post-form .submit {
+    display: grid;
+    margin-top: -1rem;
+    text-align: right;
+}
+#post .post-form .submit button {
+    position: absolute;
+    background-color: #3498DB;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 1.3rem;
+    margin-left: -4.5rem;
+    padding: 0.2rem 1rem;
+    cursor: pointer;
+    border: none;
+}

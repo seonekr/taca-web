@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============ box_menager =========== */
+
+.box_menager_orderpaid{
+    width: 90%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.container_dashboard{
+    width: 235px;
+    height: 100vh;
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* ============ box_taca_dashboard =========== */
+
+.taca_dashboard{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px 20px 20px 45px;
+}
+
+.taca_dashboard p{
+    font-size: 18px;
+    font-weight: 500;
+}
+#dashboard_icon{
+    width: 30px;
+    height: 30px;
+}
+
+/* ============ container_body_orderpaid =========== */
+
+.container_body_orderpaid{
+    width: 1126px;
+    height: auto;
+}
+
+
+.container_box_orderpaid{
+    width: 1100px;
+    height: 85.5vh;
+    margin: auto;
+    margin-top: 0.5rem;
+    padding: 30px 100px 30px 100px;
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* ============ input_wrapper_orderpaid =========== */
+
+
+
+
+.box_search{
+    width: 1000px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px 0 0;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+.box_search img{
+    width: 50px;
+    height: 50px;
+}
+
+
+.input_wrapper_orderpaid{
+    margin: auto;
+    background-color: #F5F6F2;
+    width: 600px;
+    height: 45px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 15px;
+}
+
+
+
+/* Bill */
+#orderbill .bill-detial {
+    margin-top: 1rem;
+}
+.orderbill_detial{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* bill no: id: name: */
+#orderbill .bill-detial .id,
+#orderbill .bill-detial .detial {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+.box_lineCheck{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background: rgb(75, 239, 94);
+}
+#lineCheck_icon{
+    width: 30px;
+    height: 30px;
+    color: #FFF;
+    
+}
+#orderbill .bill-detial h2 {
+    text-align: center;
+    margin-top: -1.5rem;
+}
+#orderbill .bill-detial .id span {
+    display: flex;
+}
+#orderbill .bill-detial .id span p {
+    padding: 0.5rem;
+    font-size: 1.3rem;
+}
+
+/* bill detial */
+#orderbill .bill-detial .detial span {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+}
+#orderbill .bill-detial .detial span h3 {
+    font-size: 1.2rem;
+}
+
+/* bill palce on */
+#orderbill .bill-detial .place-on span {
+    display: flex;
+    padding: 0.5rem 0;
+}
+#orderbill .bill-detial .place-on span p:last-child {
+    padding-left: 0.5rem;
+}
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+    #orderbill .bill-detial {
+        margin-top: 4rem;
+    }
+
+    #orderbill .bill-detial .id span p {
+        padding: 0.2rem;
+        font-size: 1rem;
+    }
+
+    #orderbill .bill-detial .detial span {
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
+
+    #orderbill .bill-detial .detial span h3 {
+        font-size: 1rem;
+    }
+
+    #orderbill .bill-detial .place-on span p:last-child {
+        padding-left: 0.2rem;
+    }
+}
