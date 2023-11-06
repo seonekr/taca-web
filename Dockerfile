@@ -2,12 +2,12 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY . /app
 
 RUN npm ci
 
-COPY . .
+RUN npm run build 
 
-RUN npm run build:run
+EXPOSE 3000
 
 CMD ["npx", "serve", "dist"]
