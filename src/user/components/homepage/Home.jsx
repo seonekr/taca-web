@@ -16,7 +16,7 @@ const Home = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/authen",
+      url: import.meta.env.VITE_API + "/authen",
       headers: {
         Authorization: "Bearer " + token,
       },
