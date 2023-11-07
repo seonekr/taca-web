@@ -6,8 +6,8 @@ COPY . /app
 
 RUN npm ci
 
-RUN npm run build 
+RUN npm run build
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD ["npx", "serve", "dist"]

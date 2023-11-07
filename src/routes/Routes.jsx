@@ -49,7 +49,7 @@ const Links = () => {
 
 
                 {/* Admin routes */}
-                <Route exact path="/admin/dashboard" Component={Dashboard}/>
+                <Route exact path="/dashboard" Component={Dashboard}/>
                 <Route exact path="/admin/post" Component={Post}/>
                 <Route exact path="/admin/addadmin" Component={AddAdmin}/>
                 <Route exact path="/admin/message" Component={Message}/>

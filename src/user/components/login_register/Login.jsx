@@ -35,7 +35,12 @@ const Login = () => {
         if (res.data.Status === "Success") {
           localStorage.setItem("token", res.data.Token);
           localStorage.setItem("id", res.data.id);
-          navigate("/");
+          if(res.data.urole === "Admin logged in") {
+            navigate("/dashboard");
+          } else {
+            navigate("/");
+          }
+          
         } else {
           setError(res.data.Error);
         }

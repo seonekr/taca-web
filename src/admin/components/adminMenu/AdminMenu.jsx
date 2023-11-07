@@ -13,7 +13,6 @@ import cart from "../../../img/cart.png";
 import user from "../../../img/user.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const AdminMenu = () => {
   const navigate = useNavigate();
@@ -28,13 +27,14 @@ const AdminMenu = () => {
       redirect: "follow",
     };
 
-    fetch(import.meta.env.VITE_APP_API+"/getAdmin/" + id, requestOptions)
+    fetch(import.meta.env.VITE_API+"/getAdmin/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
-          setAccount(result.Result[0].email);
-        }
-        console.log(account);
+          // setAccount(result.Result[0].email);
+          console.log(result.result[0].email)
+        } 
+        // console.log(account);
         // console.log(result.Result[0].email)
       })
       .catch((error) => console.log("error", error));
@@ -44,7 +44,7 @@ const AdminMenu = () => {
     event.preventDefault();
     localStorage.removeItem("token");
     localStorage.removeItem("id");
-    navigate("/admin");
+    navigate("/");
   };
 
   return (
