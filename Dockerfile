@@ -10,4 +10,4 @@ RUN npm run build
 
 EXPOSE 80
 
-CMD ["npx", "serve", "dist"]
+CMD ["npm", "run", "dev"]
