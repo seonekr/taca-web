@@ -25,7 +25,7 @@ const Board = () => {
         if (response.data.Status === "Success") {
           console.log(JSON.stringify(response.data.Status));
         } else {
-          navigate("/admin");
+          navigate("/login");
         }
       })
       .catch((error) => {
