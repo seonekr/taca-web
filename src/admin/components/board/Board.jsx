@@ -3,11 +3,12 @@ import { IoDocumentText } from "react-icons/io5";
 import { BsHandbagFill } from "react-icons/bs";
 import { TbShoppingCartStar } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Board = () => {
   const navigate = useNavigate();
+  const [userAccount, setUserAccount] = useState("");
   useEffect(() => {
     const token = localStorage.getItem("token");
     let config = {
@@ -22,7 +23,8 @@ const Board = () => {
       .request(config)
       .then((response) => {
         if (response.data.Status === "Success") {
-          console.log(JSON.stringify(response.data.Status));
+          setUserAccount(response.data.decoded.id);
+          console.log(userAccount);
         } else {
           navigate("/login");
         }
@@ -42,25 +44,45 @@ const Board = () => {
               <div className="containerBox_db">
                 <h3>Dashboard</h3>
                 <div className="contentBox_db">
-                  <div className='menu-box one'>
-                    <div><IoDocumentText className='iconGad gone1' /><p>Porduct</p></div>
+                  <div className="menu-box one">
+                    <div>
+                      <IoDocumentText className="iconGad gone1" />
+                      <p>Porduct</p>
+                    </div>
                     <h2>5</h2>
-                    <Link to="/product/" className='txtcol'>View More</Link>
+                    <Link to="/product/" className="txtcol">
+                      View More
+                    </Link>
                   </div>
-                  <div className='menu-box two'>
-                    <div><IoDocumentText className='iconGad gone2' /><p>Admin</p></div>
+                  <div className="menu-box two">
+                    <div>
+                      <IoDocumentText className="iconGad gone2" />
+                      <p>Admin</p>
+                    </div>
                     <h2>15</h2>
-                    <Link to="/menagerAdmin/" className='txtcol'><p>View More</p></Link>
+                    <Link to="/menagerAdmin/" className="txtcol">
+                      <p>View More</p>
+                    </Link>
                   </div>
-                  <div className='menu-box three'>
-                    <div><IoDocumentText className='iconGad gone3' /><p>Order</p></div>
+                  <div className="menu-box three">
+                    <div>
+                      <IoDocumentText className="iconGad gone3" />
+                      <p>Order</p>
+                    </div>
                     <h2>25</h2>
-                    <Link to="/orderpage/" className='txtcol'><p>View More</p></Link>
+                    <Link to="/orderpage/" className="txtcol">
+                      <p>View More</p>
+                    </Link>
                   </div>
-                  <div className='menu-box four'>
-                    <div><IoDocumentText className='iconGad gone4' /><p>User</p></div>
+                  <div className="menu-box four">
+                    <div>
+                      <IoDocumentText className="iconGad gone4" />
+                      <p>User</p>
+                    </div>
                     <h2>15</h2>
-                    <Link to="/menageruser/" className='txtcol'><p>View More</p></Link>
+                    <Link to="/menageruser/" className="txtcol">
+                      <p>View More</p>
+                    </Link>
                   </div>
                 </div>
               </div>

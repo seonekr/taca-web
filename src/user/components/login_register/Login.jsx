@@ -34,12 +34,16 @@ const Login = () => {
         console.log(res);
         if (res.data.Status === "Success") {
           localStorage.setItem("token", res.data.token);
+
+          console.log(res.data.urole)
           
           if(res.data.urole = "Admin logged in"){
             navigate("/dashboard");
-          } else {
+          }
+          if(res.data.urole = "Customer logged in"){
             navigate("/");
           }
+
         } else {
           setError(res.data.Error);
         }

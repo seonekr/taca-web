@@ -11,13 +11,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Header = () => {
-  const [user, setUser] = useState("");
+  const [userAccount, setUserAccount] = useState("");
   const token = localStorage.getItem("token");
 
   console.log(token);
-
-  //   var isLoggedIn = false;
-  //   var user = "";
 
   useEffect(() => {
     let config = {
@@ -34,7 +31,7 @@ const Header = () => {
       .then((response) => {
         // console.log(JSON.stringify(response.data));
         if (response.data.Status === "Success") {
-          setUser(response.data.decoded.email);
+            setUserAccount(response.data.decoded.email);
         }
       })
       .catch((error) => {
@@ -75,8 +72,8 @@ const Header = () => {
                   </Link>
                 </li>
 
-                {user ? (
-                  user
+                {userAccount ? (
+                  userAccount
                 ) : (
                   <li>
                     <Link to="/login" className="linkLi">
@@ -97,7 +94,7 @@ const Header = () => {
                   <FaCartShopping className="head_colorr" />
                 </Link>
               </li>
-              {user ? (
+              {userAccount ? (
                 <li>
                   <Link to="/account">
                     <FaRegUser className="head_colorr" />
