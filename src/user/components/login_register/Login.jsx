@@ -1,33 +1,48 @@
-
-import React, { useState } from 'react';
-import './login.css';
-import 'boxicons';
-import { Link } from 'react-router-dom';
-import { AiOutlineClose } from "react-icons/ai"
-import google from '../../../img/google.png';
+import React, { useState } from "react";
+import "./login.css";
+import "boxicons";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
+import google from "../../../img/google.png";
+import axios from "axios";
 
 const Login = () => {
-  
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     const value = e.target.value;
-    setEmail(value); 
+    setEmail(value);
   };
 
   const handlePassword = (e) => {
-    const value = e.target.value
-    setPassword(value)
+    const value = e.target.value;
+    setPassword(value);
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavsior 
-    // Handle form submission logic here
-    console.log('Form submitted');
-    console.log('Email:', email);
-    console.log('Password:', password);
-
+    e.preventDefault(); // Prevent the default form submission behavsior
+    axios
+      .post("http://localhost:5000/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.Status === "Success") {
+          localStorage.setItem("token", res.data.token);
+          console.log("login token: ", res.data.token);
+          navigate("/");
+        } else {
+          setError(res.data.Error);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -40,7 +55,7 @@ const Login = () => {
         </div>
         <div className="cover">
           <h2 className="box_container_login_text">Login</h2>
-         {/* <h3>{error && error}</h3> */}
+          <h3>{error && error}</h3>
           <input
             className="input_form"
             type="email"
@@ -60,9 +75,10 @@ const Login = () => {
             Forgot Password?
           </Link>
 
-          <div className='loginbtn_login'>
-            <Link to="#" type="submit" className="login_btn" >Login</Link>
-
+          <div className="loginbtn_login">
+            <Link onClick={handleSubmit} type="submit" className="login_btn">
+              Login
+            </Link>
           </div>
 
           <p>
@@ -70,17 +86,16 @@ const Login = () => {
           </p>
 
           <p>Or</p>
-          <div className='googlebtn_btn'>
-            <Link to="#" className="google_btn" >
+          <div className="googlebtn_btn">
+            <Link to="#" className="google_btn">
               <img src={google} alt="img" />
               <p>Login with Google</p>
             </Link>
           </div>
-
         </div>
       </form>
     </section>
-  )
-}
+  );
+};
 
 export default Login;
