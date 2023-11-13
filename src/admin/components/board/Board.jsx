@@ -13,7 +13,7 @@ const Board = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/authen",
+      url: "http://localhost:5000/authen",
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -24,7 +24,7 @@ const Board = () => {
         if (response.data.Status === "Success") {
           console.log(JSON.stringify(response.data.Status));
         } else {
-          navigate("/admin");
+          navigate("/login");
         }
       })
       .catch((error) => {

@@ -12,9 +12,7 @@ import axios from "axios";
 
 const Header = () => {
   const [user, setUser] = useState("");
-  var [status, setStatus] = useState(false);
   const token = localStorage.getItem("token");
-  const navigate = useNavigate();
 
   console.log(token);
 
@@ -37,9 +35,6 @@ const Header = () => {
         // console.log(JSON.stringify(response.data));
         if (response.data.Status === "Success") {
           setUser(response.data.decoded.email);
-          setStatus(true);
-        } else {
-          setStatus(false);
         }
       })
       .catch((error) => {
