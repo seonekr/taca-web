@@ -1,0 +1,119 @@
+/* Header */
+#header .navbar {
+    width: 100%;
+    height: 70px;
+    z-index: 999;
+    top: 0;
+    background-color: #fff;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.10);
+    position: fixed;
+}
+
+.headWithBox {
+    width: 80%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+#header .navbar,
+.headWithBox,
+.headMenu,
+.ulHead_box,
+.boxLiMenu {
+    display: flex;
+    align-items: center;
+}
+
+.headMenu {
+    gap: 1rem;
+}
+
+#header .navbar ul {
+    list-style-type: none;
+    display: flex;
+}
+
+#header .navbar ul li {
+    width: 90%;
+    margin: 0 1rem;
+}
+
+.linkLi {
+    font-size: 17px;
+}
+
+.headMenu .linkLi,
+.head_colorr {
+    transition: all 0.3s ease;
+}
+
+#header .navbar ul li a {
+    text-decoration: none;
+}
+
+.linkLi:hover {
+    color: #FF4F16;
+}
+
+.active {
+    color: #FF4F16;
+}
+
+.ulHead_box {
+    gap: 1rem;
+    font-size: 1.3rem;
+}
+
+.head_colorr {
+    color: #777;
+}
+
+.head_colorr:hover {
+    color: #FF4F16;
+}
+
+/* Banner */
+#banner div {
+    margin-top: 2rem;
+}
+
+@media screen and (min-width: 1537px) and (max-width: 1950px) {
+    .headWithBox {
+        width: 70%;
+    }
+}
+
+@media (max-width: 820px) {
+    .headWithBox {
+        width: 100%;
+    }
+
+    #header {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #header .navbar {
+        width: 100%;
+        padding: 0.3rem 0;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #banner {
+        width: 100%;
+        margin: 0;
+    }
+
+    #banner div {
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 431px) {
+    .boxLiMenu {
+        display: none;
+    }
+
+}

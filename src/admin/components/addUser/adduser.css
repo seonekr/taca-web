@@ -1,0 +1,158 @@
+#addAmin {
+    position: absolute;
+    width: 100%;
+    padding: 1.5rem 1.5rem 0 16rem;
+}
+
+.box_addAdmin{
+    margin-top: 5rem;
+    padding: 1rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+.container_add_admin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.box_guopIconbAck{
+    width: 100px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin: 1rem 0;
+    color: #FFF;
+    background: #3498DB;
+}
+#box_icon_Back{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+#addAmin form {
+    margin-top: 2rem;
+    padding: 1rem 5rem;
+    display: flex;
+    gap: 5rem;
+    margin: auto;
+}
+#addAmin form .addAdminForm {
+    width: 100%;
+    height: 60vh;
+}
+#addAmin form .addAdminForm .add-box {
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #888;
+}
+#addAmin form .addAdminForm .add-box input {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: 1px solid #e1dede;
+}
+
+/* Add min image */
+#addAmin form .imageAdmin {
+    width: 100%;
+    height: 65vh;
+    display: grid;
+    justify-content: center;
+}
+#addAmin form .imageAdmin .image {
+    border-radius: 5px;
+    border: 1px solid #d3cdcd;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 275px;
+    overflow: hidden;
+    color: #999;
+}
+#addAmin form .imageAdmin .image label {
+    cursor: pointer;
+}
+#addAmin form .imageAdmin .image img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+#addAmin form .imageAdmin .image #adminImage {
+    display: none;
+    
+}
+
+/* Submit button */
+#addAmin form .imageAdmin .submit {
+    display: grid;
+    align-items: center;
+    justify-content: end;
+}
+#addAmin form .imageAdmin .submit button {
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    margin-top: -2rem;
+    background-color: #3498DB;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border: none;
+}
+
+
+/* =========== btn Edit Delete ==========*/
+
+.box_container_btn{
+    display: flex;
+    gap: 2rem;
+    margin-top: -6rem;
+    align-items: center;
+    justify-content: center;
+}
+#btn_icon_admin{
+    width: 22px;
+    height: 22px;
+    color: #FFF;
+}
+
+.btn_icon_delete_admin{
+    padding: 8px 15px;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    background: #FA442C;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 16px;
+}
+.btn_icon_edit_admin{
+    padding: 8px 15px;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    background: #27A7EF;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 16px;
+}
