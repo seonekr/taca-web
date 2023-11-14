@@ -9,13 +9,13 @@ import { LiaUserCogSolid } from "react-icons/lia";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlineSell } from "react-icons/md";
 import user from "../../../img/user.png";
-import Logo1 from '../../../img/Logo1.png'
+import Logo1 from "../../../img/Logo1.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const AdminMenu = () => {
-  const navigate = useNavigate();
+  
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -26,7 +26,6 @@ const AdminMenu = () => {
   return (
     <>
       <section id="dashboard">
-
         <div className="left">
           <div className="menu">
             <Link to="/dashboard/" className="link active">
@@ -64,7 +63,7 @@ const AdminMenu = () => {
                 <img src={Logo1} alt="" />
               </span>
             </Link>
-            
+
             <div className="userAdminImage">
               <img src={user} alt="Logo_Profile" />
             </div>

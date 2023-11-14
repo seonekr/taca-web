@@ -58,7 +58,7 @@ const General = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [[]]);
 
 
   return (

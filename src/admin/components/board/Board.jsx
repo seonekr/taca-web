@@ -7,10 +7,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Board = () => {
-  const navigate = useNavigate();
   const [userAccount, setUserAccount] = useState("");
+  const [adminCount, setAdminCount] = useState(0);
+  const [customerCount, setCustomerCount] = useState(0);
+  const [orderCount, setOrderCount] = useState(0);
+  const [productCount, setProductCount] = useState(0);
+  const token = localStorage.getItem("token");
+
+  const navitage = useNavigate();
+
+  console.log(token);
+
+  // For authen users
   useEffect(() => {
-    const token = localStorage.getItem("token");
     let config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -19,20 +28,83 @@ const Board = () => {
         Authorization: "Bearer " + token,
       },
     };
+
     axios
       .request(config)
       .then((response) => {
+        // console.log(JSON.stringify(response.data));
         if (response.data.Status === "Success") {
           setUserAccount(response.data.decoded.id);
           console.log(userAccount);
-        } else {
-          navigate("/login");
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  // For get number of admins
+  useEffect(() => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "http://localhost:5000/countAdmin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        setAdminCount(response.data.result[0].admins);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // For get number of users
+  useEffect(() => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "http://localhost:5000/countCustomer",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        setCustomerCount(response.data.result[0].customers);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+    // For get number of users
+    useEffect(() => {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: "http://localhost:5000/countProduct",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+  
+      axios
+        .request(config)
+        .then((response) => {
+          setProductCount(response.data.result[0].products);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
 
   return (
     <>
@@ -49,7 +121,7 @@ const Board = () => {
                       <IoDocumentText className="iconGad gone1" />
                       <p>Porduct</p>
                     </div>
-                    <h2>5</h2>
+                    <h2>{productCount}</h2>
                     <Link to="/product/" className="txtcol">
                       View More
                     </Link>
@@ -59,7 +131,7 @@ const Board = () => {
                       <IoDocumentText className="iconGad gone2" />
                       <p>Admin</p>
                     </div>
-                    <h2>15</h2>
+                    <h2>{adminCount}</h2>
                     <Link to="/menagerAdmin/" className="txtcol">
                       <p>View More</p>
                     </Link>
@@ -69,7 +141,7 @@ const Board = () => {
                       <IoDocumentText className="iconGad gone3" />
                       <p>Order</p>
                     </div>
-                    <h2>25</h2>
+                    <h2>{orderCount}</h2>
                     <Link to="/orderpage/" className="txtcol">
                       <p>View More</p>
                     </Link>
@@ -79,7 +151,7 @@ const Board = () => {
                       <IoDocumentText className="iconGad gone4" />
                       <p>User</p>
                     </div>
-                    <h2>15</h2>
+                    <h2>{customerCount}</h2>
                     <Link to="/menageruser/" className="txtcol">
                       <p>View More</p>
                     </Link>
