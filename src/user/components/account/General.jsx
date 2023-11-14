@@ -32,34 +32,34 @@ const General = () => {
         if (response.data.Status === "Success") {
           setUserAccount(response.data.decoded.id);
           console.log(userAccount);
+
+          // For get some detail of this user
+          let config = {
+            method: "get",
+            maxBodyLength: Infinity,
+            url: "http://localhost:5000/getCustomer/" + userAccount,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+
+          axios
+            .request(config)
+            .then((response) => {
+              // console.log(JSON.stringify(response.data));
+              setCustomer(response.data.Result[0]);
+              console.log(JSON.stringify(customer));
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  });
-
-  useEffect(() => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: "http://localhost:5000/getCustomer/" + userAccount,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        setCustomer(response.data.Result[0]);
-        console.log(JSON.stringify(customer))
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }, []);
+
 
   return (
     <>
@@ -81,7 +81,7 @@ const General = () => {
             </a>
             <a>
               <span>Phone</span>
-              <p>+856 2099988787</p>
+              <p>{customer.tel}</p>
             </a>
             <a>
               <span>Password</span>

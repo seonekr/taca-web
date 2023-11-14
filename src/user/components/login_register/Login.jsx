@@ -35,15 +35,21 @@ const Login = () => {
         if (res.data.Status === "Success") {
           localStorage.setItem("token", res.data.token);
 
-          console.log(res.data.urole)
-          
-          if(res.data.urole = "Admin logged in"){
+          console.log(res.data.urole);
+
+          // if (res.data.urole === "Admin") {
+          //   navigate("/dashboard");
+          // } else {
+          //   navigate("/");
+          // }
+
+          if (res.data.urole === "Admin") {
+            console.log("Main!");
             navigate("/dashboard");
-          }
-          if(res.data.urole = "Customer logged in"){
+          } else {
+            console.log("Dashboard!");
             navigate("/");
           }
-
         } else {
           setError(res.data.Error);
         }
