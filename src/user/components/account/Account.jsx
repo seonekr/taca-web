@@ -12,6 +12,7 @@ const Account = () => {
   const token = localStorage.getItem("token");
 
   console.log(token);
+  const navigate = useNavigate();
 
   useEffect(() => {
     var myHeaders = new Headers();
@@ -36,7 +37,7 @@ const Account = () => {
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem("token");
-    navitage("/");
+    navigate("/");
   };
 
   return (
