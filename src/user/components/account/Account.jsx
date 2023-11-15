@@ -6,44 +6,38 @@ import userProfileDefault from "../../../img/user.png";
 import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Account = () => {
   const [userAccount, setUserAccount] = useState("");
   const token = localStorage.getItem("token");
 
-  const navitage = useNavigate()
-
   console.log(token);
 
   useEffect(() => {
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://localhost:5000/authen",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        if (response.data.Status === "Success") {
-            setUserAccount(response.data.decoded.email);
+    fetch(import.meta.env.VITE_API + "/authen", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setUserAccount(result.decoded.email);
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+      .catch((error) => console.log("error", error));
+  }, []);
 
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem("token");
-    navitage("/")
-  }
+    navitage("/");
+  };
 
   return (
     <>
@@ -68,9 +62,7 @@ const Account = () => {
                 <img src={userProfileDefault} alt="" />
               </span>
             </div>
-            <span className="name">
-            {userAccount}
-            </span>
+            <span className="name">{userAccount}</span>
           </div>
           <div className="text-info">
             <Link to="/account/general">
@@ -92,7 +84,9 @@ const Account = () => {
               <div className="icon-logout">
                 <BiLogOut />
               </div>
-              <div className="text-logout" onClick={handleLogout}>Logout</div>
+              <div className="text-logout" onClick={handleLogout}>
+                Logout
+              </div>
             </Link>
             <Link>Delete account</Link>
           </div>

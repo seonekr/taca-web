@@ -23,7 +23,7 @@ const Board = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:5000/authen",
+      url: import.meta.env.VITE_API + "/authen",
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -48,7 +48,7 @@ const Board = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "http://localhost:5000/countAdmin",
+      url: import.meta.env.VITE_API + "/countAdmin",
       headers: {
         "Content-Type": "application/json",
       },
@@ -69,7 +69,7 @@ const Board = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "http://localhost:5000/countCustomer",
+      url: import.meta.env.VITE_API + "/countCustomer",
       headers: {
         "Content-Type": "application/json",
       },
@@ -90,7 +90,7 @@ const Board = () => {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "http://localhost:5000/countProduct",
+        url: import.meta.env.VITE_API + "/countProduct",
         headers: {
           "Content-Type": "application/json",
         },

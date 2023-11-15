@@ -8,7 +8,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import Logo1 from "../../../img/Logo1.png";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Header = () => {
   const [userAccount, setUserAccount] = useState("");
@@ -17,27 +16,24 @@ const Header = () => {
   console.log(token);
 
   useEffect(() => {
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://localhost:5000/authen",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        if (response.data.Status === "Success") {
-            setUserAccount(response.data.decoded.email);
+    fetch(import.meta.env.VITE_API + "/authen", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setUserAccount(result.decoded.email);
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+      .catch((error) => console.log("error", error));
+  }, []);
 
   return (
     <>

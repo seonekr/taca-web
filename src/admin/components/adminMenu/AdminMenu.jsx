@@ -15,7 +15,36 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const AdminMenu = () => {
-  
+  const [userAccount, setUserAccount] = useState("");
+  const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
+
+  console.log(token);
+
+  useEffect(() => {
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:5000/authen",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        if (response.data.Status === "Success") {
+          setUserAccount(response.data.decoded.email);
+          console.log(userAccount)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -52,7 +81,7 @@ const AdminMenu = () => {
               <BiMessageDetail />
               <p>Message</p>
             </Link>
-            <Link to="/" className="link" onClick={handleLogout}>
+            <Link onClick={handleLogout} className="link">
               <IoLogOutOutline />
               <p>Log Out</p>
             </Link>

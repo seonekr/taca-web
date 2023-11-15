@@ -4,62 +4,98 @@ import Header from "../header/Header";
 import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const General = () => {
   const [userAccount, setUserAccount] = useState("");
   const [customer, setCustomer] = useState([]);
   const token = localStorage.getItem("token");
 
-  const navitage = useNavigate();
+  // useEffect(() => {
+  //   let config = {
+  //     method: "post",
+  //     maxBodyLength: Infinity,
+  //     url: "http://localhost:5000/authen",
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //     },
+  //   };
 
-  console.log(token);
+  //   axios
+  //     .request(config)
+  //     .then((response) => {
+  //       // console.log(JSON.stringify(response.data));
+  //       if (response.data.Status === "Success") {
+  //         setUserAccount(response.data.decoded.id);
+  //         console.log(userAccount);
+
+  //         // For get some detail of this user
+  //         let config = {
+  //           method: "get",
+  //           maxBodyLength: Infinity,
+  //           url: "http://localhost:5000/getCustomer/" + userAccount,
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         };
+
+  //         axios
+  //           .request(config)
+  //           .then((response) => {
+  //             // console.log(JSON.stringify(response.data));
+  //             setCustomer(response.data.Result[0]);
+  //             console.log(JSON.stringify(customer));
+  //           })
+  //           .catch((error) => {
+  //             console.log(error);
+  //           });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [[]]);
 
   useEffect(() => {
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://localhost:5000/authen",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        if (response.data.Status === "Success") {
-          setUserAccount(response.data.decoded.id);
-          console.log(userAccount);
-
-          // For get some detail of this user
-          let config = {
-            method: "get",
-            maxBodyLength: Infinity,
-            url: "http://localhost:5000/getCustomer/" + userAccount,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          };
-
-          axios
-            .request(config)
-            .then((response) => {
-              // console.log(JSON.stringify(response.data));
-              setCustomer(response.data.Result[0]);
-              console.log(JSON.stringify(customer));
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+    fetch(import.meta.env.VITE_API + "/authen", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          // setUserAccount(result.decoded.id);
+          localStorage.setItem("customerID", result.decoded.id)
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [[]]);
+      .catch((error) => console.log("error", error));
+  }, []);
 
+  // useEffect(() => {
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
+
+  //   var requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+
+  //   fetch("http://localhost:5000/getCustomer/" + userAccount, requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       if (result.Status === "Success") {
+  //         setCustomer(result.Result);
+  //         console.log(customer);
+  //       }
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // }, []);
 
   return (
     <>
@@ -77,11 +113,11 @@ const General = () => {
           <div className="text-info">
             <a>
               <span>Email</span>
-              <p>{customer.email}</p>
+              {/* <p>{customer[0].email}</p> */}
             </a>
             <a>
               <span>Phone</span>
-              <p>{customer.tel}</p>
+              {/* <p>{customer[0].tel}</p> */}
             </a>
             <a>
               <span>Password</span>
