@@ -104,7 +104,7 @@ const Register = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/register", requestOptions)
+    fetch(import.meta.env.VITE_API + "/register", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {

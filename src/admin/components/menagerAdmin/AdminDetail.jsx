@@ -71,7 +71,7 @@ const AdminDetail = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/getAdmin/" + id, requestOptions)
+    fetch(import.meta.env.VITE_API + "/getAdmin/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {

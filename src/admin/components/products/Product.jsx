@@ -75,7 +75,7 @@ const Product = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/deleteProduct/" + id, requestOptions)
+    fetch(import.meta.env.VITE_API + "/deleteProduct/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
