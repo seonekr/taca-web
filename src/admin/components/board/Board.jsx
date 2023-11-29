@@ -4,8 +4,6 @@ import { BsHandbagFill } from "react-icons/bs";
 import { TbShoppingCartStar } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-
 
 const Board = () => {
   const [userAccount, setUserAccount] = useState("");
@@ -18,92 +16,51 @@ const Board = () => {
   const navitage = useNavigate();
 
   // For authen users
-  useEffect(() => {
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/authen",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        if (response.data.Status === "Success") {
-          setUserAccount(response.data.decoded.id);
-          console.log(userAccount);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   // For get number of admins
   useEffect(() => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/countAdmin",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        setAdminCount(response.data.result[0].admins);
+    fetch(import.meta.env.VITE_API + "/countAdmin", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setAdminCount(result.result[0].admins);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log("error", error));
   }, []);
 
   // For get number of users
   useEffect(() => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: import.meta.env.VITE_API + "/countCustomer",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
     };
 
-    axios
-      .request(config)
-      .then((response) => {
-        setCustomerCount(response.data.result[0].customers);
+    fetch("http://localhost:5000/countCustomer", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setUserAccount(result.result[0].customers);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log("error", error));
   }, []);
 
-    // For get number of users
-    useEffect(() => {
-      let config = {
-        method: "get",
-        maxBodyLength: Infinity,
-        url: import.meta.env.VITE_API + "/countProduct",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-  
-      axios
-        .request(config)
-        .then((response) => {
-          setProductCount(response.data.result[0].products);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, []);
+  // For get number of product
+  useEffect(() => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:5000/countProduct", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setProductCount(result.result[0].products);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
   return (
     <>
@@ -115,43 +72,43 @@ const Board = () => {
               <div className="containerBox_db">
                 <h3>Dashboard</h3>
                 <div className="contentBox_db">
-                  <div className="menu-box one">
+                  <div className="menu-box four">
                     <div>
-                      <IoDocumentText className="iconGad gone1" />
-                      <p>Porduct</p>
-                    </div>
-                    <h2>{productCount}</h2>
-                    <Link to="/product/" className="txtcol">
-                      View More
-                    </Link>
-                  </div>
-                  <div className="menu-box two">
-                    <div>
-                      <IoDocumentText className="iconGad gone2" />
-                      <p>Admin</p>
+                      <IoDocumentText className="iconGad gone4" />
+                      <p>Admins</p>
                     </div>
                     <h2>{adminCount}</h2>
-                    <Link to="/menagerAdmin/" className="txtcol">
+                    <Link to="/admins" className="txtcol">
                       <p>View More</p>
                     </Link>
                   </div>
                   <div className="menu-box three">
                     <div>
                       <IoDocumentText className="iconGad gone3" />
-                      <p>Order</p>
+                      <p>Users</p>
                     </div>
-                    <h2>{orderCount}</h2>
-                    <Link to="/orderpage/" className="txtcol">
+                    <h2>{userAccount}</h2>
+                    <Link to="/users" className="txtcol">
                       <p>View More</p>
                     </Link>
                   </div>
-                  <div className="menu-box four">
+                  <div className="menu-box one">
                     <div>
-                      <IoDocumentText className="iconGad gone4" />
-                      <p>User</p>
+                      <IoDocumentText className="iconGad gone1" />
+                      <p>Porducts</p>
                     </div>
-                    <h2>{customerCount}</h2>
-                    <Link to="/menageruser/" className="txtcol">
+                    <h2>{productCount}</h2>
+                    <Link to="/products" className="txtcol">
+                      View More
+                    </Link>
+                  </div>
+                  <div className="menu-box two">
+                    <div>
+                      <IoDocumentText className="iconGad gone2" />
+                      <p>Orders</p>
+                    </div>
+                    <h2>{orderCount}</h2>
+                    <Link to="/orderpage" className="txtcol">
                       <p>View More</p>
                     </Link>
                   </div>

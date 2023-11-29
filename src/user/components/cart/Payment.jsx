@@ -1,4 +1,3 @@
-import { FaAngleLeft } from "react-icons/fa6";
 import { FiPlus } from "react-icons/fi";
 import "./payment.css";
 import qrcode from "../../../img/QRCODE.png";
@@ -114,7 +113,6 @@ const Payment = () => {
                         <div>Product Name: {product.productName}</div>
                         <div>Size: {product.size}</div>
                         <div>Color: {product.color}</div>
-                        <div>Type: {product.type}</div>
                         <div>Price: {product.price}</div>
                         <div>Product Counts: {product.productCounts}</div>
                         <div>
@@ -129,7 +127,7 @@ const Payment = () => {
               )}
               {/* Procuts Cart */}
               {productsCart.length > 0 ? (
-                <div>
+                <div className="detailsProductInPayMentBox">
                   <ul>
                     {productsCart.map((product) => (
                       <li key={product.productID}>
@@ -137,7 +135,6 @@ const Payment = () => {
                         <div>Product Name: {product.productName}</div>
                         <div>Size: {product.size}</div>
                         <div>Color: {product.color}</div>
-                        <div>Type: {product.type}</div>
                         <div>Price: {product.price}</div>
                         <div>Product Counts: {product.productCounts}</div>
                       </li>

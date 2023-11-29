@@ -1,165 +1,275 @@
 import "./product.css";
-import image1 from "../../../img/image1.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminMenu from "../adminMenu/AdminMenu";
-import { BiPlus } from 'react-icons/bi';
-import { IoSearchOutline } from 'react-icons/io5';
-import { MdOutlineEdit } from 'react-icons/md';
-import { AiOutlineDelete, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { BiPlus } from "react-icons/bi";
+import { IoSearchOutline } from "react-icons/io5";
+import { MdOutlineEdit } from "react-icons/md";
+import { AiOutlineDelete, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
-    const [products, setProducts] = useState([
-        { id: 1, name: 'Product 1', description: 'This is product 1', price: 10, category: "clothes", images: [image1] },
-        { id: 2, name: 'Product 2', description: 'This is product 1', price: 11, category: "clothes", images: [image1] },
-        { id: 3, name: 'Product 3', description: 'This is product 1', price: 12, category: "clothes", images: [image1] },
-        { id: 4, name: 'Product 4', description: 'This is product 1', price: 10, category: "clothes", images: [image1] },
-        { id: 5, name: 'Product 5', description: 'This is product 1', price: 11, category: "clothes", images: [image1] },
-        { id: 6, name: 'Product 6', description: 'This is product 1', price: 12, category: "clothes", images: [image1] },
-        { id: 7, name: 'Product 7', description: 'This is product 1', price: 10, category: "clothes", images: [image1] },
-        { id: 8, name: 'Product 8', description: 'This is product 1', price: 11, category: "clothes", images: [image1] },
-    ]);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [products, setProducts] = useState([]);
 
-    const [searchTerm, setSearchTerm] = useState("");
-    const [price, setPrice] = useState("");
-    const [priceFilter, setPriceFilter] = useState("");
+  useEffect((event) => {
+    Showproducts();
+  }, []);
 
-    // Handle inputChange
-    const handleInputChange = (e, index, field) => {
-        const updatedProducts = [...products];
-        updatedProducts[index][field] = e.target.value;
-        setProducts(updatedProducts);
-    }
+  const Showproducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    // Filter products based on search term and price range
-    const filteredProducts = products.filter((product) => {
-        
-        const peiceMatch = priceFilter !== "" ? product.price === parseInt(priceFilter) : true;
-        return peiceMatch;
-    });
-
-    // Handle filter by price
-    const handleFilter = (price) => {
-        setPriceFilter(price);
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
     };
 
-    // Handle select by price
-    const handleSelectChange = (e) => {
-        setPrice(e.target.value);
-        handleFilter(e.target.value);
+    fetch(import.meta.env.VITE_API + "/allProducts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setProducts(result.Result);
+        } else {
+          setError(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // prev next button user in react
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 8;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = filteredProducts.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(filteredProducts.length / recordsPerPage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
+
+  // Delete product
+  const [deleteProductId, setDeleteProductId] = useState(null);
+  const [isConfirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
+
+  const openConfirmationPopup = (id) => {
+    setDeleteProductId(id);
+    setConfirmationPopupOpen(true);
+  };
+
+  const closeConfirmationPopup = () => {
+    setDeleteProductId(null);
+    setConfirmationPopupOpen(false);
+  };
+
+  const DeleteProduct = (id) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
     };
-    
 
-    // Delete
+    fetch("http://localhost:5000/deleteProduct/" + id, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setSuccess(result.Status);
+          navigate("/products");
+        } else {
+          setError(result.Error);
+          navigate("/products");
+        }
+      })
+      .catch((error) => console.log("error", error));
 
-    const handleDelete = (productId) => {
-        const updatedProducts = products.filter((product) => product.id !== productId);
-        setProducts(updatedProducts);
-    };
+    closeConfirmationPopup();
+  };
 
+  // Send ID product for update
+  const navigate = useNavigate();
+  // Update products
+  const handleUpdate = (id) => {
+    navigate("/product/edit/"+id);
+  };
 
-    return (
-        <>
-            <AdminMenu/>
-            <section id="product_admin">
-                <div className="container_body_admin_product">
-                    <div className="search-box_product">
-                        <input 
-                            type="text" 
-                            placeholder="Search ..." 
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button type="submit">
-                        <IoSearchOutline />
-                        </button>
-                    </div>
+  // Function to handle search by product name
+  const handleSearch = () => {
+    const filtered = products.filter((product) =>
+      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
 
-                    <div className="productHead_content">
-                        <h1 className="htxthead"><span className="spennofStyleadmin"></span>Product</h1>
-                        <div className="categoryBoxfiler">
-                            <Link to="/post/" className="box_add_product">
-                                <BiPlus id="icon_add_product"/>
-                                <p>Add Product</p>
-                            </Link>
-                            <form>
-                                <select className="filter_priceProduct" value={price} onChange={handleSelectChange}>
-                                    <option value="">Filter Price</option>
-                                    <option value="10">$10</option>
-                                    <option value="11">$11</option>
-                                    <option value="12">$12</option>
-                                </select>
-                            </form>
-                            <box-icon name='filter'></box-icon>
-                        </div>
-                    </div>
+  return (
+    <>
+      <AdminMenu />
+      <section id="product_admin">
+        <div className="container_body_admin_product">
+          <div className="search-box_product">
+            <input
+              type="text"
+              placeholder="Search ..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button>
+              <IoSearchOutline onClick={handleSearch} />
+            </button>
+          </div>
 
-                    <form className="product-area">
-                        {filteredProducts.map((product, index) => (
-                            <div className="box-product" key={ product.id}>
-                                <Link to="#"><img src={product.images[0]} alt="image" /></Link>
-                                <ul className="txtOFproduct">
-                                    <li>
-                                        <input
-                                            className="name"
-                                            type="text"
-                                            value={product.name}
-                                            onChange={handleInputChange}
-                                        />
-                                    </li>
-                                    <li>
-                                        <input
-                                            className="desc"
-                                            type="text"
-                                            value={product.description}
-                                            onChange={(e) => handleInputChange(e, index, "description")}
-                                        />
-                                    </li>
-                                    <li>
-                                        <input
-                                            className="price"
-                                            type="text"
-                                            value={product.price}
-                                            onChange={(e) => handleInputChange(e, index, "price")}
-                                        />
-                                    </li>
-                                    <div className="box_btn_edit_delete">
+          <div className="productHead_content">
+            <h1 className="htxthead">
+              <span className="spennofStyleadmin"></span>Product
+            </h1>
+            <div className="categoryBoxfiler">
+              <Link to="/product/add" className="box_add_product">
+                <BiPlus id="icon_add_product" />
+                <p>Add Product</p>
+              </Link>
+            </div>
+          </div>
 
-                                        <button className="btn_icon_delete_user" onClick={() => handleDelete(product.id)}>
-                                            <AiOutlineDelete id="btn_icon_edit"/>
-                                        </button>
-                                        <div className="btn_icon_edit_user" >
-                                            <MdOutlineEdit id="btn_icon_edit"/>
-                                        </div>
-                                        
-                                    </div>
-                                </ul>
-                                
-                            </div>
-                        ))}
-                    </form>
-                    <div className='box_container_next_product'>
-                        <button className='box_prev_left_product'>
-                            <AiOutlineLeft id="box_icon_left_right_product" />
-                            <p>Prev</p>
-                        </button>
-
-                        <div className='box_num_product'>
-                            <p className='num_admin_product'>1</p>
-                            <p className='num_admin_product'>2</p>
-                            <p className='num_admin_product'>3</p>
-                        </div>
-                        <button className='box_prev_right_product'>
-                            <p>Next</p>
-                            <AiOutlineRight id="box_icon_left_right_product" />
-                        </button>
-                    </div>
+          {/* <div className="product-area">
+            {records.map((product, index) => (
+              <div className="box-product" key={index}>
+                <div>
+                  <img src={product.images[0].src} alt="image" />
                 </div>
-                    
-            </section>
-        </>
-        
-    )
-}
+                <ul className="txtOFproduct">
+                  <li>{product.productName}</li>
+                  <li>{product.description}</li>
+                  <li>{product.price}</li>
+                  <div className="box_btn_edit_delete">
+                    <button
+                      className="btn_icon_delete_user"
+                      onClick={() => openConfirmationPopup(product.productID)}
+                    >
+                      <AiOutlineDelete id="btn_icon_edit" />
+                    </button>
+                    <div
+                      className="btn_icon_edit_user"
+                      onClick={() => handleUpdate(product.productID)}
+                    >
+                      <MdOutlineEdit id="btn_icon_edit" />
+                    </div>
+                  </div>
+                </ul>
+              </div>
+            ))}
+            {isConfirmationPopupOpen && (
+              <div className="confirmation-popup">
+                <p>Are you sure you want to delete?</p>
+                <div className="btn_ok_on">
+                  <button onClick={deleteProduct} className="btn_yes">
+                    Yes
+                  </button>
+                  <button onClick={closeConfirmationPopup} className="btn_on">
+                    No
+                  </button>
+                </div>
+              </div>
+            )}
+          </div> */}
+
+          {/* The new once */}
+
+          <div className="product-area">
+            {products.map((product, index) => (
+              <div className="box-product" key={index}>
+                <div>
+                  <img
+                    src={"../../../../public/images/" + product.main_image_path}
+                    alt="image"
+                  />
+                </div>
+                <ul className="txtOFproduct">
+                  <li>{product.name}</li>
+                  <li>{product.description}</li>
+                  <li>{product.price}</li>
+                  <div className="box_btn_edit_delete">
+                    <button
+                      className="btn_icon_delete_user"
+                      onClick={() => openConfirmationPopup(product.id)}
+                    >
+                      <AiOutlineDelete id="btn_icon_edit" />
+                    </button>
+                    <div
+                      className="btn_icon_edit_user"
+                      onClick={() => handleUpdate(product.id)}
+                    >
+                      <MdOutlineEdit id="btn_icon_edit" />
+                    </div>
+                  </div>
+                </ul>
+              </div>
+            ))}
+            {isConfirmationPopupOpen && (
+              <div className="confirmation-popup">
+                <p>Are you sure you want to delete?</p>
+                <div className="btn_ok_on">
+                  <button
+                    onClick={() => {
+                      DeleteProduct(deleteProductId);
+                    }}
+                    className="btn_yes"
+                  >
+                    Yes
+                  </button>
+                  <button onClick={closeConfirmationPopup} className="btn_on">
+                    No
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="box_container_next_product">
+            <button className="box_prev_left_product" onClick={prePage}>
+              <AiOutlineLeft id="box_icon_left_right_product" />
+              <p>Prev</p>
+            </button>
+
+            <div className="box_num_product">
+              {numbers.map((n, i) => (
+                <div
+                  className={`page-link ${currentPage === n ? "active" : ""}`}
+                  key={i}
+                >
+                  <div className="num_admin_product">
+                    <p onClick={() => changeCPage(n)}>{n}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button className="box_prev_right_product" onClick={nextPage}>
+              <p>Next</p>
+              <AiOutlineRight id="box_icon_left_right_product" />
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+  function prePage() {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+  function nextPage() {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+  function changeCPage(userID) {
+    setCurrentPage(userID);
+  }
+};
 
 export default Product;

@@ -26,7 +26,7 @@ const Address = () => {
     setProvince(""), setCity(""), setCompanny(""), setBranch("");
 
     if (products.length > 0) { // for details products
-      navigate("/cart/payment/", {
+      navigate("/cart/payment", {
         state: {
           products,
           address: {
@@ -38,7 +38,7 @@ const Address = () => {
         },
       });
     }else if(productsCart.length > 0) { // for cart
-      navigate("/cart/payment/", {
+      navigate("/cart/payment", {
         state: {
           productsCart,
           address: {
@@ -75,7 +75,7 @@ const Address = () => {
       <section id="address">
         <div className="gobackaddress">
           <div className="header-box">
-            <Link to="/cart/payment/" className="guopIconbAck">
+            <Link to="/cart/payment" className="guopIconbAck">
               <FaAngleLeft className="iconnBack" />
               Back
             </Link>

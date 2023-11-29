@@ -2,7 +2,9 @@ import "./menu.css"
 import 'boxicons'
 import { Link } from "react-router-dom";
 import QrdownloadApp from '../../../img/QrdownloadApp.png'
-
+import {FaCartShopping} from "react-icons/fa6";
+import { HiOutlineHome } from "react-icons/hi";
+import { BsShop, BsClipboardCheck  } from "react-icons/bs";
 const Menu = () => {
     return (
         <section>
@@ -12,7 +14,7 @@ const Menu = () => {
             <footer className="footerBox">
                 <div className="footer_Container">
                     <div className="footconentBox">
-                        <h3 className="txt_footHead">Something</h3>
+                        <h3 className="txt_footHead">About us</h3>
                         <p><Link to="/" className="txt_pFoot">Something</Link></p>
                         <p><Link to="/" className="txt_pFoot">Something</Link></p>
                         <p><Link to="/" className="txt_pFoot">Something</Link></p>
@@ -21,12 +23,11 @@ const Menu = () => {
                     </div>
 
                     <div className="footconentBox">
-                        <h3 className="txt_footHead">Something</h3>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
+                        <h3 className="txt_footHead">Contact us</h3>
+                        <p><Link to="/" className="txt_pFoot">Phone: 020 998878788</Link></p>
+                        <p><Link to="/" className="txt_pFoot">Phone: 020 998878788</Link></p>
+                        <p><Link to="/" className="txt_pFoot">Email: humascot@gmail.com</Link></p>
+                        <p><Link to="/" className="txt_pFoot">Address: Asean mall</Link></p>
                     </div>
                     <div className="footconentBox3">
                         <h3 className="txt_footHead txh3">Download App</h3>
@@ -50,18 +51,19 @@ const Menu = () => {
 
             <div className="menubar">
                 <Link to="/" className="box-menu active">
-                    <span className=""><box-icon name='home' color='#888888' ></box-icon></span><span>Home</span>
+                    <span className="iconMenuSpan"><HiOutlineHome/></span><span>Home</span>
                 </Link>
                 <Link to="/product_search" className="box-menu">
-                    <span><box-icon name='store' color='#888888' ></box-icon></span><span>Shop</span>
+                    <span className="iconMenuSpan"><BsShop /></span><span>Shop</span>
                 </Link>
                 <Link to="/order" className="box-menu">
-                    <span><box-icon name='task' color='#888888' ></box-icon></span><span>Order</span>
+                    <span className="iconMenuSpan"><BsClipboardCheck/></span><span>Order</span>
                 </Link>
-                <Link to="/chatuser" className="box-menu">
-                    <span><box-icon name='chat' color='#888888' ></box-icon></span><span>Contact</span>
+                <Link to="/cart" className="box-menu">
+                    <span className="iconMenuSpan"><FaCartShopping/></span><span>Cart</span>
                 </Link>
             </div>
+
         </section>
     )
 }

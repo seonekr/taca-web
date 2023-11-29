@@ -3,7 +3,7 @@
     width: 100%;
     margin-top: 7rem;
     box-shadow: -10px -0.5px 4px rgba(0, 0, 0, 0.1);
-}   
+}
 
 .footer_Container {
     width: 80%;
@@ -40,6 +40,7 @@
     color: #FF4F16;
 }
 
+
 .foot_contentItem,
 .guop_btndownl {
     display: flex;
@@ -66,8 +67,14 @@
     font-size: 15px;
     padding: 10px 0;
 }
-.hrfoo{
+
+.hrfoo {
     border: 0.5px solid #dddce18f;
+}
+
+.iconMenuSpan{
+    font-size: 23px;
+    color: #444;
 }
 
 /*---------- Menu For Mobile ----------*/
@@ -93,7 +100,8 @@
         font-size: 15px;
         width: 120px;
     }
-    .foot_contentItem{
+
+    .foot_contentItem {
         gap: 10px;
     }
 }

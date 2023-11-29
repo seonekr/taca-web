@@ -4,13 +4,13 @@ import "boxicons";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import google from "../../../img/google.png";
-import axios from "axios";
+import { IoMdAlert } from "react-icons/io";
+import { MdOutlineCancel } from "react-icons/md";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -25,65 +25,101 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavsior
-    axios
-      .post(import.meta.env.VITE_API + "/login", {
-        email: email,
-        password: password,
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.Status === "Success") {
-          localStorage.setItem("token", res.data.token);
+    const validationErrors = {};
 
-          console.log(res.data.urole);
+    if (!email.trim()) {
+      validationErrors.email = "email is required"
+    }
+    if (!password.trim()) {
+      validationErrors.password = "password is required"
+    }
 
-          // if (res.data.urole === "Admin") {
-          //   navigate("/dashboard");
-          // } else {
-          //   navigate("/");
-          // }
+    if (Object.keys(validationErrors).length > 0) {
+      setError(validationErrors);
+      return;
+    }
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-          if (res.data.urole === "Admin") {
-            console.log("Main!");
+    var raw = JSON.stringify({
+      email: email,
+      password: password,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(import.meta.env.VITE_API + "/login", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          const token = result.token;
+          const userID = result.userID;
+          if (result.urole === "Admin") {
+            localStorage.setItem("token", token);
+            localStorage.setItem("userID", userID);
             navigate("/dashboard");
-          } else {
-            console.log("Dashboard!");
+          } else if (result.urole === "Customer") {
+            localStorage.setItem("token", token);
+            localStorage.setItem("userID", userID);
             navigate("/");
+          } else {
+            setError(result.Error);
+            navigate("/login");
           }
         } else {
-          setError(res.data.Error);
+          setError(result.Error);
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((error) => console.log("error", error));
   };
 
   return (
     <section>
       <form className="box_container_login2">
-        <div className="box_cancel_login">
-          <Link to="/">
-            <AiOutlineClose id="icon_cancel_login" />
-          </Link>
-        </div>
         <div className="cover">
-          <h2 className="box_container_login_text">Login</h2>
-          <h3>{error && error}</h3>
-          <input
-            className="input_form"
-            type="email"
-            placeholder="Enter Your Email"
-            value={email}
-            onChange={handleEmail}
-          />
-          <input
-            className="input_form"
-            type="password"
-            placeholder="Enter Your Password"
-            value={password}
-            onChange={handlePassword}
-          />
+          <div className="box_cancel_login">
+            <h2 className="box_container_login_text">Login</h2>
+            <Link to="/">
+              <AiOutlineClose id="icon_cancel_login" />
+            </Link>
+          </div>
+          {/* {error ? (
+            <div className="boxAlartLogin">
+              <IoMdAlert className="iconAlert" />
+              <p className="txtalert_p">{error && error}</p>
+              <MdOutlineCancel className="iconAlert_canCel" />
+            </div>
+          ) : (
+            <p></p>
+          )} */}
+
+          {/* <h3>{error && error}</h3> */}
+          <div>
+            <input
+              className="input_form"
+              type="email"
+              placeholder="Enter Your Email"
+              value={email}
+              onChange={handleEmail}
+            />
+            {error.email && <p className="error-message">{error.email}</p>}
+          </div>
+
+          <div>
+            <input
+              className="input_form"
+              type="password"
+              placeholder="Enter Your Password"
+              value={password}
+              onChange={handlePassword}
+            />
+            {error.password && <p className="error-message">{error.password}</p>}
+          </div>
 
           <Link to="#" className="forgot_password">
             Forgot Password?
@@ -94,17 +130,20 @@ const Login = () => {
               Login
             </Link>
           </div>
-
-          <p>
-            Don't have an account? <Link to="/register">Signup</Link>
-          </p>
-
-          <p>Or</p>
           <div className="googlebtn_btn">
+            <p className="box_dont">
+              Don't have an account?{" "}
+              <Link to="/register" className="loginmoreLink">
+                Signup
+              </Link>
+            </p>
+            <p>Or</p>
             <Link to="#" className="google_btn">
               <img src={google} alt="img" />
+
               <p>Login with Google</p>
             </Link>
+            {/* <Link to="/alertLogin">Alarter page</Link> */}
           </div>
         </div>
       </form>

@@ -1,15 +1,16 @@
 /* Bill */
 #abill {
     position: absolute;
-    width: 75%;
-    margin: 6rem auto 0 auto;
-    left: 20%;
+    width: 80%;
+    margin-top: 6.5rem;
+    left: 18%;
 }
 
 /* bill no: id: name: */
 .aguopoidHead{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2rem;
 }
 .aiconnboxx{
     text-align: center;
@@ -83,7 +84,7 @@
 }
 .aplace-on form button {
     background-color: #347FFF;
-    padding: 0.3rem 1rem;
+    padding: 0.5rem 2rem;
     border-radius: 4px;
     border: none;
     color: white;

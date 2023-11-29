@@ -1,11 +1,10 @@
 import React from "react";
-import { FaAngleLeft } from "react-icons/fa6";
 import "./order.css";
-import { Link } from "react-router-dom";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Bill from "./Bill";
 
 const Order = () => {
   // Orders
@@ -58,8 +57,9 @@ const Order = () => {
           color: "colW",
           size: "l",
         },
+
         {
-          productID: 2,
+          productID: 3,
           productName: "pro3",
           productType: "clothes",
           amount: 2,

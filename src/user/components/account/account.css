@@ -73,7 +73,7 @@
 #account .personal-info .about-account {
     display: grid;
     grid-gap: 2rem;
-    margin-top: 2rem;
+    margin: 2rem 1rem;
 }
 
 #account .personal-info .about-account a {

@@ -1,109 +1,100 @@
+import React, { useState, useEffect } from "react";
 import "./header.css";
-import {
-  FaStore,
-  FaMagnifyingGlass,
-  FaCartShopping,
-  FaRegUser,
-} from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { FaMagnifyingGlass, FaCartShopping, FaRegUser } from "react-icons/fa6";
+import { BiLogIn } from "react-icons/bi";
+import { Link, useLocation } from "react-router-dom";
 import Logo1 from "../../../img/Logo1.png";
-import { useEffect, useState } from "react";
 
-const Header = () => {
-  const [userAccount, setUserAccount] = useState("");
-  const token = localStorage.getItem("token");
+const Header = ({ handleSearch }) => {
+  // For authenticate user
+  const userID = localStorage.getItem("userID");
+  const location = useLocation();
 
-  console.log(token);
+  const menuItems = [
+    { label: "Home", path: "/" },
+    { label: "Shop", path: "/product_search" },
+    { label: "Orders", path: "/order" },
+    { label: "Contact", path: "/contacts" },
+  ];
 
-  useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token);
+  const [searchTerm, setSearchTerm] = useState("");
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(import.meta.env.VITE_API + "/authen", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.Status === "Success") {
-          setUserAccount(result.decoded.email);
-        }
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
+  // Search bar function
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(searchTerm);
+  };
 
   return (
     <>
       <section id="header">
         <div className="navbar">
           <div className="headWithBox">
-            <ul className="headMenu">
-              <li>
+            <div className="headMenu">
+              <div className="logo1">
                 <Link to="/">
                   <img src={Logo1} alt="Logo" />
                 </Link>
-              </li>
-              <div className="boxLiMenu">
-                <li>
-                  <Link to="/" className="linkLi active">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/product_search" className="linkLi">
-                    Shop
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/order" className="linkLi">
-                    Order
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/chatuser" className="linkLi">
-                    Contact
-                  </Link>
-                </li>
+              </div>
 
-                {userAccount ? (
-                  userAccount
-                ) : (
-                  <li>
-                    <Link to="/login" className="linkLi">
-                      Login
+              <div className="boxLiMenu">
+                <div className="linkLi">
+                  {menuItems.map((menuItem) => (
+                    <Link
+                      key={menuItem.label}
+                      to={menuItem.path}
+                      className={`link ${
+                        location.pathname === menuItem.path ? "active" : ""
+                      }`}
+                    >
+                      {menuItem.icon}
+                      <p>{menuItem.label}</p>
                     </Link>
-                  </li>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="ulHead_box">
+              <form onSubmit={handleSubmit} className="searchBarForm">
+                {" "}
+                {/* Here is search bar */}
+                <input
+                  type="text"
+                  placeholder="Search products ..........."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit">
+                  <FaMagnifyingGlass className="iconSearch" />
+                </button>
+              </form>
+              <div className="boxsearchContainer">
+                {userID ? (
+                  <Link to="/cart">
+                    <FaCartShopping className="head_colorr" />
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <FaCartShopping className="head_colorr" />
+                  </Link>
                 )}
               </div>
-            </ul>
-            <ul className="ulHead_box">
-              <li>
-                <Link to="/product_search">
-                  <FaMagnifyingGlass className="head_colorr" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/cart">
-                  <FaCartShopping className="head_colorr" />
-                </Link>
-              </li>
-              {userAccount ? (
-                <li>
+              {userID ? (
+                <div>
                   <Link to="/account">
                     <FaRegUser className="head_colorr" />
                   </Link>
-                </li>
+                </div>
               ) : (
-                <li>
-                  <Link to="/login">
-                    <FaRegUser className="head_colorr" />
+                <div>
+                  <Link to="/login" className="head_colorr">
+                    Login
+                    <BiLogIn className="login" />
                   </Link>
-                </li>
+                </div>
               )}
-            </ul>
+            </div>
           </div>
         </div>
       </section>

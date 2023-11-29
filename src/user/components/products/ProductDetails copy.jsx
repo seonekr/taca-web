@@ -1,70 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link, useParams } from "react-router-dom";
 import "./productBuy.css";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
 import { IoIosArrowBack } from "react-icons/io";
+import { objectOf } from "prop-types";
+import { countBy } from "lodash";
 
 function ProductDetails() {
-  // For authenticate user if user didn't login, So thay can't go to see the product details
-  const token = localStorage.getItem("token");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token);
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(import.meta.env.VITE_API + "/authen", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.Status === "Success") {
-          if (result.decoded.urole !== "Customer") {
-            localStorage.removeItem("token");
-            localStorage.removeItem("userID");
-            navigate("/");
-            return;
-          }
-        } else {
-          localStorage.removeItem("userID");
-          navigate("/login");
-          return;
-        }
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
-
   const { id } = useParams();
   const [product, setProduct] = useState([]);
-  const allSizes = ["S", "M", "L", "XL"];
-
-  // Prepare for Customer is order product
-  const customerID = localStorage.getItem("userID");
-  const productID = id;
   const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
-  const [quantity, setQuantity] = useState(1);
 
-  const handleColorChange = (event) => {
-    const { id } = event.target;
-    setColor(id);
-  };
-
-  const handleSizeChange = (event) => {
-    const { id } = event.target;
-    setSize(id);
-  };
-
-  console.log("Customer ID: " + customerID);
-  console.log("Product ID: " + productID);
-  console.log("Color: " + color);
-  console.log("Size: " + size);
-  console.log("Quantity: " + quantity);
+  const handleRadioChange = (event) => {
+    const {id} = event.target;
+    setColor(id)
+  }
 
   // For get user by id
   useEffect(() => {
@@ -87,34 +38,11 @@ function ProductDetails() {
       .catch((error) => console.log("error", error));
   }, []);
 
-  // ======================================================================>>
-  // ======================================================================>>
-  // ======================================================================>>
+  const handleSubmit = () => {};
 
-  // const [productCounts, setProductCounts] = useState(1);
-  const decrementValue = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const incrementValue = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (!isNaN(newValue)) {
-      setQuantity(newValue);
-    }
-  };
-
-  // Handle submitted
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+  //Start image gallery
   const [slideIndex, setSlideIndex] = useState(1);
+
   const [width, setWidth] = useState(0);
   const [start, setStart] = useState(0);
   const [change, setChange] = useState(9);
@@ -134,12 +62,10 @@ function ProductDetails() {
   }
 
   function showSlides(n) {
-    const currentProduct = filteredProducts[0]; // Assuming there's only one product in the array
-
-    if (n > currentProduct.images.length) {
+    if (n > product.other_images_path.length) {
       setSlideIndex(1);
     } else if (n < 1) {
-      setSlideIndex(currentProduct.images.length);
+      setSlideIndex(product.other_images_path.length);
     } else {
       setSlideIndex(n);
     }
@@ -159,6 +85,7 @@ function ProductDetails() {
       slideRef.current.scrollLeft -= width;
     }
   }
+
   useEffect(() => {
     if (!slideRef.current || !width) return;
     let numOfThumb = Math.round(slideRef.current.offsetWidth / width);
@@ -175,40 +102,12 @@ function ProductDetails() {
           <IoIosArrowBack id="icons_back" />
           <p>Back</p>
         </Link>
-        <div>
+        <div key={product.id}>
           <div className="boxProduct_deteils">
             <div className="slider">
               <React.Fragment>
                 <section className="product_details">
-                  {/* <div className="product-page-img">
-                    <div className="myslides">
-                      <img src="" alt="img" />
-                    </div>
-
-                    <a className="prev" onClick={() => plusSlides(-1)}>
-                      &#10094;
-                    </a>
-                    <a className="next" onClick={() => plusSlides(1)}>
-                      &#10095;
-                    </a>
-
-                    <div
-                      className="slider_img"
-                      draggable={true}
-                      ref={slideRef}
-                      onDragStart={dragStart}
-                      onDragOver={dragOver}
-                      onDragEnd={dragEnd}
-                    >
-                      <div
-                        className={`slider-box ${1 === slideIndex && "active"}`}
-                        onClick={() => setSlideIndex(index + 1)}
-                      >
-                        <img src="" alt="image" />
-                      </div>
-                    </div>
-                  </div> */}
-
+                  {/* --------------------------------------------- */}
                   <div className="product-page-img">
                     {JSON.stringify(product.other_images_path)
                       ? JSON.parse(product.other_images_path).map(
@@ -230,6 +129,13 @@ function ProductDetails() {
                           )
                         )
                       : null}
+
+                    <a className="prev" onClick={() => plusSlides(-1)}>
+                      &#10094;
+                    </a>
+                    <a className="next" onClick={() => plusSlides(1)}>
+                      &#10095;
+                    </a>
 
                     <div
                       className="slider_img"
@@ -267,21 +173,7 @@ function ProductDetails() {
               <div className="txtContentproduct">
                 <h1 className="txt_nameP">{product.name}</h1>
                 <p className="money_txt">{product.price}</p>
-                {/* Star Box */}
-                {/* <div className="startBox">
-                  <div className="sartBox_icon">
-                    <AiFillStar id="icon_stars" />
-                    <AiFillStar id="icon_stars" />
-                    <AiFillStar id="icon_stars" />
-                    <AiFillStar id="icon_stars" />
-                    <AiOutlineStar id="icon_star" />
-                  </div>
-
-                  <div>
-                    <p>( 150 Reviews )</p>
-                  </div>
-                </div> */}
-                <p className="txt_description">desc</p>
+                <p className="txt_description">{product.description}</p>
 
                 <div className="hr">
                   <hr />
@@ -290,23 +182,42 @@ function ProductDetails() {
                 {/* Checked colors */}
                 <div className="color_product">
                   {JSON.stringify(product.colors)
-                    ? JSON.parse(product.colors).map((e, index) => (
+                    ? JSON.parse(product.colors).map((colors, index) => (
                         <div key={index}>
-                          <label htmlFor={e}>{e}</label>
+                          <label htmlFor={colors}>
+                            {colors}
+                          </label>
                           <input
                             className="echColor"
                             type="radio"
-                            id={e}
-                            checked={e === color}
-                            onChange={handleColorChange}
+                            id={index}
+                            checked={colors === color}
+                            onChange={handleRadioChange}
                           />
                         </div>
                       ))
                     : null}
                 </div>
 
+                {/* <div className="color_product">
+                  {JSON.stringify((colors) => (
+                    <div key={colors.colorID}>
+                      <label htmlFor={colors.colorName}>
+                        {colors.colorName}
+                      </label>
+                      <input
+                        className="echColor"
+                        type="radio"
+                        id={colors.colorName}
+                        checked={colors.colorName === color}
+                        onChange={handleRadioChange}
+                      />
+                    </div>
+                  ))}
+                </div> */}
+
                 {/* Checked sizes */}
-                {/* <div className="size_product">
+                <div className="size_product">
                   <p>Size:</p>
                   <label htmlFor="s">S</label>
                   <input type="radio" id="s" />
@@ -316,45 +227,15 @@ function ProductDetails() {
                   <input type="radio" id="l" />
                   <label htmlFor="xl">XL</label>
                   <input type="radio" id="xl" />
-                </div> */}
-
-                <div className="size_product">
-                  <p>Size:</p>
-                  {allSizes.map((e, index) => (
-                    <div key={index}>
-                      <label htmlFor={e}>{e}</label>
-                      <input
-                        className="echColor"
-                        type="radio"
-                        id={e}
-                        checked={e === size}
-                        onChange={handleSizeChange}
-                      />
-                    </div>
-                  ))}
                 </div>
 
                 {/* Amount product */}
                 <div className="container_item_icon">
-                  <div
-                    className="container_minus_plus"
-                    onClick={decrementValue}
-                  >
-                    -
-                  </div>
+                  <div className="container_minus_plus">-</div>
                   <span>
-                    <input
-                      type="text"
-                      value={quantity}
-                      onChange={handleChange}
-                    />
+                    <input type="text" />
                   </span>
-                  <div
-                    className="container_minus_plus"
-                    onClick={incrementValue}
-                  >
-                    +
-                  </div>
+                  <div className="container_minus_plus">+</div>
                 </div>
                 <div className="Count_product">
                   <button type="submit" className="echbtn btnBut">
@@ -369,8 +250,8 @@ function ProductDetails() {
           </div>
           <div className="description_container">
             <img
-              src={"../../../../public/images/" + product.main_image_path}
-              alt="img"
+              src={"../../../../public/images/1701068285422-dress.png"}
+              alt=""
             />
           </div>
         </div>

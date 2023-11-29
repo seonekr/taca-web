@@ -1,9 +1,9 @@
-import { FaAngleLeft } from "react-icons/fa6";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 import "./bill.css";
 const Bill = () => {
@@ -170,8 +170,12 @@ const Bill = () => {
     <>
       <Header></Header>
       <section id="bill">
+        <Link to="/order" className="box_container_back_icons_back">
+          <IoIosArrowBack id="icons_back" />
+          <p>Back</p>
+        </Link>
         {filteredOrders.map((order) => (
-          <div className="bill-detial" key={order.orderID}>
+          <div className="bill-detial newspanBox" key={order.orderID}>
             <div className="guopoidHead">
               <div className="idf">
                 <p>OrderID: {order.orderID}</p>
@@ -185,7 +189,6 @@ const Bill = () => {
                 <thead>
                   <tr>
                     <th>Product Name</th>
-                    <th>Product Type</th>
                     <th>Price</th>
                     <th>Amount</th>
                     <th>Color</th>
@@ -196,7 +199,6 @@ const Bill = () => {
                   <tbody key={product.productID}>
                     <tr>
                       <td>{product.productName}</td>
-                      <td>{product.productType}</td>
                       <td>${product.price}</td>
                       <td>{product.amount}</td>
                       <td>{product.color}</td>

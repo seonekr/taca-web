@@ -38,6 +38,11 @@ a {
     margin: auto;
 }
 
+.box_Filterseach_home{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
 input {
     background-color: transparent;
@@ -51,6 +56,10 @@ input:focus {
     outline: none;
 }
 
+.onlacksearch {
+    cursor: pointer;
+}
+
 #search-icon {
     width: 25px;
     height: 25px;
@@ -62,7 +71,7 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3rem 0;
+    padding: 3rem 0rem;
     margin-top: 3rem;
 }
 
@@ -85,7 +94,7 @@ input:focus {
     /*Is price filter*/
     cursor: pointer;
     font-size: 15px;
-    padding: 7px 30px;
+    padding: 7px 10px;
     border-radius: 5px;
 }
 
@@ -143,12 +152,6 @@ input:focus {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
 }
 
-.boxfilterseach {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
 .btn_more {
     display: flex;
     justify-content: center;
@@ -162,14 +165,15 @@ input:focus {
         width: 80%;
         margin: 0 auto;
     }
-   
+
 }
 
-@media screen and (min-width: 768px) and  (max-width: 1025px){
+@media screen and (min-width: 768px) and (max-width: 1025px) {
     .container_home {
         width: 80%;
         margin: 0 auto;
     }
+
     .contentImageProducts {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -185,7 +189,8 @@ input:focus {
         align-items: center;
         overflow: hidden;
     }
-    .group_itemBox .img img{
+
+    .group_itemBox .img img {
         padding: 15px;
     }
 
@@ -251,13 +256,6 @@ input:focus {
     .cetegory_form label {
         display: none;
     }
-
-    .boxfilterseach {
-        display: inline;
-        gap: 0;
-    }
-
-    
 
     .btn_more {
         margin-bottom: 5rem;

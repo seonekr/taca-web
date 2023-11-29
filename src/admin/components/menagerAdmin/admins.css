@@ -1,17 +1,12 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ============ container_body_adminuser =========== */
-.container_body_adminuser {
-    width: 100%;
-    z-index: 999;
-    padding: 88px 20px 20px 255px;
-}
+/* ============ container_body =========== */
 
-.container_box_adminusers {
+.container_box_users{
     width: 100%;
     height: auto;
     margin: auto;
@@ -21,60 +16,28 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-.box_search_user {
-    width: 1126px;
-    height: 90px;
+.box_add_admin{
+    padding: 0 2rem;
+}
+.btn_addadmin{
     display: flex;
+    gap: 0.5rem;
     align-items: center;
-    padding: 0 40px 0 0;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: #15c65c;
 }
-
-.box_search_user img {
-    width: 55px;
-    height: 55px;
-}
-
-.box_users {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/*====== input search box ========*/
-
-.search-box_menageruser {
-    display: flex;
-    width: 100%;
-    padding: 10px 30px 10px 0;
+#icon_add_admin{
+    width: 25px;
+    height: 25px;
 }
 
 
+/* ============ box_users_admin =========== */
 
-.search-box_menageruser input {
-    width: 500px;
-    height: 45px;
-    border: 1px solid #ccc;
-    background: #FFF;
-    padding: 0 1rem;
-    border-radius: 5px 0 0 5px;
-}
-
-.search-box_menageruser button {
-    background: #0E64D2;
-    color: #FFF;
-    width: 70px;
-    height: 45px;
-    border: 1px solid #ccc;
-    font-size: 1.7rem;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
-}
-
-
-/* ============ box_users_user =========== */
-
-.box_users_user {
+.box_users_admin{
     width: 94%;
     height: 90px;
     display: flex;
@@ -84,73 +47,70 @@
     margin-top: 1rem;
     border-radius: 5px;
     padding: 20px 30px 20px 30px;
+    cursor: pointer;
     background: #FFF;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-.box_user_text {
+.box_admin_text{
     display: flex;
     gap: 1.5rem;
     align-items: center;
 }
 
-.box_user_text img {
+.box_admin_text img{
     width: 70px;
     height: 70px;
 }
 
-.container_user_icon {
+.container_admin_icon{
     display: flex;
     gap: 1rem;
     align-items: center;
+    justify-content: center;
 }
-
-#icon_edit_delete {
+#icon_edit_delete{
     width: 25px;
     height: 25px;
     color: #FFF;
 }
-
-.btn_edit_user {
+.btn_edit{
     width: 40px;
     height: 40px;
     display: flex;
-    cursor: pointer;
-    border: none;
     align-items: center;
     justify-content: center;
     background: #27A7EF;
+    cursor: pointer;
+    border: none;
     border-radius: 8px;
 }
-
-.btn_delete_user {
+.btn_delete{
     width: 40px;
     height: 40px;
     display: flex;
-    cursor: pointer;
-    border: none;
     align-items: center;
     justify-content: center;
     background: #FA442C;
+    cursor: pointer;
+    border: none;
     border-radius: 8px;
 }
 
 
-/* ============ box_next_user =========== */
+/* ============ box_next_admin =========== */
 
 
-.box_next_user {
+.box_next_admin{
     display: flex;
     gap: 1rem;
-    cursor: pointer;
-    border: none;
     align-items: center;
     justify-content: center;
     margin-top: 3rem;
+    border: none;
     bottom: 0;
 }
-
-.box_prev_next_user {
+.box_prev_next_admin{
     width: 80px;
     height: 40px;
     display: flex;
@@ -164,7 +124,7 @@
     background: #FA442C;
 }
 
-.box_prev_nexts_user {
+.box_prev_nexts_admin{
     width: 80px;
     height: 40px;
     display: flex;
@@ -178,13 +138,13 @@
     background: #27A7EF;
 }
 
-#box_prev_next_icon {
-    width: 22px;
-    height: 22px;
+#box_prev_next_icon{
+    width: 20px;
+    height: 20px;
 }
 
-.num {
-    width: 70px;
+.num_admin{
+    width: 60px;
     height: 40px;
     border-radius: 6px;
     display: flex;
@@ -192,19 +152,23 @@
     justify-content: center;
     border: 1px solid #444;
 }
-
-.box_next_user p {
-    font-size: 18px;
+.box_next_admin p{
+    font-size: 16px;
 }
 
-.box_num_user {
+.box_num_admin{
     display: flex;
     gap: 0.5rem;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
 }
 
+.iconcoloredite{
+    color: #FFF;
+}
 
+.update{
+    border: none;
+}
 /* ================ Responsive ==================*/
-
-@media screen and (max-width: 1024px) {}

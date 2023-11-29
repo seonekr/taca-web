@@ -65,7 +65,6 @@ const Cart = () => {
     const selectedProducts = products.map((product) => ({
       productID: product.productID,
       productName: product.productName,
-      type: product.productType,
       color: product.colorName,
       price: product.price,
       size: product.size,
@@ -147,7 +146,7 @@ const Cart = () => {
             <p><input type="text" value={"$ " + grandTotal} onChange={() => { }} /></p>
           </div>
           <div className='btn'>
-            <Link to="/product_search/" className="Continues_btn">Continues Shopping</Link>
+            <Link to="/product_search" className="Continues_btn">Continues Shopping</Link>
             <button type='submit' className="checkout_btn">Checkout</button>
           </div>
         </div>: <p className='cart'>Your cart is empty</p> }

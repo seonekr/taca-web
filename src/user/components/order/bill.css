@@ -5,34 +5,30 @@
 }
 
 /* bill no: id: name: */
-.guopoidHead{
+.guopoidHead {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
-.iconnboxx{
+
+.iconnboxx {
     text-align: center;
     font-size: 45px;
     color: #347FFF;
 }
-.bill-detial{
-    padding: 25px 40px ;
-    background: #FFF;
-    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.15);
-}
-.idf{
+
+.idf {
     display: grid;
     gap: 1rem;
     padding-bottom: 1rem;
 }
 
-.billGopBox{
-    display: grid; 
+.billGopBox {
+    display: grid;
     width: 100%;
     margin: auto;
     padding: 30px 0;
-  
-}
 
+}
 
 .billGopBox table {
     width: 100%;
@@ -49,21 +45,24 @@
     width: 15%;
     text-align: center;
 }
+
 .billGopBox table tr td {
     width: 15%;
     text-align: center;
 }
 
-.titlePrice{
+.titlePrice {
     padding: 2rem;
     display: flex;
     justify-content: space-between;
 }
-.place-on{
+
+.place-on {
     display: grid;
     gap: 1rem;
     padding: 0 2rem;
 }
+
 /* Responsive */
 @media only screen and (max-width: 768px) {
     #bill .bill-detial {
@@ -89,15 +88,18 @@
     }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 430px) {
     #bill {
         width: 100%;
+        padding: 10px;
     }
+
     #bill .bill-detial {
         margin-top: 0;
         margin-bottom: 5rem;
     }
-    .bill-detial{
+
+    .bill-detial {
         padding: 25px 20px;
         background: #FFF;
         box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.15);
