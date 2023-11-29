@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 const Board = () => {
   const [userAccount, setUserAccount] = useState("");
   const [adminCount, setAdminCount] = useState(0);
@@ -15,8 +16,6 @@ const Board = () => {
   const token = localStorage.getItem("token");
 
   const navitage = useNavigate();
-
-  console.log(token);
 
   // For authen users
   useEffect(() => {
