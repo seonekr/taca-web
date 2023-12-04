@@ -26,7 +26,7 @@ import OrderPage from "../admin/components/orderPage/OrderPage";
 import OrderBill from "../admin/components/orderPage/OrderBill";
 import Admins from "../admin/components/menagerAdmin/Admins";
 import Product from "../admin/components/products/Product";
-import EditProduct from "../admin/components/products/Product";
+import EditProduct from "../admin/components/products/EditProduct";
 
 // ===============================
 import Users from "../admin/components/menagerUser/Users";

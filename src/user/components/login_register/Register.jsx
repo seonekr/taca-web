@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
+import { FaCheckCircle } from "react-icons/fa";
 import google from "../../../img/google.png";
 import { AiOutlineClose } from "react-icons/ai";
-import { MdPattern } from "react-icons/md";
-// ... (your existing imports)
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -104,7 +103,7 @@ const Register = () => {
       redirect: "follow",
     };
 
-    fetch(import.meta.env.VITE_API + "/register", requestOptions)
+    fetch("http://localhost:5000/register", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
@@ -120,141 +119,121 @@ const Register = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const [isActive, setIsActive] = useState(false);
-
-  const handleButtonClick = () => {
-    setIsActive(true);
-
-    // Set timers to remove classes after a certain time
-    const timer1 = setTimeout(() => {
-      setIsActive(false);
-    }, 5000);
-
-    const timer2 = setTimeout(() => {
-      // Additional cleanup or actions after 300 milliseconds
-    }, 5300);
-
-    // Clear timers on component unmount or when needed
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-    };
-  };
-
-  const handleToastClose = () => {
-    setIsActive(false);
-
-    // Additional cleanup or actions after 300 milliseconds
-    setTimeout(() => {
-      // Additional cleanup or actions after 300 milliseconds
-    }, 300);
-  };
-
   return (
     <div className="box_container">
-      <div className="container_register">
-        <div className="box_cancel_register">
-          <h2 className="text_register">Register</h2>
-          <Link to="/">
-            <AiOutlineClose id="icon_cancel_register" />
-          </Link>
+      {successMsg ? (
+        <div className="alert_box_container">
+          <div className="alert_container">
+            <div className="alert_content">
+              <FaCheckCircle className="iconAlertOB" />
+              <p className="txt_contentAlter">{successMsg && successMsg}</p>
+            </div>
+            <Link to="/login" className="btn_alertok">OK</Link>
+          </div>
         </div>
-        <h3>{successMsg && successMsg }</h3>
-        
-        {/* Display success message */}
-        <form className="box_form_register">
-          {/* Display validation errors */}
-          <div className="box_form1">
-            <div>
-              <input
-                className="input_form1"
-                type="name"
-                placeholder="First name"
-                value={firstName}
-                onChange={handleFirstNameChange}
-              />
-              {errors.firstName && (
-                <p className="error-message">{errors.firstName}</p>
-              )}
-            </div>
-            <div>
-              <input
-                className="input_form1"
-                type="name"
-                placeholder="Last name"
-                value={lastName}
-                onChange={handleLastNameChange}
-              />
-              {errors.lastName && (
-                <p className="error-message">{errors.lastName}</p>
-              )}
-            </div>
-          </div>
-          <div>
-            <input
-              className="input_form1"
-              type="email"
-              placeholder="Enter Your Email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            {errors.email && <p className="error-message">{errors.email}</p>}
-          </div>
-          <div>
-            <input
-              className="input_form1"
-              type="phonenumber"
-              placeholder="Enter Your Phone Number"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
-            />
-            {errors.phoneNumber && (
-              <p className="error-message">{errors.phoneNumber}</p>
-            )}
-          </div>
-          <div>
-            <input
-              className="input_form1"
-              type="password"
-              placeholder="Enter Your Password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            {errors.password && (
-              <p className="error-message">{errors.password}</p>
-            )}
-          </div>
-
-          <div>
-            <input
-              className="input_form1"
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-            />
-            {errors.confirmPassword && (
-              <p className="error-message">{errors.confirmPassword}</p>
-            )}
-          </div>
-
-          <button onClick={handleSubmit} type="submit" className="signup_btn">
-            Signup
-          </button>
-        </form>
-
-        <div className="box_already">
-          <p>
-            Already have an account?{" "}
-            <Link to="/login" className="loginmoreLink">
-              Login
+      ) : null}
+      <div className="secoudBox_container">
+        <div className="container_register">
+          <div className="box_cancel_register">
+            <h2 className="text_register">Register</h2>
+            <Link to="/">
+              <AiOutlineClose id="icon_cancel_register" />
             </Link>
-          </p>
-          <p>Or</p>
-          <Link to="#" className="google_btn">
-            <img src={google} alt="img" />
-            <p>Login with Google</p>
-          </Link>
+          </div>
+        
+          <form className="box_form_register">
+            <div className="box_form1">
+              <div>
+                <input
+                  className="input_form1"
+                  type="name"
+                  placeholder="First name"
+                  value={firstName}
+                  onChange={handleFirstNameChange}
+                />
+                {errors.firstName && (
+                  <p className="error-message">{errors.firstName}</p>
+                )}
+              </div>
+              <div>
+                <input
+                  className="input_form1"
+                  type="name"
+                  placeholder="Last name"
+                  value={lastName}
+                  onChange={handleLastNameChange}
+                />
+                {errors.lastName && (
+                  <p className="error-message">{errors.lastName}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <input
+                className="input_form1"
+                type="email"
+                placeholder="Enter Your Email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              {errors.email && <p className="error-message">{errors.email}</p>}
+            </div>
+            <div>
+              <input
+                className="input_form1"
+                type="phonenumber"
+                placeholder="Enter Your Phone Number"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+              />
+              {errors.phoneNumber && (
+                <p className="error-message">{errors.phoneNumber}</p>
+              )}
+            </div>
+            <div>
+              <input
+                className="input_form1"
+                type="password"
+                placeholder="Enter Your Password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              {errors.password && (
+                <p className="error-message">{errors.password}</p>
+              )}
+            </div>
+
+            <div>
+              <input
+                className="input_form1"
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+              />
+              {errors.confirmPassword && (
+                <p className="error-message">{errors.confirmPassword}</p>
+              )}
+            </div>
+
+            <button onClick={handleSubmit} type="submit" className="signup_btn">
+              Signup
+            </button>
+          </form>
+
+          <div className="box_already">
+            <p>
+              Already have an account?{" "}
+              <Link to="/login" className="loginmoreLink">
+                Login
+              </Link>
+            </p>
+            <p>Or</p>
+            <Link to="#" className="google_btn">
+              <img src={google} alt="img" />
+              <p>Login with Google</p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -18,27 +18,27 @@ const AddProduct = () => {
 
   const [product, setProduct] = useState({
     name: "",
-    productType: "",
+    category: "",
     description: "",
     price: "",
-    mainImage: null,
-    images: [],
+    image: null, // mainImage
+    gallery: [], // images
     colors: [],
     currentColor: "", // Track the currently entered color
-    popular: false,
+    is_popular: false,
   });
 
-  const onMainImageDrop = (acceptedFiles) => {
+  const onImageDrop = (acceptedFiles) => {
     setProduct((prevProduct) => ({
       ...prevProduct,
-      mainImage: acceptedFiles[0],
+      image: acceptedFiles[0],
     }));
   };
 
-  const onImagesDrop = (acceptedFiles) => {
+  const onGalleryDrop = (acceptedFiles) => {
     setProduct((prevProduct) => ({
       ...prevProduct,
-      images: [...prevProduct.images, ...acceptedFiles],
+      gallery: [...prevProduct.gallery, ...acceptedFiles],
     }));
   };
 
@@ -75,28 +75,26 @@ const AddProduct = () => {
 
   const removeImage = (index) => {
     setProduct((prevProduct) => {
-      const updatedImages = [...prevProduct.images];
-      updatedImages.splice(index, 1);
+      const updatedGallery = [...prevProduct.gallery];
+      updatedGallery.splice(index, 1);
       return {
         ...prevProduct,
-        images: updatedImages,
+        gallery: updatedGallery,
       };
     });
   };
 
-  const {
-    getRootProps: getMainImageRootProps,
-    getInputProps: getMainImageInputProps,
-  } = useDropzone({
-    onDrop: onMainImageDrop,
-    maxFiles: 1,
-  });
+  const { getRootProps: getImageRootProps, getInputProps: getImageInputProps } =
+    useDropzone({
+      onDrop: onImageDrop,
+      maxFiles: 1,
+    });
 
   const {
-    getRootProps: getImagesRootProps,
-    getInputProps: getImagesInputProps,
+    getRootProps: getGalleryRootProps,
+    getInputProps: getGalleryInputProps,
   } = useDropzone({
-    onDrop: onImagesDrop,
+    onDrop: onGalleryDrop,
   });
 
   const handleInputChange = (e) => {
@@ -111,7 +109,7 @@ const AddProduct = () => {
     const { checked } = e.target;
     setProduct((prevProduct) => ({
       ...prevProduct,
-      popular: checked,
+      is_popular: checked,
     }));
   };
 
@@ -124,17 +122,15 @@ const AddProduct = () => {
       formData.append("name", product.name);
       formData.append("description", product.description);
       formData.append("price", product.price);
-      formData.append("productType", product.productType);
-      formData.append("popular", product.popular ? 1 : 0);
+      formData.append("category", product.category);
+      formData.append("is_popular", product.is_popular ? 1 : 0);
 
-      // Append main image
-      if (product.mainImage) {
-        formData.append("mainImage", product.mainImage);
-      }
+      // Append image
+      formData.append("image", product.image);
 
-      // Append other images
-      product.images.forEach((image, index) => {
-        formData.append(`images`, image);
+      // Append gallery
+      product.gallery.forEach((image, index) => {
+        formData.append(`gallery`, image);
       });
 
       // Append colors
@@ -149,12 +145,14 @@ const AddProduct = () => {
           },
         }
       );
+
       if (response.data.Status === "Success") {
         setSuccessMsg(response.data.Status);
         setErrorMsg("");
+        console.log(response.data.Status);
         navigate("/product/add");
       } else {
-        console.log(response.data.Status)
+        console.log(response.data.Status);
         navigate("/product/add");
       }
 
@@ -166,13 +164,12 @@ const AddProduct = () => {
     console.log("name", product.name);
     console.log("description", product.description);
     console.log("price", product.price);
-    console.log("productType", product.productType);
-    console.log("popular", product.popular ? 1 : 0);
-    if (product.mainImage) {
-      console.log("mainImage", product.mainImage);
-    }
-    product.images.forEach((image, index) => {
-      console.log(`images`, image);
+    console.log("category", product.category);
+    console.log("is_popular", product.is_popular ? 1 : 0);
+    console.log("image", product.image);
+    // console.log("gallery", JSON.stringify(product.gallery));
+    product.gallery.forEach((image, index) => {
+      console.log(`gallery`, image);
     });
     console.log("colors", JSON.stringify(product.colors));
   };
@@ -205,12 +202,12 @@ const AddProduct = () => {
                 />
               </div>
               <div className="box">
-                <label htmlFor="productType">Product type</label>
+                <label htmlFor="category">Category</label>
                 <input
                   type="text"
-                  id="productType"
-                  name="productType"
-                  value={product.productType}
+                  id="category"
+                  name="category"
+                  value={product.category}
                   onChange={handleInputChange}
                 />
               </div>
@@ -227,7 +224,7 @@ const AddProduct = () => {
 
               <div>
                 <div className="box">
-                  <label htmlFor="description">Details</label>
+                  <label htmlFor="description">Description</label>
                   <textarea
                     id="description"
                     rows="5"
@@ -237,20 +234,20 @@ const AddProduct = () => {
                   ></textarea>
                 </div>
               </div>
-              <div className="popular">
-                <label htmlFor="popular">Popular product</label>
+              <div className="is_popular">
+                <label htmlFor="is_popular">Popular product</label>
                 <input
                   type="checkbox"
-                  id="popular"
-                  name="popular"
-                  checked={product.popular}
+                  id="is_popular"
+                  name="is_popular"
+                  checked={product.is_popular}
                   onChange={handleCheckboxChange}
                 />
-                {/* Hidden input for "popular" attribute */}
+                {/* Hidden input for "is_popular" attribute */}
                 <input
                   type="hidden"
-                  name="popular"
-                  value={product.popular ? 1 : 0}
+                  name="is_popular"
+                  value={product.is_popular ? 1 : 0}
                 />
               </div>
 
@@ -297,10 +294,10 @@ const AddProduct = () => {
 
             <div className="input-img">
               <div className="gallery">
-                <h3>Image gallery</h3>
+                <h3>Gallery</h3>
                 <div className="gallery-box">
-                  <input {...getImagesInputProps()} />
-                  {product.images.map((image, index) => (
+                  <input {...getGalleryInputProps()} />
+                  {product.gallery.map((image, index) => (
                     <div key={index} style={{ marginBottom: "10px" }}>
                       <img
                         src={URL.createObjectURL(image)}
@@ -312,12 +309,12 @@ const AddProduct = () => {
                       </button>
                     </div>
                   ))}
-                  {product.images && product.images.length > 0 ? (
-                    <div {...getImagesRootProps()} className="add-more">
+                  {product.gallery && product.gallery.length > 0 ? (
+                    <div {...getGalleryRootProps()} className="add-more">
                       +
                     </div>
                   ) : (
-                    <div {...getImagesRootProps()} className="add-gallery">
+                    <div {...getGalleryRootProps()} className="add-gallery">
                       Choose gallery
                     </div>
                   )}
@@ -328,17 +325,17 @@ const AddProduct = () => {
 
                 <div className="image">
                   <label>
-                    <div {...getMainImageRootProps()}>
-                      {product.mainImage && (
+                    <div {...getImageRootProps()}>
+                      {product.image && (
                         <img
-                          src={URL.createObjectURL(product.mainImage)}
+                          src={URL.createObjectURL(product.image)}
                           alt="Main Preview"
                         />
                       )}
                       <p>Choose image</p>
                     </div>
                   </label>
-                  <input {...getMainImageInputProps()} />
+                  <input {...getImageInputProps()} />
                 </div>
               </div>
             </div>

@@ -109,7 +109,11 @@ const AdminMenu = () => {
 
             <NavLink to="/admin/acount" className="userAdminImage">
               <img
-                src={`../../../../public/images/${userDetail.profile_image}`}
+                src={
+                  import.meta.env.VITE_API +
+                  "/uploads/images/" +
+                  userDetail.profile_image
+                }
                 alt="admin profile"
               />
             </NavLink>

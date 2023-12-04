@@ -6,12 +6,21 @@ import { AiOutlineClose } from "react-icons/ai";
 import google from "../../../img/google.png";
 import { IoMdAlert } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
-
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Kongchan
+  const [errors, setErrors] = useState({});
 
   const handleEmail = (e) => {
     const value = e.target.value;
@@ -28,14 +37,14 @@ const Login = () => {
     const validationErrors = {};
 
     if (!email.trim()) {
-      validationErrors.email = "email is required"
+      validationErrors.email = "email is required";
     }
     if (!password.trim()) {
-      validationErrors.password = "password is required"
+      validationErrors.password = "password is required";
     }
 
     if (Object.keys(validationErrors).length > 0) {
-      setError(validationErrors);
+      setErrors(validationErrors);
       return;
     }
     var myHeaders = new Headers();
@@ -88,17 +97,13 @@ const Login = () => {
               <AiOutlineClose id="icon_cancel_login" />
             </Link>
           </div>
-          {/* {error ? (
-            <div className="boxAlartLogin">
-              <IoMdAlert className="iconAlert" />
-              <p className="txtalert_p">{error && error}</p>
-              <MdOutlineCancel className="iconAlert_canCel" />
-            </div>
-          ) : (
-            <p></p>
-          )} */}
-
-          {/* <h3>{error && error}</h3> */}
+          {error ? (
+            <Stack sx={{ width: "100%" }} spacing={2} className="werwer">
+              <Collapse in={open}>
+                <Alert severity="error">{error && error}</Alert>
+              </Collapse>
+            </Stack>
+          ) : null}
           <div>
             <input
               className="input_form"
@@ -107,7 +112,7 @@ const Login = () => {
               value={email}
               onChange={handleEmail}
             />
-            {error.email && <p className="error-message">{error.email}</p>}
+            {errors.email && <p className="error-message">{errors.email}</p>}
           </div>
 
           <div>
@@ -118,7 +123,9 @@ const Login = () => {
               value={password}
               onChange={handlePassword}
             />
-            {error.password && <p className="error-message">{error.password}</p>}
+            {errors.password && (
+              <p className="error-message">{errors.password}</p>
+            )}
           </div>
 
           <Link to="#" className="forgot_password">

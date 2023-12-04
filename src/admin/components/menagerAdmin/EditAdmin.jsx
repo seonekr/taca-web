@@ -12,6 +12,7 @@ const EditAdmin = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [profile_image, setProfile_image] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [message, setMessage] = useState("");
@@ -32,6 +33,8 @@ const EditAdmin = () => {
           setLastName(result.Result[0].lname);
           setEmail(result.Result[0].email);
           setPhoneNumber(result.Result[0].tel);
+          // setPhoneNumber(result.Result[0].profile_image);
+          setProfile_image("profile.png");
         }
       })
       .catch((error) => console.log("error", error));
@@ -56,6 +59,7 @@ const EditAdmin = () => {
       tel: phoneNumber,
       fname: firstName,
       lname: lastName,
+      // password: password,
       password: "1234",
     });
 
@@ -66,7 +70,7 @@ const EditAdmin = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/updateAdmin/" + id, requestOptions)
+    fetch(import.meta.env.VITE_API + "/updateAdmin/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
@@ -144,7 +148,13 @@ const EditAdmin = () => {
             <div className="imageAdmin">
               <div className="image">
                 <label htmlFor="adminImage">
-                  <img src={"../../../../public/images/profile.png"} />
+                  <img
+                    src={
+                      import.meta.env.VITE_API +
+                      "/uploads/images/" +
+                      profile_image
+                    }
+                  />
                 </label>
               </div>
             </div>

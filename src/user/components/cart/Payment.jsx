@@ -4,7 +4,7 @@ import qrcode from "../../../img/QRCODE.png";
 import wechat from "../../../img/WeChat.png";
 import Menu from "../menu/Menu";
 import React, { useState } from "react";
-import { useLocation, useNavigate  } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import Header from "../header/Header";
@@ -37,20 +37,20 @@ const Payment = () => {
 
     const dateTody = `${date}/${month}/${year}`;
 
-    console.log("payment:", selectedOption)
-    console.log("address:", address.province)
-    console.log("city:", address.city)
-    console.log("company:", address.companny)
-    console.log("branch:", address.branch)
-    console.log("date:", dateTody)
-    console.log("userID:", userID)
-    
+    console.log("payment:", selectedOption);
+    console.log("address:", address.province);
+    console.log("city:", address.city);
+    console.log("company:", address.companny);
+    console.log("branch:", address.branch);
+    console.log("date:", dateTody);
+    console.log("userID:", userID);
+
     if (products.length > 0) {
-      console.log(products)
-    }else if(productsCart.length > 0){
-      console.log(productsCart)
+      console.log(products);
+    } else if (productsCart.length > 0) {
+      console.log(productsCart);
     }
-    navigate('/cart/payment/')
+    navigate("/cart/payment/");
   };
 
   const handleRadioChange = (event) => {
@@ -64,7 +64,7 @@ const Payment = () => {
           products,
         },
       });
-    }else if (productsCart.length > 0) {
+    } else if (productsCart.length > 0) {
       navigate("/cart/address", {
         state: {
           productsCart,
@@ -74,13 +74,13 @@ const Payment = () => {
   };
 
   const totalProductPrice = () => {
-    let  total = 0;
+    let total = 0;
     productsCart.forEach((product) => {
       total = product.totalPrice;
     });
 
     return total;
-  }
+  };
 
   const totalPrice = totalProductPrice();
 
@@ -89,7 +89,9 @@ const Payment = () => {
       <Header />
       <section id="payment">
         <div className="guopBoxPayment">
-          <div className="header_box"><h3>Payment</h3></div>
+          <div className="header_box">
+            <h3>Payment</h3>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="adress-payment">
               <div className="box">
@@ -139,9 +141,7 @@ const Payment = () => {
                         <div>Product Counts: {product.productCounts}</div>
                       </li>
                     ))}
-                    <div>
-                          Have to pay: {totalPrice}
-                    </div>
+                    <div>Have to pay: {totalPrice}</div>
                   </ul>
                 </div>
               ) : (

@@ -1,5 +1,6 @@
 import "./category.css";
 import womenfashion from "../../../img/womenfashion.png";
+import internet_of_things from "../../../img/internet_of_things.png";
 import { useNavigate } from "react-router-dom";
 
 const Category = () => {
@@ -20,8 +21,8 @@ const Category = () => {
             </div>
             <div className="box-category">
                 <button onClick={() => handleCategoryChange('electronich device')}>
-                    <img className="boxImage" src={womenfashion} alt="img" />
-                    <p>Electronich device</p>
+                    <img className="boxImage" src={internet_of_things} alt="img" />
+                    <p>Electronic device</p>
                 </button>
             </div>
         </div>

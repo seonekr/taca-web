@@ -84,7 +84,11 @@ const Admins = () => {
                 >
                   <Link className="box_user_text">
                     <img
-                      src={`../../../../public/images/${e.profile_image}`}
+                      src={
+                        import.meta.env.VITE_API +
+                        "/uploads/images/" +
+                        e.profile_image
+                      }
                       alt="admin profile"
                     />
 

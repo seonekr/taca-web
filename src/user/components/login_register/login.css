@@ -188,6 +188,11 @@ a {
     cursor: pointer;
 }
 
+.werwer{
+    position: absolute;
+    top: 4%;
+}
+
 /*============== Responsive =====================*/
 @media screen and (max-width: 1024px) {
     .box_container_login2 {

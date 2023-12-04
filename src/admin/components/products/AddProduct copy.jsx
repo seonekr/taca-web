@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdminMenu from "../adminMenu/AdminMenu";
 import "./addProduct.css";
 import axios from "axios";
@@ -10,7 +10,6 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
 const AddProduct = () => {
-  const { id } = useParams();
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [message, setMessage] = useState("");
@@ -19,62 +18,27 @@ const AddProduct = () => {
 
   const [product, setProduct] = useState({
     name: "",
-    category: "",
+    productType: "",
     description: "",
     price: "",
-    image: "", // mainImage
-    gallery: [], // images
+    mainImage: null,
+    images: [],
     colors: [],
     currentColor: "", // Track the currently entered color
-    is_popular: false,
+    popular: false,
   });
 
-  useEffect(() => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(import.meta.env.VITE_API + "/getProduct/" + id, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.Status === "Success") {
-          setProduct((prevProduct) => ({
-            ...prevProduct,
-            name: result.Result[0].name,
-            description: result.Result[0].description,
-            price: result.Result[0].price,
-            category: result.Result[0].category,
-            is_popular: result.Result[0].is_popular,
-            image: result.Result[0].image,
-            gallery: result.Result[0].gallery,
-            colors: result.Result[0].colors,
-          }));
-        }
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
-
-  console.log("name", product.name);
-  console.log("description", product.description);
-  console.log("price", product.price);
-  console.log("category", product.category);
-  console.log("is_popular", product.is_popular ? 1 : 0);
-  console.log("image", product.image);
-  console.log("gallery", product.gallery);
-  console.log("colors", product.colors);
-
-  const onImageDrop = (acceptedFiles) => {
+  const onMainImageDrop = (acceptedFiles) => {
     setProduct((prevProduct) => ({
       ...prevProduct,
-      image: acceptedFiles[0],
+      mainImage: acceptedFiles[0],
     }));
   };
 
-  const onGalleryDrop = (acceptedFiles) => {
+  const onImagesDrop = (acceptedFiles) => {
     setProduct((prevProduct) => ({
       ...prevProduct,
-      gallery: [...prevProduct.gallery, ...acceptedFiles],
+      images: [...prevProduct.images, ...acceptedFiles],
     }));
   };
 
@@ -111,26 +75,28 @@ const AddProduct = () => {
 
   const removeImage = (index) => {
     setProduct((prevProduct) => {
-      const updatedGallery = [...prevProduct.gallery];
-      updatedGallery.splice(index, 1);
+      const updatedImages = [...prevProduct.images];
+      updatedImages.splice(index, 1);
       return {
         ...prevProduct,
-        gallery: updatedGallery,
+        images: updatedImages,
       };
     });
   };
 
-  const { getRootProps: getImageRootProps, getInputProps: getImageInputProps } =
-    useDropzone({
-      onDrop: onImageDrop,
-      maxFiles: 1,
-    });
+  const {
+    getRootProps: getMainImageRootProps,
+    getInputProps: getMainImageInputProps,
+  } = useDropzone({
+    onDrop: onMainImageDrop,
+    maxFiles: 1,
+  });
 
   const {
-    getRootProps: getGalleryRootProps,
-    getInputProps: getGalleryInputProps,
+    getRootProps: getImagesRootProps,
+    getInputProps: getImagesInputProps,
   } = useDropzone({
-    onDrop: onGalleryDrop,
+    onDrop: onImagesDrop,
   });
 
   const handleInputChange = (e) => {
@@ -145,7 +111,7 @@ const AddProduct = () => {
     const { checked } = e.target;
     setProduct((prevProduct) => ({
       ...prevProduct,
-      is_popular: checked,
+      popular: checked,
     }));
   };
 
@@ -158,15 +124,17 @@ const AddProduct = () => {
       formData.append("name", product.name);
       formData.append("description", product.description);
       formData.append("price", product.price);
-      formData.append("category", product.category);
-      formData.append("is_popular", product.is_popular ? 1 : 0);
+      formData.append("productType", product.productType);
+      formData.append("popular", product.popular ? 1 : 0);
 
-      // Append image
-      formData.append("image", product.image);
+      // Append main image
+      if (product.mainImage) {
+        formData.append("mainImage", product.mainImage);
+      }
 
-      // Append gallery
-      product.gallery.forEach((image, index) => {
-        formData.append(`gallery`, image);
+      // Append other images
+      product.images.forEach((image, index) => {
+        formData.append(`images`, image);
       });
 
       // Append colors
@@ -181,14 +149,12 @@ const AddProduct = () => {
           },
         }
       );
-
       if (response.data.Status === "Success") {
         setSuccessMsg(response.data.Status);
         setErrorMsg("");
-        console.log(response.data.Status);
         navigate("/product/add");
       } else {
-        console.log(response.data.Status);
+        console.log(response.data.Status)
         navigate("/product/add");
       }
 
@@ -200,12 +166,13 @@ const AddProduct = () => {
     console.log("name", product.name);
     console.log("description", product.description);
     console.log("price", product.price);
-    console.log("category", product.category);
-    console.log("is_popular", product.is_popular ? 1 : 0);
-    console.log("image", product.image);
-    // console.log("gallery", JSON.stringify(product.gallery));
-    product.gallery.forEach((image, index) => {
-      console.log(`gallery`, image);
+    console.log("productType", product.productType);
+    console.log("popular", product.popular ? 1 : 0);
+    if (product.mainImage) {
+      console.log("mainImage", product.mainImage);
+    }
+    product.images.forEach((image, index) => {
+      console.log(`images`, image);
     });
     console.log("colors", JSON.stringify(product.colors));
   };
@@ -217,7 +184,7 @@ const AddProduct = () => {
         <div className="boxcontainerSpan_Box"></div>
         <div className="box_container_product">
           <div className="box_text">
-            <h2>Edit Product</h2>
+            <h2>Add Product</h2>
           </div>
           <h3>{successMsg && successMsg}</h3>
           <form
@@ -238,12 +205,12 @@ const AddProduct = () => {
                 />
               </div>
               <div className="box">
-                <label htmlFor="category">Category</label>
+                <label htmlFor="productType">Product type</label>
                 <input
                   type="text"
-                  id="category"
-                  name="category"
-                  value={product.category}
+                  id="productType"
+                  name="productType"
+                  value={product.productType}
                   onChange={handleInputChange}
                 />
               </div>
@@ -260,7 +227,7 @@ const AddProduct = () => {
 
               <div>
                 <div className="box">
-                  <label htmlFor="description">Description</label>
+                  <label htmlFor="description">Details</label>
                   <textarea
                     id="description"
                     rows="5"
@@ -270,20 +237,20 @@ const AddProduct = () => {
                   ></textarea>
                 </div>
               </div>
-              <div className="is_popular">
-                <label htmlFor="is_popular">Popular product</label>
+              <div className="popular">
+                <label htmlFor="popular">Popular product</label>
                 <input
                   type="checkbox"
-                  id="is_popular"
-                  name="is_popular"
-                  checked={product.is_popular}
+                  id="popular"
+                  name="popular"
+                  checked={product.popular}
                   onChange={handleCheckboxChange}
                 />
-                {/* Hidden input for "is_popular" attribute */}
+                {/* Hidden input for "popular" attribute */}
                 <input
                   type="hidden"
-                  name="is_popular"
-                  value={product.is_popular ? 1 : 0}
+                  name="popular"
+                  value={product.popular ? 1 : 0}
                 />
               </div>
 
@@ -291,7 +258,7 @@ const AddProduct = () => {
               <div className="colorBox_chContainer">
                 <h1>Color:</h1>
                 <div className="addcolor_container">
-                  {/* {product.colors.map((color, index) => (
+                  {product.colors.map((color, index) => (
                     <div className="Card_boxColor" key={index}>
                       <div
                         style={{
@@ -309,28 +276,7 @@ const AddProduct = () => {
                         ×
                       </span>
                     </div>
-                  ))} */}
-
-                  {/* New one */}
-                  {/* {JSON.stringify(product.colors)
-                    ? JSON.parse(product.colors).map((e, index) => (
-                        <div className="Card_boxColor" key={index}>
-                          <div
-                            style={{
-                              backgroundColor: color,
-                              width: "20px",
-                              height: "20px",
-                              borderRadius: "50%",
-                            }}
-                          ></div>
-                          {color}
-                          <span
-                            className="spanCancelBox"
-                            onClick={() => removeColorInput(index)}
-                          ></span>
-                        </div>
-                      ))
-                    : null} */}
+                  ))}
                 </div>
 
                 <div className="addcolorContent">
@@ -351,11 +297,10 @@ const AddProduct = () => {
 
             <div className="input-img">
               <div className="gallery">
-                <h3>Gallery</h3>
+                <h3>Image gallery</h3>
                 <div className="gallery-box">
-                  <input {...getGalleryInputProps()} />
-                  {/* Old one */}
-                  {/* {product.gallery.map((image, index) => (
+                  <input {...getImagesInputProps()} />
+                  {product.images.map((image, index) => (
                     <div key={index} style={{ marginBottom: "10px" }}>
                       <img
                         src={URL.createObjectURL(image)}
@@ -366,37 +311,13 @@ const AddProduct = () => {
                         Remove
                       </button>
                     </div>
-                  ))} */}
-
-                  {/* New one */}
-                  {/* {JSON.stringify(product.gallery)
-                    ? JSON.parse(product.gallery).map((image, index) => (
-                        <div key={index} style={{ marginBottom: "10px" }}>
-                          <img
-                            src={
-                              import.meta.env.VITE_API +
-                              "/uploads/images/" +
-                              image
-                            }
-                            alt={`Image ${index + 1}`}
-                            style={{ maxWidth: "200px", maxHeight: "200px" }}
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(index)}
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      ))
-                    : null} */}
-
-                  {product.gallery && product.gallery.length > 0 ? (
-                    <div {...getGalleryRootProps()} className="add-more">
+                  ))}
+                  {product.images && product.images.length > 0 ? (
+                    <div {...getImagesRootProps()} className="add-more">
                       +
                     </div>
                   ) : (
-                    <div {...getGalleryRootProps()} className="add-gallery">
+                    <div {...getImagesRootProps()} className="add-gallery">
                       Choose gallery
                     </div>
                   )}
@@ -407,21 +328,17 @@ const AddProduct = () => {
 
                 <div className="image">
                   <label>
-                    <div {...getImageRootProps()}>
-                      {product.image && (
+                    <div {...getMainImageRootProps()}>
+                      {product.mainImage && (
                         <img
-                          src={
-                            import.meta.env.VITE_API +
-                            "/uploads/images/" +
-                            product.image
-                          }
+                          src={URL.createObjectURL(product.mainImage)}
                           alt="Main Preview"
                         />
                       )}
                       <p>Choose image</p>
                     </div>
                   </label>
-                  <input {...getImageInputProps()} />
+                  <input {...getMainImageInputProps()} />
                 </div>
               </div>
             </div>

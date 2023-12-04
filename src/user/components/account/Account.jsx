@@ -67,7 +67,11 @@ const Account = () => {
               <span>
                 {
                   <img
-                    src={`../../../../api/public/images/${userDetail.profile_image}`}
+                    src={
+                      import.meta.env.VITE_API +
+                      "/uploads/images/" +
+                      userDetail.profile_image
+                    }
                     alt=""
                   />
                 }

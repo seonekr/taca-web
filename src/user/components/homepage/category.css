@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     margin: 5rem 0 2rem 0;
-    gap: 4rem;
+    gap: 5rem;
 }
 
 .category_container2 .box-category button {
@@ -14,7 +14,7 @@
 
 .box-category {
     background-color: #FFF;
-    width: 10%;
+    width: 9%;
     padding: 10px 0;
     border-radius: 7px;
     border: 1px solid #DDDCE1;

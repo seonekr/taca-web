@@ -39,7 +39,7 @@ const Board = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/countCustomer", requestOptions)
+    fetch(import.meta.env.VITE_API + "/countCustomer", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setUserAccount(result.result[0].customers);
@@ -54,7 +54,7 @@ const Board = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:5000/countProduct", requestOptions)
+    fetch(import.meta.env.VITE_API + "/countProduct", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setProductCount(result.result[0].products);

@@ -21,40 +21,45 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 2,
@@ -66,43 +71,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: dress
+          src: dress,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 3,
@@ -113,37 +123,42 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 4,
@@ -154,43 +169,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: dress
+          src: dress,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 5,
@@ -201,43 +221,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 6,
@@ -248,43 +273,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 7,
@@ -295,43 +325,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 8,
@@ -342,43 +377,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 9,
@@ -389,43 +429,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 10,
@@ -436,43 +481,48 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "black" }, { colorID: 2, colorName: "blue" }, { colorID: 3, colorName: "red" }, { colorID: 4, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "black" },
+        { colorID: 2, colorName: "blue" },
+        { colorID: 3, colorName: "red" },
+        { colorID: 4, colorName: "green" },
+      ],
     },
     {
       productID: 11,
@@ -483,43 +533,46 @@ const Categories = () => {
       popular: true,
       images: [
         {
-          src: image1
+          src: image1,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
+          src: dress,
         },
         {
-          src: acer
+          src: acer,
         },
         {
-          src: productImage
+          src: productImage,
         },
         {
-          src: image1
+          src: image1,
         },
         {
-          src: dress
-        }
+          src: dress,
+        },
       ],
-      colors: [{ colorID: 1, colorName: "red" }, { colorID: 2, colorName: "green" }]
+      colors: [
+        { colorID: 1, colorName: "red" },
+        { colorID: 2, colorName: "green" },
+      ],
     },
   ]);
 
@@ -527,8 +580,6 @@ const Categories = () => {
   const [selectedFilter, setSelectedFilter] = useState("default");
   const [displayCount, setDisplayCount] = useState(8);
   const [showButton, setShowButton] = useState(true);
-
-  
 
   // Get send ID
   const location = useLocation();
@@ -619,7 +670,7 @@ const Categories = () => {
 
   return (
     <>
-      <Header handleSearch={handleSearch}/>
+      <Header handleSearch={handleSearch} />
       <div className="container_home">
         <div className="content_itemBox">
           <div className="container_product">

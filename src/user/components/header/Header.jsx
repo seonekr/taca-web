@@ -14,7 +14,6 @@ const Header = ({ handleSearch }) => {
     { label: "Home", path: "/" },
     { label: "Shop", path: "/product_search" },
     { label: "Orders", path: "/order" },
-    { label: "Contact", path: "/contacts" },
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -61,7 +60,7 @@ const Header = ({ handleSearch }) => {
                 {/* Here is search bar */}
                 <input
                   type="text"
-                  placeholder="Search products ..........."
+                  placeholder="Search products..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />

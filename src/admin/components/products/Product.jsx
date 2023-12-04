@@ -13,32 +13,6 @@ const Product = () => {
   const [success, setSuccess] = useState("");
   const [products, setProducts] = useState([]);
 
-  useEffect((event) => {
-    Showproducts();
-  }, []);
-
-  const Showproducts = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(import.meta.env.VITE_API + "/allProducts", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.Status === "Success") {
-          setProducts(result.Result);
-        } else {
-          setError(result.Error);
-        }
-      })
-      .catch((error) => console.log("error", error));
-  };
-
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -63,6 +37,33 @@ const Product = () => {
   const closeConfirmationPopup = () => {
     setDeleteProductId(null);
     setConfirmationPopupOpen(false);
+  };
+
+  useEffect((event) => {
+    Showproducts();
+  }, []);
+
+  const Showproducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(import.meta.env.VITE_API + "/allProducts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setProducts(result.Result);
+          setFilteredProducts(result.Result);
+        } else {
+          setError(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
   };
 
   const DeleteProduct = (id) => {
@@ -95,13 +96,13 @@ const Product = () => {
   const navigate = useNavigate();
   // Update products
   const handleUpdate = (id) => {
-    navigate("/product/edit/"+id);
+    navigate("/product/edit/" + id);
   };
 
   // Function to handle search by product name
   const handleSearch = () => {
     const filtered = products.filter((product) =>
-      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredProducts(filtered);
   };
@@ -125,7 +126,7 @@ const Product = () => {
 
           <div className="productHead_content">
             <h1 className="htxthead">
-              <span className="spennofStyleadmin"></span>Product
+              <span className="spennofStyleadmin"></span>Products
             </h1>
             <div className="categoryBoxfiler">
               <Link to="/product/add" className="box_add_product">
@@ -135,80 +136,44 @@ const Product = () => {
             </div>
           </div>
 
-          {/* <div className="product-area">
-            {records.map((product, index) => (
-              <div className="box-product" key={index}>
-                <div>
-                  <img src={product.images[0].src} alt="image" />
-                </div>
-                <ul className="txtOFproduct">
-                  <li>{product.productName}</li>
-                  <li>{product.description}</li>
-                  <li>{product.price}</li>
-                  <div className="box_btn_edit_delete">
-                    <button
-                      className="btn_icon_delete_user"
-                      onClick={() => openConfirmationPopup(product.productID)}
-                    >
-                      <AiOutlineDelete id="btn_icon_edit" />
-                    </button>
-                    <div
-                      className="btn_icon_edit_user"
-                      onClick={() => handleUpdate(product.productID)}
-                    >
-                      <MdOutlineEdit id="btn_icon_edit" />
-                    </div>
-                  </div>
-                </ul>
-              </div>
-            ))}
-            {isConfirmationPopupOpen && (
-              <div className="confirmation-popup">
-                <p>Are you sure you want to delete?</p>
-                <div className="btn_ok_on">
-                  <button onClick={deleteProduct} className="btn_yes">
-                    Yes
-                  </button>
-                  <button onClick={closeConfirmationPopup} className="btn_on">
-                    No
-                  </button>
-                </div>
-              </div>
-            )}
-          </div> */}
-
-          {/* The new once */}
-
           <div className="product-area">
-            {products.map((product, index) => (
-              <div className="box-product" key={index}>
-                <div>
-                  <img
-                    src={"../../../../public/images/" + product.main_image_path}
-                    alt="image"
-                  />
-                </div>
-                <ul className="txtOFproduct">
-                  <li>{product.name}</li>
-                  <li>{product.description}</li>
-                  <li>{product.price}</li>
-                  <div className="box_btn_edit_delete">
-                    <button
-                      className="btn_icon_delete_user"
-                      onClick={() => openConfirmationPopup(product.id)}
-                    >
-                      <AiOutlineDelete id="btn_icon_edit" />
-                    </button>
-                    <div
-                      className="btn_icon_edit_user"
-                      onClick={() => handleUpdate(product.id)}
-                    >
-                      <MdOutlineEdit id="btn_icon_edit" />
-                    </div>
+            {records.length >= 1 ? (
+              records.map((product, index) => (
+                <div className="box-product" key={index}>
+                  <div>
+                    <img
+                      src={
+                        import.meta.env.VITE_API +
+                        "/uploads/images/" +
+                        product.image
+                      }
+                      alt="image"
+                    />
                   </div>
-                </ul>
-              </div>
-            ))}
+                  <ul className="txtOFproduct">
+                    <li>{product.name}</li>
+                    <li>{product.description}</li>
+                    <li>{product.price}</li>
+                    <div className="box_btn_edit_delete">
+                      <button
+                        className="btn_icon_delete_user"
+                        onClick={() => openConfirmationPopup(product.id)}
+                      >
+                        <AiOutlineDelete id="btn_icon_edit" />
+                      </button>
+                      <div
+                        className="btn_icon_edit_user"
+                        onClick={() => handleUpdate(product.id)}
+                      >
+                        <MdOutlineEdit id="btn_icon_edit" />
+                      </div>
+                    </div>
+                  </ul>
+                </div>
+              ))
+            ) : (
+              <p>No Product!</p>
+            )}
             {isConfirmationPopupOpen && (
               <div className="confirmation-popup">
                 <p>Are you sure you want to delete?</p>

@@ -123,7 +123,11 @@ const AdminDetail = () => {
           </div>
           <div className="img">
             <img
-              src={`../../../../public/images/${adminDetail.profile_image}`}
+              src={
+                import.meta.env.VITE_API +
+                "/uploads/images/" +
+                adminDetail.profile_image
+              }
               alt="admin profile"
             />
           </div>

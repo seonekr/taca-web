@@ -104,7 +104,11 @@ const User = () => {
           </div>
           <div className="img">
             <img
-              src={`../../../../public/images/${userDetail.profile_image}`}
+              src={
+                import.meta.env.VITE_API +
+                "/uploads/images/" +
+                userDetail.profile_image
+              }
               alt="admin profile"
             />
           </div>

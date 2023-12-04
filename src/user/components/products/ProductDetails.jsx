@@ -8,6 +8,7 @@ import { IoIosArrowBack } from "react-icons/io";
 function ProductDetails() {
   // For authenticate user if user didn't login, So thay can't go to see the product details
   const token = localStorage.getItem("token");
+  const accountID = localStorage.getItem("userID");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,10 +42,11 @@ function ProductDetails() {
 
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [customer, setCustomer] = useState("");
   const allSizes = ["S", "M", "L", "XL"];
 
   // Prepare for Customer is order product
-  const customerID = localStorage.getItem("userID");
+  const customerID = customer.id;
   const productID = id;
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
@@ -60,14 +62,13 @@ function ProductDetails() {
     setSize(id);
   };
 
-  console.log("Customer ID: " + customerID);
-  console.log("Product ID: " + productID);
-  console.log("Color: " + color);
-  console.log("Size: " + size);
-  console.log("Quantity: " + quantity);
-
-  // For get user by id
   useEffect(() => {
+    GetProductByID();
+    GetCustomerID();
+  }, []);
+
+  // For get product by id
+  const GetProductByID = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -85,7 +86,30 @@ function ProductDetails() {
         }
       })
       .catch((error) => console.log("error", error));
-  }, []);
+  };
+  // For get customer by id
+  const GetCustomerID = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      import.meta.env.VITE_API + "/getCustomer/" + accountID,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setCustomer(result.Result[0]);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   // ======================================================================>>
   // ======================================================================>>
@@ -166,6 +190,45 @@ function ProductDetails() {
       slideIndex > numOfThumb ? (slideIndex - 1) * width : 0;
   }, [width, slideIndex]);
 
+  const handleBuyNow = () => {
+    navigate("/cart/payment");
+  };
+
+  const handleAddToCart = () => {
+    if (
+      customerID != "" &&
+      productID != "" &&
+      size != "" &&
+      color != "" &&
+      quantity != ""
+    ) {
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
+        cust_id: customerID,
+        prod_id: productID,
+        size: size,
+        color: color,
+        quantity: quantity,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch(import.meta.env.VITE_API + "/addToCart", requestOptions)
+        .then((response) => response.json())
+        .then((result) => console.log(result.Status))
+        .catch((error) => console.log("error", error));
+    } else {
+      console.log("Please fill all the blank!");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -180,55 +243,28 @@ function ProductDetails() {
             <div className="slider">
               <React.Fragment>
                 <section className="product_details">
-                  {/* <div className="product-page-img">
-                    <div className="myslides">
-                      <img src="" alt="img" />
-                    </div>
-
-                    <a className="prev" onClick={() => plusSlides(-1)}>
-                      &#10094;
-                    </a>
-                    <a className="next" onClick={() => plusSlides(1)}>
-                      &#10095;
-                    </a>
-
-                    <div
-                      className="slider_img"
-                      draggable={true}
-                      ref={slideRef}
-                      onDragStart={dragStart}
-                      onDragOver={dragOver}
-                      onDragEnd={dragEnd}
-                    >
-                      <div
-                        className={`slider-box ${1 === slideIndex && "active"}`}
-                        onClick={() => setSlideIndex(index + 1)}
-                      >
-                        <img src="" alt="image" />
-                      </div>
-                    </div>
-                  </div> */}
-
                   <div className="product-page-img">
-                    {JSON.stringify(product.other_images_path)
-                      ? JSON.parse(product.other_images_path).map(
-                          (image, index) => (
-                            <div
-                              key={index}
-                              className="myslides"
-                              style={{
-                                display:
-                                  index + 1 === slideIndex ? "block" : "none",
-                              }}
-                            >
-                              <img
-                                key={image}
-                                src={`../../../../public/images/${image}`}
-                                alt="Additional Image"
-                              />
-                            </div>
-                          )
-                        )
+                    {JSON.stringify(product.gallery)
+                      ? JSON.parse(product.gallery).map((image, index) => (
+                          <div
+                            key={index}
+                            className="myslides"
+                            style={{
+                              display:
+                                index + 1 === slideIndex ? "block" : "none",
+                            }}
+                          >
+                            <img
+                              key={image}
+                              src={
+                                import.meta.env.VITE_API +
+                                "/uploads/images/" +
+                                image
+                              }
+                              alt="Additional Image"
+                            />
+                          </div>
+                        ))
                       : null}
 
                     <div
@@ -239,23 +275,25 @@ function ProductDetails() {
                       onDragOver={dragOver}
                       onDragEnd={dragEnd}
                     >
-                      {JSON.stringify(product.other_images_path)
-                        ? JSON.parse(product.other_images_path).map(
-                            (image, index) => (
-                              <div
-                                key={index}
-                                className={`slider-box ${
-                                  index + 1 === slideIndex && "active"
-                                }`}
-                                onClick={() => setSlideIndex(index + 1)}
-                              >
-                                <img
-                                  src={`../../../../public/images/${image}`}
-                                  alt=""
-                                />
-                              </div>
-                            )
-                          )
+                      {JSON.stringify(product.gallery)
+                        ? JSON.parse(product.gallery).map((image, index) => (
+                            <div
+                              key={index}
+                              className={`slider-box ${
+                                index + 1 === slideIndex && "active"
+                              }`}
+                              onClick={() => setSlideIndex(index + 1)}
+                            >
+                              <img
+                                src={
+                                  import.meta.env.VITE_API +
+                                  "/uploads/images/" +
+                                  image
+                                }
+                                alt=""
+                              />
+                            </div>
+                          ))
                         : null}
                     </div>
                   </div>
@@ -267,21 +305,7 @@ function ProductDetails() {
               <div className="txtContentproduct">
                 <h1 className="txt_nameP">{product.name}</h1>
                 <p className="money_txt">{product.price}</p>
-                {/* Star Box */}
-                {/* <div className="startBox">
-                  <div className="sartBox_icon">
-                    <AiFillStar id="icon_stars" />
-                    <AiFillStar id="icon_stars" />
-                    <AiFillStar id="icon_stars" />
-                    <AiFillStar id="icon_stars" />
-                    <AiOutlineStar id="icon_star" />
-                  </div>
-
-                  <div>
-                    <p>( 150 Reviews )</p>
-                  </div>
-                </div> */}
-                <p className="txt_description">desc</p>
+                <p className="txt_description">{product.description}</p>
 
                 <div className="hr">
                   <hr />
@@ -304,19 +328,6 @@ function ProductDetails() {
                       ))
                     : null}
                 </div>
-
-                {/* Checked sizes */}
-                {/* <div className="size_product">
-                  <p>Size:</p>
-                  <label htmlFor="s">S</label>
-                  <input type="radio" id="s" />
-                  <label htmlFor="m">M</label>
-                  <input type="radio" id="m" />
-                  <label htmlFor="l">L</label>
-                  <input type="radio" id="l" />
-                  <label htmlFor="xl">XL</label>
-                  <input type="radio" id="xl" />
-                </div> */}
 
                 <div className="size_product">
                   <p>Size:</p>
@@ -357,10 +368,18 @@ function ProductDetails() {
                   </div>
                 </div>
                 <div className="Count_product">
-                  <button type="submit" className="echbtn btnBut">
+                  <button
+                    type="submit"
+                    className="echbtn btnBut"
+                    onClick={handleBuyNow}
+                  >
                     Buy Now
                   </button>
-                  <button type="submit" className="echbtn btnAdd">
+                  <button
+                    type="submit"
+                    className="echbtn btnAdd"
+                    onClick={handleAddToCart}
+                  >
                     Add To Cart
                   </button>
                 </div>
@@ -369,7 +388,9 @@ function ProductDetails() {
           </div>
           <div className="description_container">
             <img
-              src={"../../../../public/images/" + product.main_image_path}
+              src={
+                import.meta.env.VITE_API + "/uploads/images/" + product.image
+              }
               alt="img"
             />
           </div>
