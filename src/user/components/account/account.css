@@ -1,0 +1,239 @@
+/* Account header */
+#account {
+    margin: 7rem 0;
+}
+.header_boxBack {
+    margin-left: 10rem;
+}
+
+.headerTiele {
+    text-align: center;
+}
+
+/* Account infofation */
+#account .personal-info {
+    width: 80%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+/* Image profile */
+#account .personal-info .profile {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#account .personal-info .profile .box-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border: 2px solid #0009;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#account .personal-info .profile .box-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* User name */
+#account .personal-info .profile .name {
+    display: flex;
+    font-size: 1.3rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* name in page account */
+#account .personal-info .profile .name p {
+    padding: 0 0.5rem;
+    color: #FF5733;
+}
+
+/* User information */
+#account .personal-info ul {
+    list-style-type: none;
+}
+
+#account .personal-info .text-info a {
+    display: flex;
+    text-decoration: none;
+    justify-content: space-between;
+    color: #000;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0.3rem 0;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* About account */
+#account .personal-info .about-account {
+    display: grid;
+    grid-gap: 2rem;
+    margin: 2rem 1rem;
+}
+
+#account .personal-info .about-account a {
+    /* This incloud logout and delete button */
+    text-decoration: none;
+    color: #fc0000;
+    font-size: 1.3rem;
+}
+
+/* Down here is logout button */
+#account .personal-info .about-account .logout {
+    display: flex;
+    width: 13%;
+    padding: 0.3em 1.2rem;
+    border: none !important;
+    border-radius: 7px;
+    background-color: #4395F7;
+}
+
+#account .personal-info .about-account .logout .icon-logout {
+    color: #fff;
+    padding-right: 0.5rem;
+    margin-top: 0.1rem;
+}
+
+#account .personal-info .about-account .logout .text-logout {
+    color: #fff;
+}
+
+/* Chang contact: Emait and phone */
+#account .personal-info .contact-info {
+    display: grid;
+    grid-gap: 3rem;
+    padding: 0 1.3rem;
+}
+
+#account .personal-info .contact-info .contact {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.3rem;
+}
+
+#account .personal-info .contact-info .contact input {
+    /*====================*/
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+#account .personal-info .contact-info .contact input:focus {
+    outline: none;
+}
+
+#account .personal-info .contact-info .contact input::placeholder {
+    text-align: right;
+}
+
+/* image change */
+#account .personal-info .contact-info .box-image {
+    /* position: relative; */
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    /* This set image to center*/
+    border: 2px solid #0009;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#account .personal-info .contact-info .box-image label {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 850%);
+}
+
+#account .personal-info .contact-info .box-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#account .personal-info .contact-info .box-image #choose-image {
+    display: none;
+}
+
+/* Show contact information */
+#account .personal-info .text-info a p {
+    color: #7B7D7D;
+    font-weight: 300;
+}
+
+/* Submit */
+#account .personal-info .submit {
+    margin-top: 5rem;
+    width: 100%;
+}
+
+#account .personal-info .submit .save button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-radius: 10px;
+    background: #2E86C1;
+    padding: 0.5rem 3rem;
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+
+@media (max-width: 820px) {
+
+    /* Adjust styles for screens larger than 768px */
+    #header-account {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .header_boxBack {
+        margin-left: 1rem;
+    }
+    #header-account .account-navbar {
+        width: 100%;
+    }
+
+    #account {
+        width: 100%;
+    }
+
+    #account .personal-info {
+        margin-bottom: 10rem;
+    }
+
+    #account .personal-info .contact-info .contact {
+        font-size: 1.3rem;
+    }
+
+    #account .personal-info .contact-info .contact input {
+        width: 35%;
+        /* Change width to 100% */
+        border: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #account .personal-info .submit {
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+    }
+    #account .personal-info .about-account .logout {
+        width: 100%;
+    }
+    #account .personal-info {
+        width:100%;
+        margin-top: 4rem;
+    }
+    #account .personal-info .contact-info {
+        padding: 0 20px;
+    }
+    #account .personal-info .contact-info .contact {
+        justify-content: left;
+        gap: 1rem;
+    }
+}

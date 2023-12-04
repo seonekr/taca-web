@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ============== body box_container_login ============== */
+.box_container_login2 {
+    width: 700px;
+    height: 650px;
+    position: relative;
+    border-radius: 1em;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.10);
+}
+
+.box_cancel_login {
+    display: flex;
+    justify-content: space-between;
+}
+
+.googlebtn_btn {
+    display: grid;
+}
+
+#icon_cancel_login {
+    width: 30px;
+    height: 30px;
+}
+
+.cover {
+    width: 400px;
+    height: 565px;
+    position: relative;
+    border-radius: 1em;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.container_login_form {
+    border: 1px solid #0E64D2;
+}
+
+
+
+.box_container_login_text {
+    color: rgba(0, 0, 0, 0.80);
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.input_form {
+    width: 100%;
+    height: 58px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.40);
+    border-radius: 10px;
+}
+
+.input_form {
+    padding: 20px 15px;
+}
+
+
+.forgot_password {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+.google_btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.google_btn p {
+    color: rgba(0, 0, 0, 0.60);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 18px;
+}
+
+.box_form {
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.box_form input {
+    width: 450px;
+    height: 58px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.40);
+}
+
+
+/* =============== Button Login with Google ============== */
+
+.google_btn {
+    width: 450px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 20px 15px;
+    border-radius: 10px;
+    margin-right: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.40);
+}
+
+/* ============= Button Login ===============*/
+
+.loginbtn_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_btn {
+    width: 450px;
+    height: 58px;
+    margin-top: -2rem;
+    background: #FA442C;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px;
+    font-size: 18px;
+}
+
+.login_btn:hover {
+    color: #FFF;
+}
+
+.boxAlartLogin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background-color: rgb(240, 91, 46);
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    border-radius: 7px;
+}
+
+.iconAlert{
+    font-size: 35px;
+    color: #fff;
+}
+
+.txtalert_p{
+    color: #fff;
+}
+.iconAlert_canCel{
+    color: #fff;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.werwer{
+    position: absolute;
+    top: 4%;
+}
+
+/*============== Responsive =====================*/
+@media screen and (max-width: 1024px) {
+    .box_container_login2 {
+        width: 90%;
+        overflow: hidden;
+        padding: 10px;
+        top: 35%;
+        margin: auto;
+    }
+
+    .input_form,
+    .login_btn {
+        width: 100%;
+    }
+
+    .cover {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .box_container_login2 {
+        width: 90%;
+        overflow: hidden;
+        padding: 10px;
+        top: 40%;
+    }
+
+    .input_form,
+    .login_btn {
+        width: 100%;
+    }
+
+    .google_btn {
+        width: 100%;
+    }
+
+    .cover {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 431px) {
+    .box_container_login2 {
+        width: 100%;
+        overflow: hidden;
+        padding: 10px;
+        top: 50%;
+    }
+
+    .input_form,
+    .login_btn {
+        width: 350px;
+
+    }
+ 
+    .google_btn {
+        width: 100%;
+    }
+
+    .cover {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .box_container_login2 {
+        width: 100%;
+    }
+
+    .input_form,
+    .login_btn {
+        width: 90%;
+    }
+}
