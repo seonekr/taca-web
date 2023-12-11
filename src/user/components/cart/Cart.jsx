@@ -11,16 +11,16 @@ const Cart = () => {
   // For authenticate user if user didn't login, So thay can't go to see the product details
   const token = localStorage.getItem("token");
   const accountID = localStorage.getItem("userID");
-  const [customer, setCustomer] = useState("");
   const [products, setProducts] = useState([]);
-  const [productDetail, setProductDetail] = useState([]);
+
+  const [productCounts, setProductCounts] = useState(
+    products.reduce((acc, product) => ({ ...acc, [product.productID]: 1 }), {})
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     AuthenUser();
-    GetCustomerByID();
     GetCartByCustomerByID();
-    // GetProductByID();
   }, []);
   // For authen user
   const AuthenUser = () => {
@@ -51,29 +51,7 @@ const Cart = () => {
       })
       .catch((error) => console.log("error", error));
   };
-  // For get customer by id
-  const GetCustomerByID = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      import.meta.env.VITE_API + "/getCustomer/" + accountID,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.Status === "Success") {
-          setCustomer(result.Result[0]);
-        }
-      })
-      .catch((error) => console.log("error", error));
-  };
   // For get cart by customer ID
   const GetCartByCustomerByID = () => {
     var myHeaders = new Headers();
@@ -86,61 +64,19 @@ const Cart = () => {
     };
 
     fetch(
-      import.meta.env.VITE_API + "/getProductsInCart/" + customer.id,
+      import.meta.env.VITE_API + "/getProductsInCart/" + accountID,
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
           setProducts(result.Result);
-
-          // // For get customer by id
-          // const GetProductByID = () => {
-          //   var myHeaders = new Headers();
-          //   myHeaders.append("Content-Type", "application/json");
-
-          //   var requestOptions = {
-          //     method: "GET",
-          //     headers: myHeaders,
-          //     redirect: "follow",
-          //   };
-
-          //   fetch(import.meta.env.VITE_API + "/getProduct/" + 4, requestOptions)
-          //     .then((response) => response.json())
-          //     .then((result) => {
-          //       if (result.Status === "Success") {
-          //         setProductDetail(result.Result[0]);
-          //         console.log(productDetail);
-          //       }
-          //     })
-          //     .catch((error) => console.log("error", error));
-          // };
         }
       })
       .catch((error) => console.log("error", error));
   };
 
-  const [price, setPrice] = useState(0);
-  const [shipping, setShipping] = useState(0);
-  const [grandTotal, setGrandTotal] = useState(0);
-
-  const [productCounts, setProductCounts] = useState(
-    products.reduce((acc, product) => ({ ...acc, [product.productID]: 1 }), {})
-  );
-
-  useEffect(() => {
-    const totalPrice = products.reduce(
-      (accumulator, product) =>
-        accumulator + product.price * (productCounts[product.productID] || 0),
-      0
-    );
-    const shipping = 0;
-    const grandTotal = totalPrice + shipping;
-
-    setPrice(totalPrice);
-    setShipping(shipping);
-    setGrandTotal(grandTotal);
-  }, [products, productCounts]);
+  console.log(products)
 
   const handleInputChange = (e, index, field) => {
     const updatedProducts = [...products];
@@ -148,17 +84,17 @@ const Cart = () => {
     setProducts(updatedProducts);
   };
 
-  const incrementCount = (productID) => {
+  const incrementCount = (productID, quantity) => {
     setProductCounts((prevCounts) => ({
       ...prevCounts,
-      [productID]: (prevCounts[productID] || 0) + 1,
+      [productID]: (prevCounts[productID] || quantity) + 1,
     }));
   };
 
-  const decrementCount = (productID) => {
+  const decrementCount = (productID, quantity) => {
     setProductCounts((prevCounts) => ({
       ...prevCounts,
-      [productID]: Math.max(0, (prevCounts[productID] || 0) - 1),
+      [productID]: Math.max(1, (prevCounts[productID] || quantity) - 1),
     }));
   };
 
@@ -168,7 +104,6 @@ const Cart = () => {
     setProducts([]);
     setPrice("");
     setShipping("");
-    setGrandTotal("");
     const selectedProducts = products.map((product) => ({
       productID: product.productID,
       productName: product.productName,
@@ -176,7 +111,6 @@ const Cart = () => {
       price: product.price,
       size: product.size,
       productCounts: productCounts[product.productID] || 0,
-      totalPrice: grandTotal,
     }));
 
     // Submit the selected products with userID
@@ -197,39 +131,37 @@ const Cart = () => {
             {products.map((product, index) => (
               <div className="container_cart_item" key={index}>
                 <div className="box_item_image">
-                  {/* <img src={product.images[0]} alt="img"></img> */}
+                  <img
+                    src={
+                      import.meta.env.VITE_API +
+                      "/uploads/images/" +
+                      product.image
+                    }
+                    alt="img"
+                  ></img>
                   <div className="box_item_text">
-                    <input
-                      type="text"
-                      value={product.prod_id}
-                      onChange={(e) => handleInputChange(e, index, "name")}
-                      className="name"
-                    />
-                    <input
-                      type="text"
-                      value={product.size}
-                      className="description"
-                    />
-                    <input type="text" value={product.color} />
+                    <p>{product.name}</p>
+                    <p>{product.size}</p>
+                    <p>{product.color}</p>
+                    <p>{product.price}</p>
                   </div>
                 </div>
                 <div className="box_item_icon">
                   <div
                     className="icon_minus_plus"
-                    onClick={() => decrementCount(product.id)}
+                    onClick={() => decrementCount(product.id, product.quantity)}
                   >
                     -
                   </div>
                   <span>
                     <input
                       type="text"
-                      value={productCounts[product.id] || 0}
-                      onChange={() => {}}
+                      value={productCounts[product.id] || product.quantity}
                     />
                   </span>
                   <div
                     className="icon_minus_plus"
-                    onClick={() => incrementCount(product.id)}
+                    onClick={() => incrementCount(product.id, product.quantity)}
                   >
                     +
                   </div>
@@ -240,35 +172,7 @@ const Cart = () => {
         </div>
         {products.length > 0 ? (
           <div className="box_item_total">
-            <h1>Cart Total</h1>
-            <div className="box_item_total_text">
-              <p>Subtotal:</p>
-              <p>
-                <input type="text" value={"$ " + price} onChange={() => {}} />
-              </p>
-            </div>
-            <hr />
-            <div className="box_item_total_text">
-              <p>Shipping: </p>
-              <p>
-                <input
-                  type="text"
-                  value={"$ " + shipping}
-                  onChange={() => {}}
-                />
-              </p>
-            </div>
-            <hr />
-            <div className="box_item_total_text">
-              <h3>Total: </h3>
-              <p>
-                <input
-                  type="text"
-                  value={"$ " + grandTotal}
-                  onChange={() => {}}
-                />
-              </p>
-            </div>
+            
             <div className="btn">
               <Link to="/product_search" className="Continues_btn">
                 Continues Shopping
