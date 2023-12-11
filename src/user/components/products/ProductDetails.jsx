@@ -42,11 +42,11 @@ function ProductDetails() {
 
   const { id } = useParams();
   const [product, setProduct] = useState([]);
-  const [customer, setCustomer] = useState("");
+  // const [customer, setCustomer] = useState("");
   const allSizes = ["S", "M", "L", "XL"];
 
   // Prepare for Customer is order product
-  const customerID = customer.id;
+  const customerID = accountID;
   const productID = id;
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
@@ -64,7 +64,6 @@ function ProductDetails() {
 
   useEffect(() => {
     GetProductByID();
-    GetCustomerID();
   }, []);
 
   // For get product by id
@@ -83,29 +82,6 @@ function ProductDetails() {
       .then((result) => {
         if (result.Status === "Success") {
           setProduct(result.Result[0]);
-        }
-      })
-      .catch((error) => console.log("error", error));
-  };
-  // For get customer by id
-  const GetCustomerID = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      import.meta.env.VITE_API + "/getCustomer/" + accountID,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.Status === "Success") {
-          setCustomer(result.Result[0]);
         }
       })
       .catch((error) => console.log("error", error));
@@ -183,6 +159,7 @@ function ProductDetails() {
       slideRef.current.scrollLeft -= width;
     }
   }
+  
   useEffect(() => {
     if (!slideRef.current || !width) return;
     let numOfThumb = Math.round(slideRef.current.offsetWidth / width);
@@ -228,6 +205,13 @@ function ProductDetails() {
       console.log("Please fill all the blank!");
     }
   };
+
+  console.log(accountID, productID, size, color, quantity)
+  // console.log(productID)
+  // console.log(size)
+  // console.log(color)
+  // console.log(quantity)
+  
 
   return (
     <>
@@ -396,6 +380,7 @@ function ProductDetails() {
           </div>
         </div>
       </div>
+
       <Menu />
     </>
   );
