@@ -47,7 +47,7 @@ const Links = () => {
         <Route exact path="/account/general" Component={General} />
         <Route exact path="/account/contact" Component={Contact} />
         <Route exact path="/account/password" Component={Password} />
-        <Route exact path="/cart/payment" Component={Payment} />
+        <Route exact path="/payment" Component={Payment} />
         <Route exact path="/cart/address" Component={Address} />
         <Route exact path="/contacts" Component={Contacts} />
         <Route exact path="/order" Component={Order} />
