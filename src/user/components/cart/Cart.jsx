@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import acer from "../../../img/acer.png";
 import Header from "../header/Header";
 import Menu from "../menu/Menu";
+import { AiOutlineDelete } from "react-icons/ai";
 
 import "./cart.css";
 
@@ -16,6 +17,7 @@ const Cart = () => {
   const [productCounts, setProductCounts] = useState(
     products.reduce((acc, product) => ({ ...acc, [product.productID]: 1 }), {})
   );
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -76,7 +78,7 @@ const Cart = () => {
       .catch((error) => console.log("error", error));
   };
 
-  console.log(products)
+  console.log(products);
 
   const handleInputChange = (e, index, field) => {
     const updatedProducts = [...products];
@@ -122,6 +124,29 @@ const Cart = () => {
     });
   };
 
+  const DeleteProductInCartByID = (id) => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:5000/deleteProductInCart/" + id, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          console.log(result.Status);
+          navigate("/cart");
+        } else {
+          console.log(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  const handleCheckout = () => {
+    navigate("/payment");
+  };
+
   return (
     <>
       <Header />
@@ -146,24 +171,38 @@ const Cart = () => {
                     <p>{product.price}</p>
                   </div>
                 </div>
-                <div className="box_item_icon">
+                <div className="box_icon_order">
                   <div
-                    className="icon_minus_plus"
-                    onClick={() => decrementCount(product.id, product.quantity)}
+                    className="btnicon_delete_order"
+                    onClick={() => {
+                      DeleteProductInCartByID(product.id);
+                    }}
                   >
-                    -
+                    <AiOutlineDelete id="btnicon_delete" />
                   </div>
-                  <span>
-                    <input
-                      type="text"
-                      value={productCounts[product.id] || product.quantity}
-                    />
-                  </span>
-                  <div
-                    className="icon_minus_plus"
-                    onClick={() => incrementCount(product.id, product.quantity)}
-                  >
-                    +
+                  <div className="box_item_icon">
+                    <div
+                      className="icon_minus_plus"
+                      onClick={() =>
+                        decrementCount(product.id, product.quantity)
+                      }
+                    >
+                      -
+                    </div>
+                    <span>
+                      <input
+                        type="text"
+                        value={productCounts[product.id] || product.quantity}
+                      />
+                    </span>
+                    <div
+                      className="icon_minus_plus"
+                      onClick={() =>
+                        incrementCount(product.id, product.quantity)
+                      }
+                    >
+                      +
+                    </div>
                   </div>
                 </div>
               </div>
@@ -172,12 +211,15 @@ const Cart = () => {
         </div>
         {products.length > 0 ? (
           <div className="box_item_total">
-            
             <div className="btn">
               <Link to="/product_search" className="Continues_btn">
                 Continues Shopping
               </Link>
-              <button type="submit" className="checkout_btn">
+              <button
+                type="submit"
+                className="checkout_btn"
+                onClick={handleCheckout}
+              >
                 Checkout
               </button>
             </div>
