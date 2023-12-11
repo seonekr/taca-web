@@ -161,6 +161,25 @@ a {
     color: #ff0000;
 }
 
+#btnicon_delete{
+    width: 18px;
+    height: 18px;
+    color: #FFF;
+}
+
+.btnicon_delete_order{
+    width: 40px;
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    background: #FA442C;
+    border-radius: 8px;
+    margin-left: 8rem;
+}
+
 /*=========== Resposive =============*/
 
 
