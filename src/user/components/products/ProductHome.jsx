@@ -1,9 +1,5 @@
 import "./productHome.css";
-import dress from "../../../img/dress.png";
-import image1 from "../../../img/image1.png";
 import Header from "../header/Header";
-import acer from "../../../img/acer.png";
-import productImage from "../../../img/productImage.png";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
