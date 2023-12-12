@@ -126,24 +126,26 @@
 /* payment method */
 #payment .adress-payment .box .transfer {
     display: flex;
-    margin: 0 1rem;
     font-size: 1.3rem;
     align-items: center;
+    justify-content: center;
 }
 
 #payment .adress-payment .box .transfer .select-option {
     display: flex;
-    margin: 0 auto;
-    font-size: 1.2rem;
     align-items: center;
+    margin: auto;
+    font-size: 18px;
 }
 
 #payment .adress-payment .box .transfer .select-option input {
-    width: 10%;
+   width: 50%;
 }
+
 
 #payment .adress-payment .box .transfer .select-option label {
     padding-left: 0.5rem;
+    cursor: pointer;
 }
 
 /* transfer method */
@@ -154,7 +156,7 @@
 }
 
 #payment .adress-payment .box .qr img {
-    margin-top: 3rem;
+    margin-top: 2rem;
     width: 100%;
 }
 

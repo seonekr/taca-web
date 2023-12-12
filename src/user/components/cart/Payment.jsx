@@ -50,7 +50,7 @@ const Payment = () => {
     } else if (productsCart.length > 0) {
       console.log(productsCart);
     }
-    navigate("/cart/payment/");
+    navigate("/cart/payment");
   };
 
   const handleRadioChange = (event) => {
@@ -159,7 +159,7 @@ const Payment = () => {
                       checked={selectedOption === "onePay"}
                       onChange={handleRadioChange}
                     />
-                    <label htmlFor="onePay">Bcel One</label>
+                    <label htmlFor="onePay">BcelOne</label>
                   </div>
                   <div className="select-option">
                     <input
