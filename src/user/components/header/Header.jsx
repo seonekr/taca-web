@@ -42,9 +42,8 @@ const Header = ({ handleSearch }) => {
                     <Link
                       key={menuItem.label}
                       to={menuItem.path}
-                      className={`link ${
-                        location.pathname === menuItem.path ? "active" : ""
-                      }`}
+                      className={`link ${location.pathname === menuItem.path ? "active" : ""
+                        }`}
                     >
                       {menuItem.icon}
                       <p>{menuItem.label}</p>
@@ -68,31 +67,36 @@ const Header = ({ handleSearch }) => {
                   <FaMagnifyingGlass className="iconSearch" />
                 </button>
               </form>
-              <div className="boxsearchContainer">
-                {userID ? (
-                  <Link to="/cart">
-                    <FaCartShopping className="head_colorr" />
-                  </Link>
-                ) : (
-                  <Link to="/login">
-                    <FaCartShopping className="head_colorr" />
-                  </Link>
-                )}
+
+              <div className="right_ofHeadBox">
+                <div className="boxsearchContainer">
+                  {userID ? (
+                    <Link to="/cart">
+                      <FaCartShopping className="head_colorr" />
+                    </Link>
+                  ) : (
+                    <Link to="/login">
+                      <FaCartShopping className="head_colorr" />
+                    </Link>
+                  )}
+                </div>
+                <div>
+                  {userID ? (
+                    <div>
+                      <Link to="/account">
+                        <FaRegUser className="head_colorr" />
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to="/login" className="head_colorr">
+                        Login
+                        <BiLogIn className="login" />
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
-              {userID ? (
-                <div>
-                  <Link to="/account">
-                    <FaRegUser className="head_colorr" />
-                  </Link>
-                </div>
-              ) : (
-                <div>
-                  <Link to="/login" className="head_colorr">
-                    Login
-                    <BiLogIn className="login" />
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </div>
