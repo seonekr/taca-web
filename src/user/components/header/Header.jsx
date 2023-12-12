@@ -12,7 +12,7 @@ const Header = ({ handleSearch }) => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Shop", path: "/product_search" },
+    { label: "Shop", path: "/products" },
     { label: "Orders", path: "/order" },
   ];
 

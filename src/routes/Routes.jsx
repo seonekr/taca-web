@@ -20,7 +20,7 @@ import AlertLogin from "../user/components/login_register/AlertLogin";
 import AlertSignup from "../user/components/login_register/AlertSignup";
 import Register from "../user/components/login_register/Register";
 import Order from "../user/components/order/Order";
-import Product_search from "../user/components/products/Product_search";
+import Products from "../user/components/products/Products";
 import ProductDetails from "../user/components/products/ProductDetails";
 import OrderPage from "../admin/components/orderPage/OrderPage";
 import OrderBill from "../admin/components/orderPage/OrderBill";
@@ -56,7 +56,7 @@ const Links = () => {
         <Route exact path="/cart/successfulBuy" Component={SuccessfulBuy} />
 
         {/*==== phukeo ==== */}
-        <Route exact path="/product_search" Component={Product_search} />
+        <Route exact path="/products" Component={Products} />
         <Route exact path="/productdetails/:id" Component={ProductDetails} />
         <Route exact path="/login" Component={Login} />
         <Route exact path="/register" Component={Register} />
