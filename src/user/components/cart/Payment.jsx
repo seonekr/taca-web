@@ -116,58 +116,63 @@ const Payment = () => {
               {/* procuts */}
               <div className="detailsProductInPayMentBox">
                 <h3>Details</h3>
-                <ul>
-                  <li className="detailsProduct_li" >
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </li>
-                </ul>
+
+                <div className="paymentbill">
+                  <div className="box_paymentbill">
+                    <p>OrderID: 5</p>
+                    <p>UserID: 1</p>
+                    <p>Name: So</p>
+                  </div>
+                  <hr className="hr"/>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Product Name</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Product Counts</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                        <tr>
+                          <td>Pro01</td>
+                          <td>L</td>
+                          <td>red</td>
+                          <td>3</td>
+                          <td>150</td>
+                        </tr>
+                        <tr>
+                          <td>Pro01</td>
+                          <td>L</td>
+                          <td>red</td>
+                          <td>3</td>
+                          <td>150</td>
+                        </tr>
+                        <tr>
+                          <td>Pro01</td>
+                          <td>L</td>
+                          <td>red</td>
+                          <td>3</td>
+                          <td>150</td>
+                        </tr>
+                      </tbody>
+                  </table>
+                  <hr className="hr"/>
+                  <div className="payment_total_Price">
+                    <h3>Total:</h3>
+                    <p>450</p>
+                  </div>
+                  <div className="place-on">
+                    <p>Place on: 12/12/2023</p>
+                    <p>Payment method: Bcel One</p>
+                    <p>Status: pending</p>
+                    <p>Delivery: Anousit</p>
+                  </div>
+                </div>
+
               </div>
-              {/* {products.length > 0 ? (
-                <div className="detailsProductInPayMentBox">
-                  <h3>Details</h3>
-                  <ul>
-                    {products.map((product) => (
-                      <li className="detailsProduct_li" key={product.productID}>
-                        <div>Product ID: {product.productID}</div>
-                        <div>Product Name: {product.productName}</div>
-                        <div>Size: {product.size}</div>
-                        <div>Color: {product.color}</div>
-                        <div>Price: {product.price}</div>
-                        <div>Product Counts: {product.productCounts}</div>
-                        <div>
-                          Have to pay: {product.productCounts * product.price}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <div></div>
-              )} */}
-              {/* Procuts Cart */}
-              {productsCart.length > 0 ? (
-                <div className="detailsProductInPayMentBox">
-                  <ul>
-                    {productsCart.map((product) => (
-                      <li key={product.productID}>
-                        <div>Product ID: {product.productID}</div>
-                        <div>Product Name: {product.productName}</div>
-                        <div>Size: {product.size}</div>
-                        <div>Color: {product.color}</div>
-                        <div>Price: {product.price}</div>
-                        <div>Product Counts: {product.productCounts}</div>
-                      </li>
-                    ))}
-                    <div>Have to pay: {totalPrice}</div>
-                  </ul>
-                </div>
-              ) : (
-                <div></div>
-              )}
+            
 
               <div className="box">
                 <div className="transfer">

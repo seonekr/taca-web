@@ -60,7 +60,7 @@
 
 .detailsProductInPayMentBox h3 {
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .detailsProductInPayMentBox ul {
@@ -72,10 +72,60 @@
     border-radius: 5px;
 }
 
-.detailsProduct_li {
+
+
+.paymentbill {
     display: grid;
-    gap: 8px;
+    width: 80%;
+    margin: auto;
+    padding: 30px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
 }
+
+.box_paymentbill{
+    display: grid;
+    gap: 0.5rem;
+    padding: 0 10px;
+}
+
+.paymentbill table {
+    width: 100%;
+}
+.hr{
+    margin-top: 0.5rem;
+}
+
+.paymentbill table tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1.2rem 0;
+}
+
+.paymentbill table tr th {
+    width: 15%;
+    text-align: center;
+}
+
+.paymentbill table tr td {
+    width: 15%;
+    text-align: center;
+}
+
+.payment_total_Price {
+    padding: 20px 45px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.place-on {
+    display: grid;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
 
 /* payment method */
 #payment .adress-payment .box .transfer {
