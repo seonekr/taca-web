@@ -6,15 +6,17 @@ import AdminMenu from "../adminMenu/AdminMenu";
 import { Link, useNavigate } from "react-router-dom";
 import user from "../../../img/user.png";
 
+
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
+
   // prev next button user in react
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 8;
+  const recordsPerPage = 4;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = users.slice(firstIndex, lastIndex);
@@ -57,17 +59,23 @@ const Users = () => {
           <div className="container_box_adminusers">
             <div className="box_users">
               <h2>Users</h2>
-              <form className="search">
+              <form  className="search">
                 <div className="search-box_menageruser">
-                  <input type="text" placeholder="Search ..." />
+                  <input 
+                    type="text" 
+                    placeholder="Search ..."
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                 />
+
                   <button type="submit">
-                    <IoSearchOutline />
+                    <IoSearchOutline/>
                   </button>
+
                 </div>
               </form>
             </div>
-            {users.length >= 1 ? (
-              users.map((e) => {
+            {records.length >= 1 ? (
+              records.map((e) => {
                 return (
                   <div
                     className="box_users_user"

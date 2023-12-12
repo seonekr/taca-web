@@ -67,7 +67,7 @@ const Links = () => {
         {/* Admin routes */}
         <Route exact path="/dashboard" Component={Dashboard} />
         <Route exact path="/product/add" Component={AddProduct} />
-        <Route exact path="/products" Component={Product} />
+        <Route exact path="/product" Component={Product} />
         <Route exact path="/product/edit/:id" Component={EditProduct} />
         <Route exact path="/users" Component={Users} />
         <Route exact path="/orderpage" Component={OrderPage} />

@@ -314,7 +314,7 @@ const Board = () => {
                 </div>
                 <div className="items">
                   <span>1</span>
-                  <span>ttt</span>
+                  <span>Product1</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -330,8 +330,8 @@ const Board = () => {
                   <span className="sales_persian sales_an1">45%</span>
                 </div>
                 <div className="items">
-                  <span>1</span>
-                  <span>ttt</span>
+                  <span>2</span>
+                  <span>Product2</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -347,8 +347,8 @@ const Board = () => {
                   <span className="sales_persian sales_an2">29%</span>
                 </div>
                 <div className="items">
-                  <span>1</span>
-                  <span>ttt</span>
+                  <span>3</span>
+                  <span>Product3</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -364,8 +364,8 @@ const Board = () => {
                   <span className="sales_persian sales_an3">24%</span>
                 </div>
                 <div className="items">
-                  <span>1</span>
-                  <span>ttt</span>
+                  <span>4</span>
+                  <span>Product4</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
