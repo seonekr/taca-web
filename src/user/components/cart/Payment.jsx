@@ -118,12 +118,6 @@ const Payment = () => {
                 <h3>Details</h3>
 
                 <div className="paymentbill">
-                  <div className="box_paymentbill">
-                    <p>OrderID: 5</p>
-                    <p>UserID: 1</p>
-                    <p>Name: So</p>
-                  </div>
-                  <hr className="hr"/>
                   <table>
                     <thead>
                       <tr>
@@ -142,32 +136,13 @@ const Payment = () => {
                           <td>3</td>
                           <td>150</td>
                         </tr>
-                        <tr>
-                          <td>Pro01</td>
-                          <td>L</td>
-                          <td>red</td>
-                          <td>3</td>
-                          <td>150</td>
-                        </tr>
-                        <tr>
-                          <td>Pro01</td>
-                          <td>L</td>
-                          <td>red</td>
-                          <td>3</td>
-                          <td>150</td>
-                        </tr>
+                       
                       </tbody>
                   </table>
                   <hr className="hr"/>
                   <div className="payment_total_Price">
                     <h3>Total:</h3>
                     <p>450</p>
-                  </div>
-                  <div className="place-on">
-                    <p>Place on: 12/12/2023</p>
-                    <p>Payment method: Bcel One</p>
-                    <p>Status: pending</p>
-                    <p>Delivery: Anousit</p>
                   </div>
                 </div>
 

@@ -78,7 +78,7 @@
     display: grid;
     width: 80%;
     margin: auto;
-    padding: 30px 10px;
+    padding: 10px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 
@@ -101,7 +101,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 1.2rem 0;
+    margin: 1rem 0;
 }
 
 .paymentbill table tr th {
@@ -120,11 +120,7 @@
     justify-content: space-between;
 }
 
-.place-on {
-    display: grid;
-    gap: 1rem;
-    padding: 0 2rem;
-}
+
 
 
 /* payment method */
