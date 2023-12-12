@@ -1,5 +1,5 @@
 body {
-    background-color: #F5F5F5;
+    background-color: #f5f5f53f;
 }
 
 /* Left bar */
@@ -34,11 +34,11 @@ body {
 }
 
 #dashboard .left .menu .link:hover {
-    color: #FF4F16;
+    color: #ff7446;
 }
 
 #dashboard .left .menu .active {
-    background: #FF4F16;
+    background: #ff7446;
     color: #FFF;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
 }
@@ -60,32 +60,40 @@ body {
 #dashboard .right {
     position: fixed;
     top: 0;
-    left: 1;
     z-index: 999;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    grid-template-columns: 1fr 1fr 1fr;
     height: 90px;
     background: #FFF;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
     padding: 0 2rem;
 }
 
-/* form */
-.logo {
-    width: 20%;
-    margin-left: 1cm;
-}
-.logo img {
-    width: 35%;
+.boximage_admin {
+    text-align: end;
+    margin-right: 2rem;
 }
 
-.userAdminImage {
-    text-align: end;
-    padding-right: 3rem;
+/* form */
+.logo {
+    margin-left: 2rem;
 }
+
+.logo img {
+    width: 80%;
+}
+
 .userAdminImage img {
-    width: 10%;
+    width: 12%;
+}
+
+.boxAlertDelete2 {
+    top: 0;
+    width: 100%;
+    height: 120vh;
+    position: fixed;
+    z-index: 9999;
+    background-color: #0000003b;
 }

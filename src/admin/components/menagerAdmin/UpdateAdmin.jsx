@@ -60,6 +60,7 @@ const UpdateAdmin = () => {
                         </div>
                     </div>
                     <div className="img">
+                        
                         <img src={user} alt="admin profile" />
                     </div>
                 </form>

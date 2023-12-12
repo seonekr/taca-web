@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AdminMenu from "../adminMenu/AdminMenu";
 import "./addProduct.css";
 import axios from "axios";
+import { FaAngleLeft } from "react-icons/fa";
 
 // For alert message => 1
 import Alert from "@mui/material/Alert";
@@ -214,7 +215,12 @@ const AddProduct = () => {
     <>
       <AdminMenu />
       <section id="post">
-        <div className="boxcontainerSpan_Box"></div>
+        <div className="goback">
+          <Link to="/product_Admin" className="box_guopIconbAck">
+            <FaAngleLeft id="box_icon_Back" />
+            <p>Back</p>
+          </Link>
+        </div>
         <div className="box_container_product">
           <div className="box_text">
             <h2>Edit Product</h2>
