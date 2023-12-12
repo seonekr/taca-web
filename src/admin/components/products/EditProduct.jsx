@@ -216,7 +216,7 @@ const AddProduct = () => {
       <AdminMenu />
       <section id="post">
         <div className="goback">
-          <Link to="/products" className="box_guopIconbAck">
+          <Link to="/product_Admin" className="box_guopIconbAck">
             <FaAngleLeft id="box_icon_Back" />
             <p>Back</p>
           </Link>
