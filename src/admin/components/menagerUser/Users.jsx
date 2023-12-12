@@ -4,8 +4,6 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { IoSearchOutline } from "react-icons/io5";
 import AdminMenu from "../adminMenu/AdminMenu";
 import { Link, useNavigate } from "react-router-dom";
-import user from "../../../img/user.png";
-
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -59,12 +57,11 @@ const Users = () => {
           <div className="container_box_adminusers">
             <div className="box_users">
               <h2>Users</h2>
-              <form onSubmit={handleSubmit} className="search">
+              <form className="search">
                 <div className="search-box_menageruser">
                   <input 
                     type="text" 
                     placeholder="Search ..."
-                    value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                  />
 
