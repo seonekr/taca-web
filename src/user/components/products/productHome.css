@@ -60,7 +60,7 @@ a {
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
 }
 
-#product .box-product:hover{
+#product .box-product:hover {
     border: none;
 }
 
@@ -91,6 +91,11 @@ a {
     list-style: none;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
+}
+
+.txtOFproduct2 li input {
+    border: none;
+    font-size: 15px;
 }
 
 .boxfilterseach {

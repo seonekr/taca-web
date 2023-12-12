@@ -228,11 +228,6 @@ const Register = () => {
                 Login
               </Link>
             </p>
-            <p>Or</p>
-            <Link to="#" className="google_btn">
-              <img src={google} alt="img" />
-              <p>Login with Google</p>
-            </Link>
           </div>
         </div>
       </div>
