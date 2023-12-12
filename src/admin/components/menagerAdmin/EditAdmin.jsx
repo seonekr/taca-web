@@ -2,9 +2,13 @@ import "./addAmin.css";
 import AdminMenu from "../adminMenu/AdminMenu";
 import { useState, useEffect } from "react";
 import user from "../../../img/user.png";
-
+import { MdOutlineEmail } from "react-icons/md";
+import { LuUser } from "react-icons/lu";
+import { CiImageOn } from "react-icons/ci";
+import { FiPhone } from "react-icons/fi";
 import { FaAngleLeft } from "react-icons/fa";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { MdOutlineEdit } from "react-icons/md";
 
 const EditAdmin = () => {
   const { id } = useParams();
@@ -12,7 +16,6 @@ const EditAdmin = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [profile_image, setProfile_image] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [message, setMessage] = useState("");
@@ -25,7 +28,7 @@ const EditAdmin = () => {
       redirect: "follow",
     };
 
-    fetch(import.meta.env.VITE_API + "/getAdmin/" + id, requestOptions)
+    fetch("http://localhost:5000/getAdmin/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
@@ -33,8 +36,6 @@ const EditAdmin = () => {
           setLastName(result.Result[0].lname);
           setEmail(result.Result[0].email);
           setPhoneNumber(result.Result[0].tel);
-          // setPhoneNumber(result.Result[0].profile_image);
-          setProfile_image("profile.png");
         }
       })
       .catch((error) => console.log("error", error));
@@ -59,7 +60,6 @@ const EditAdmin = () => {
       tel: phoneNumber,
       fname: firstName,
       lname: lastName,
-      // password: password,
       password: "1234",
     });
 
@@ -70,7 +70,7 @@ const EditAdmin = () => {
       redirect: "follow",
     };
 
-    fetch(import.meta.env.VITE_API + "/updateAdmin/" + id, requestOptions)
+    fetch("http://localhost:5000/updateAdmin/" + id, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
@@ -84,84 +84,116 @@ const EditAdmin = () => {
       .catch((error) => console.log("error", error));
   };
 
+  // Handle image selection for the main admin image
+  const [mainImage, setMainImage] = useState(null);
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMainImage(URL.createObjectURL(file)); // Use createObjectURL directly
+    }
+  };
+
   return (
     <>
       <AdminMenu />
       <section id="addAmin">
+        <div className="goback">
+          <Link to="/admins" className="box_guopIconbAck">
+            <FaAngleLeft id="box_icon_Back" />
+            <p>Back</p>
+          </Link>
+        </div>
         <div className="box_addAdmin">
-          <div className="container_add_admin">
-            <Link to="/admins" className="box_guopIconbAck">
-              <FaAngleLeft id="box_icon_Back" />
-              <p>Back</p>
-            </Link>
-            <h2>Update Admin</h2>
-            <div></div>
-          </div>
           <h3>{message && message}</h3>
           <form>
             <div className="addAdminForm">
-              <div className="add-box">
-                <label htmlFor="firstName">First name</label>
-                <input
-                  type="text"
-                  id="firstName"
-                  onChange={(e) => {
-                    setFirstName(e.target.value);
-                  }}
-                  value={firstName}
-                />
+              <div className="del-update">
+                <button onClick={handleSubmit} type="submit" className="submit">
+                  Update
+                </button>
               </div>
               <div className="add-box">
-                <label htmlFor="lastName">Last name</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  onChange={(e) => {
-                    setLastName(e.target.value);
-                  }}
-                  value={lastName}
-                />
+                <label htmlFor="fname" className="titlelabel">First name:</label>
+                <div className="boxiconnandinput">
+                  <LuUser className="iconinput" />
+                  <div className="input">
+                    <input
+                      type="text"
+                      id="firstName"
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
+                      value={firstName}
+                    />
+                  </div>
+                </div>
               </div>
               <div className="add-box">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  value={email}
-                />
+                <label htmlFor="fname" className="titlelabel">Last Name:</label>
+                <div className="boxiconnandinput">
+                  <LuUser className="iconinput" />
+                  <div className="input">
+                    <input
+                      type="text"
+                      id="lastName"
+                      onChange={(e) => {
+                        setLastName(e.target.value);
+                      }}
+                      value={lastName}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="add-box">
+                <label htmlFor="email" className="titlelabel">Email:</label>
+                <div className="boxiconnandinput">
+                  <MdOutlineEmail className="iconinput" />
+                  <div className="input">
+                    <input
+                      type="email"
+                      id="email"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      value={email}
+                    />
+                  </div>
+                </div>
               </div>
               <div className="add-box">
-                <label htmlFor="phoneNumber">Phone</label>
-                <input
-                  type="text"
-                  id="phoneNumber"
-                  onChange={(e) => {
-                    setPhoneNumber(e.target.value);
-                  }}
-                  value={phoneNumber}
-                />
+                <label htmlFor="phone" className="titlelabel">Phone number:</label>
+                <div className="boxiconnandinput">
+                  <FiPhone className="iconinput" />
+                  <div className="input">
+                    <input
+                      type="text"
+                      id="phoneNumber"
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                      }}
+                      value={phoneNumber}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="imageAdmin">
-              <div className="image">
-                <label htmlFor="adminImage">
-                  <img
-                    src={
-                      import.meta.env.VITE_API +
-                      "/uploads/images/" +
-                      profile_image
-                    }
-                  />
-                </label>
+
+              <div className="add-box">
+                <label htmlFor="adminImage" className="titlelabel">Profile image:</label>
+                  <div className="BorderinputThenImage">
+                    <label htmlFor="img">
+                      {mainImage ? (
+                        <img src={mainImage} alt="Main Product" />
+                      ) : (
+                        <p>Choose image</p>
+                      )}
+                      <input type="file" id="img" onChange={handleImage}/>
+                    </label>
+                    
+                  </div>
               </div>
-            </div>
-            <div className="submit">
-              <button onClick={handleSubmit} type="submit">
-                Update
-              </button>
+
             </div>
           </form>
         </div>

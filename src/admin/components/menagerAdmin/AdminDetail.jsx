@@ -5,6 +5,12 @@ import { MdOutlineEdit } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import user from "../../../img/user.png";
+import { MdOutlineEmail } from "react-icons/md";
+import { LuUser } from "react-icons/lu";
+import { CiImageOn } from "react-icons/ci";
+import { FiPhone } from "react-icons/fi";
+import "./addAmin.css";
+
 
 const AdminDetail = () => {
   const userID = localStorage.getItem("userID");
@@ -85,70 +91,108 @@ const AdminDetail = () => {
   return (
     <>
       <AdminMenu />
-      <section id="user">
-        <div className="back">
-          <Link to="/admins" className="link-back">
-            <FaAngleLeft />
-            Back
+      <section id="addAmin">
+        <div className="goback">
+          <Link to="/admins" className="box_guopIconbAck">
+            <FaAngleLeft id="box_icon_Back" />
+            <p>Back</p>
           </Link>
-          <div>Admin</div>
         </div>
-        <div className="userInfo">
-          <div className="info">
-            <div>User ID: {adminDetail.id}</div>
-            <div>
-              User Name: {adminDetail.fname} {adminDetail.lname}
-            </div>
-            <div>User Email: {adminDetail.email}</div>
-            <div>User Phone number: {adminDetail.tel}</div>
-            <div>Password: ********</div>
-            <div className="del-update">
-              <div
-                className="del"
-                onClick={() => {
-                  openConfirmationPopup(adminDetail.reg_id);
-                }}
-              >
-                <AiOutlineDelete />
+        <div className="box_addAdmin">
+          <form>
+            <div className="addAdminForm">
+              <div className="del-update">
+                <div
+                  className="del"
+                  onClick={() => {
+                    openConfirmationPopup(adminDetail.reg_id);
+                  }}
+                >
+                  <AiOutlineDelete />
+                </div>
+                <div
+                  className="update upd"
+                  onClick={() => EditAdmin(adminDetail.reg_id)}
+                >
+                  <Link>
+                    <MdOutlineEdit className="iconcoloredite" />
+                  </Link>
+                </div>
               </div>
-              <div
-                className="update upd"
-                onClick={() => EditAdmin(adminDetail.reg_id)}
-              >
-                <Link>
-                  <MdOutlineEdit className="iconcoloredite" />
-                </Link>
+              <div className="add-box">
+                <label htmlFor="fname" className="titlelabel">User ID:</label>
+                <div className="boxiconnandinput">
+                  <LuUser className="iconinput" />
+                  <div className="input">
+                    <p>{adminDetail.fname} {adminDetail.lname}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="add-box">
+                <label htmlFor="fname" className="titlelabel">User Name:</label>
+                <div className="boxiconnandinput">
+                  <LuUser className="iconinput" />
+                  <div className="input">
+                    <p>{adminDetail.fname} {adminDetail.lname}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="add-box">
+                <label htmlFor="email" className="titlelabel">Email:</label>
+                <div className="boxiconnandinput">
+                  <MdOutlineEmail className="iconinput" />
+                  <div className="input">
+                    <p>{adminDetail.fname} {adminDetail.lname}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="add-box">
+                <label htmlFor="phone" className="titlelabel">Phone number:</label>
+                <div className="boxiconnandinput">
+                  <FiPhone className="iconinput" />
+                  <div className="input">
+                    <p>{adminDetail.fname} {adminDetail.lname}</p>
+                  </div>
+                </div>
+
+              </div>
+              <div className="add-box">
+                <label htmlFor="adminImage" className="titlelabel">Profile image:</label>
+                <div className="BorderinputThenImage">
+                  <div className="input">
+                    <img
+                      src={`../../../../public/images/${adminDetail.profile_image}`}
+                      alt="admin profile"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="img">
-            <img
-              src={
-                import.meta.env.VITE_API +
-                "/uploads/images/" +
-                adminDetail.profile_image
-              }
-              alt="admin profile"
-            />
-          </div>
+          </form>
         </div>
       </section>
 
       {isConfirmationPopupOpen && (
-        <div className="confirmation-popup">
-          <p>Are you sure you want to delete?</p>
-          <div className="btn_ok_on">
-            <button
-              onClick={() => {
-                DeleteAdmin(adminDetail.reg_id);
-              }}
-              className="btn_yes"
-            >
-              Yes
-            </button>
-            <button onClick={closeConfirmationPopup} className="btn_on">
-              No
-            </button>
+        <div className="boxAlertDelete">
+          <div className="confirmation-popup">
+            <div>
+              <AiOutlineDelete className="iconndelete" />
+              <p>Do you want to delete?</p>
+            </div>
+            <div className="btn_ok_on">
+              <button onClick={closeConfirmationPopup} className="btn_on">
+                No
+              </button>
+              <button
+                onClick={() => {
+                  DeleteAdmin(adminDetail.reg_id);
+                }}
+                className="btn_yes"
+              >
+                Yes
+              </button>
+            </div>
           </div>
         </div>
       )}
