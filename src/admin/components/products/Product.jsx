@@ -13,7 +13,7 @@ const Product = () => {
   const [success, setSuccess] = useState("");
   const [products, setProducts] = useState([]);
 
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   // prev next button user in react

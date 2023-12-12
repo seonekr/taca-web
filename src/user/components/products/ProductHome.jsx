@@ -14,6 +14,15 @@ const ProductHome = () => {
   const [displayCount, setDisplayCount] = useState(8);
   const [showButton, setShowButton] = useState(true);
 
+  // Function to handle search by product name
+  const handleSearch = (searchTerm) => {
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
+
   useEffect((event) => {
     Showproducts();
   }, []);
@@ -58,7 +67,7 @@ const ProductHome = () => {
 
   return (
     <div>
-      <Header />
+      <Header handleSearch={handleSearch}/>
       <section id="product">
         <div className="productHead_content">
           <h1 className="htxthead">

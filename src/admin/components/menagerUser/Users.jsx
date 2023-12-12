@@ -6,15 +6,33 @@ import AdminMenu from "../adminMenu/AdminMenu";
 import { Link, useNavigate } from "react-router-dom";
 import user from "../../../img/user.png";
 
+
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Search bar function
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(searchTerm);
+  };
+   // Function to handle search by product name
+   const handleSearch = (searchTerm) => {
+    const filtered = users.filter((user) =>
+      user.fname.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredUsers(filtered);
+  };
+
+
   // prev next button user in react
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 8;
+  const recordsPerPage = 4;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = users.slice(firstIndex, lastIndex);
@@ -57,17 +75,24 @@ const Users = () => {
           <div className="container_box_adminusers">
             <div className="box_users">
               <h2>Users</h2>
-              <form className="search">
+              <form onSubmit={handleSubmit} className="search">
                 <div className="search-box_menageruser">
-                  <input type="text" placeholder="Search ..." />
+                  <input 
+                    type="text" 
+                    placeholder="Search ..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                 />
+
                   <button type="submit">
-                    <IoSearchOutline />
+                    <IoSearchOutline/>
                   </button>
+
                 </div>
               </form>
             </div>
-            {users.length >= 1 ? (
-              users.map((e) => {
+            {records.length >= 1 ? (
+              records.map((e) => {
                 return (
                   <div
                     className="box_users_user"

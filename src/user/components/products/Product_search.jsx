@@ -14,6 +14,16 @@ const Product_search = () => {
   const [displayCount, setDisplayCount] = useState(8);
   const [showButton, setShowButton] = useState(true);
 
+  // Function to handle search by product name
+  const handleSearch = (searchTerm) => {
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
+
+
   useEffect((event) => {
     Showproducts();
   }, []);
@@ -39,13 +49,6 @@ const Product_search = () => {
         }
       })
       .catch((error) => console.log("error", error));
-  };
-
-  const handleSearch = (searchTerm) => {
-    const filtered = products.filter((product) =>
-      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(filtered);
   };
 
   // Handle inputChange
