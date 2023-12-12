@@ -50,7 +50,7 @@ const Payment = () => {
     } else if (productsCart.length > 0) {
       console.log(productsCart);
     }
-    navigate("/cart/payment/");
+    navigate("/payment");
   };
 
   const handleRadioChange = (event) => {
