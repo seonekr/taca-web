@@ -8,7 +8,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { AiOutlineDelete, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-const Product = () => {
+const Product_Admin = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [products, setProducts] = useState([]);
@@ -241,4 +241,4 @@ const Product = () => {
   }
 };
 
-export default Product;
+export default Product_Admin;
