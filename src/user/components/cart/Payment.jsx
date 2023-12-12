@@ -118,9 +118,9 @@ const Payment = () => {
                 <h3>Details</h3>
 
                 <div className="paymentbill">
-                  <table>
-                    <thead>
-                      <tr>
+                  <table className="group_tble">
+                    <thead className="theaed_tble">
+                      <tr className="tr_txt">
                         <th>Product Name</th>
                         <th>Size</th>
                         <th>Color</th>
@@ -128,27 +128,37 @@ const Payment = () => {
                         <th>Price</th>
                       </tr>
                     </thead>
-                      <tbody>
-                        <tr>
-                          <td>Pro01</td>
-                          <td>L</td>
-                          <td>red</td>
-                          <td>3</td>
-                          <td>150</td>
-                        </tr>
-                       
-                      </tbody>
+                    <tbody className="tbody_tble">
+                      <tr className="tr_txt">
+                        <td>Pro0</td>
+                        <td>L</td>
+                        <td>red</td>
+                        <td>3</td>
+                        <td>1500</td>
+                      </tr>
+                      <tr className="tr_txt">
+                        <td>Pro01</td>
+                        <td>L</td>
+                        <td>red</td>
+                        <td>3</td>
+                        <td>150</td>
+                      </tr>
+                      <tr className="tr_txt">
+                        <td>Pro01</td>
+                        <td>L</td>
+                        <td>red</td>
+                        <td>3</td>
+                        <td>150</td>
+                      </tr>
+                    </tbody>
                   </table>
-                  <hr className="hr"/>
+                  <hr className="hr" />
                   <div className="payment_total_Price">
                     <h3>Total:</h3>
                     <p>450</p>
                   </div>
                 </div>
-
               </div>
-            
-
               <div className="box">
                 <div className="transfer">
                   <div className="select-option">
