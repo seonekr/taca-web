@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 a {
     text-decoration: none;
 }
@@ -13,14 +14,16 @@ a {
     z-index: 999;
     padding: 88px 20px 20px 255px;
 }
-.container_body_admin_product{
+
+.container_body_admin_product {
     width: 100%;
     height: auto;
     margin: auto;
     margin-top: 1rem;
     padding: 20px 20px 30px 20px;
     background: #FFF;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px 0 rgba(67, 89, 113, 0.15);
+    border-radius: 10px;
 }
 
 
@@ -40,7 +43,7 @@ a {
     gap: 10px;
 }
 
-.box_add_product{
+.box_add_product {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -52,7 +55,8 @@ a {
     color: #FFFFFF;
     background-color: #15c65c;
 }
-#icon_add_product{
+
+#icon_add_product {
     width: 25px;
     height: 25px;
 }
@@ -83,6 +87,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 0.5px solid #00000017;
     border-radius: 7px;
 }
 
@@ -110,19 +115,20 @@ a {
 }
 
 /* =========== btn Edit Delete ==========*/
-.box_btn_edit_delete{
+.box_btn_edit_delete {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-#btn_icon_edit{
-    width: 25px;
+
+#btn_icon_edit {
+    width: 23px;
     height: 25px;
     color: #FFF;
 }
 
-.btn_icon_delete_user{
-    width: 60px;
+.btn_icon_delete_user {
+    width: 90px;
     height: 35px;
     display: flex;
     cursor: pointer;
@@ -130,10 +136,11 @@ a {
     align-items: center;
     justify-content: center;
     background: #FA442C;
-    border-radius: 8px;
+    border-radius: 5px;
 }
-.btn_icon_edit_user{
-    width: 60px;
+
+.btn_icon_edit_user {
+    width: 90px;
     height: 35px;
     display: flex;
     cursor: pointer;
@@ -141,68 +148,74 @@ a {
     align-items: center;
     justify-content: center;
     background: #157DEC;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 /* ============ Button delete ===========*/
-.confirmation-popup{
+.boxAlertDelete {
+    top: 0;
+    width: 100%;
+    height: 120vh;
+    background-color: #0000003b;
+    position: absolute;
+}
+
+.confirmation-popup {
     position: fixed;
-    width: 22%;
-    height: 15%;
+    width: 23%;
+    height: auto;
     display: grid;
-    align-items: center;
-    justify-content: center;
-    background-color: #f2eeee;
-    border-radius: 5px;
+    text-align: center;
+    gap: 2rem;
+    background-color: #fff;
+    border-radius: 7px;
     top: 50%;
     left: 57%;
     font-size: 18px;
     transform: translate(-50%, -50%);
+    padding-top: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-.btn_ok_on{
+.iconndelete {
+    color: #FA442C;
+    font-size: 30px;
+}
+
+.btn_ok_on {
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
 }
 
-.btn_yes{
-    padding: 6px 18px;
+.btn_ok_on button {
+    width: 100%;
+    padding: 10px;
     border: none;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
     cursor: pointer;
-    border-radius: 5px;
-    background: rgb(248, 74, 74);
-    
-}
-.btn_on{
-    padding: 6px 18px;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 5px;
-    background: #157DEC;
+    font-size: 16px;
 }
 
+.btn_ok_on .btn_on {
+    background-color: #F2F3F7;
+}
 
+.btn_ok_on .btn_yes {
+    background-color: #FA442C;
+    color: #FFF;
+}
 
 /* ============ box_prev_next =========== */
-.box_container_next_product{
+.box_container_next_product {
     display: flex;
     gap: 1rem;
     cursor: pointer;
     border: none;
     align-items: center;
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: 3.5rem;
     bottom: 0;
 }
-.box_prev_left_product{
+
+.box_prev_left_product {
     width: 80px;
     height: 40px;
     display: flex;
@@ -215,7 +228,8 @@ a {
     justify-content: center;
     background: #FA442C;
 }
-.box_prev_right_product{
+
+.box_prev_right_product {
     width: 80px;
     height: 40px;
     display: flex;
@@ -229,12 +243,12 @@ a {
     background: #27A7EF;
 }
 
-#box_icon_left_right_product1{
+#box_icon_left_right_product1 {
     width: 20px;
     height: 20px;
 }
 
-.num_admin_product{
+.num_admin_product {
     width: 70px;
     height: 40px;
     border-radius: 6px;
@@ -243,17 +257,20 @@ a {
     justify-content: center;
     border: 1px solid #444;
 }
-.box_prev_left_product p{
+
+.box_prev_left_product p {
     font-size: 14px;
 }
-.box_prev_right_product p{
+
+.box_prev_right_product p {
     font-size: 14px;
 }
-.box_num_product p{
+
+.box_num_product p {
     font-size: 16px;
 }
 
-.box_num_product{
+.box_num_product {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -284,7 +301,7 @@ a {
 }
 
 .search-box_product button {
-    background: #FA442C;
+    background: #ff7446;
     color: #FFF;
     width: 90px;
     height: 45px;
@@ -296,4 +313,3 @@ a {
 
 
 /* =========== Responsive ============*/
-
