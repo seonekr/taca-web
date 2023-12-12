@@ -13,22 +13,6 @@ const Users = () => {
 
   const navigate = useNavigate();
 
-  const [filteredUsers, setFilteredUsers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // Search bar function
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleSearch(searchTerm);
-  };
-   // Function to handle search by product name
-   const handleSearch = (searchTerm) => {
-    const filtered = users.filter((user) =>
-      user.fname.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredUsers(filtered);
-  };
-
 
   // prev next button user in react
   const [currentPage, setCurrentPage] = useState(1);
