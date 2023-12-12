@@ -5,16 +5,47 @@ import { useNavigate } from "react-router-dom";
 
 const ProductHome = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState("default");
   const [displayCount, setDisplayCount] = useState(8);
-  const [showButton, setShowButton] = useState(true);
+  const [value, setValue] = useState("all");
 
-  useEffect((event) => {
-    Showproducts();
-  }, []);
+  const navigate = useNavigate();
 
-  const Showproducts = () => {
+  useEffect(() => {
+    if (value === "higher") {
+      HigherProducts();
+    } else if (value === "lower") {
+      LowerProducts();
+    } else if (value === "new") {
+      NewProducts();
+    } else if (value === "popular") {
+      PopularProducts();
+    } else {
+      AllProducts();
+    }
+  }, [value]);
+
+  const AllProducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    fetch(import.meta.env.VITE_API + "/allProducts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setProducts(result.Result);
+        } else {
+          setError(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  const HigherProducts = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -24,12 +55,73 @@ const ProductHome = () => {
       redirect: "follow",
     };
 
-    fetch(import.meta.env.VITE_API + "/allProducts", requestOptions)
+    fetch(import.meta.env.VITE_API + "/higherPriceProducts", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.Status === "Success") {
           setProducts(result.Result);
-          setFilteredProducts(result.Result);
+        } else {
+          setError(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+  const LowerProducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(import.meta.env.VITE_API + "/lowerPriceProducts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setProducts(result.Result);
+        } else {
+          setError(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+  const NewProducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    fetch(import.meta.env.VITE_API + "/newProducts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setProducts(result.Result);
+        } else {
+          setError(result.Error);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+  const PopularProducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(import.meta.env.VITE_API + "/popularProducts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.Status === "Success") {
+          setProducts(result.Result);
         } else {
           setError(result.Error);
         }
@@ -37,15 +129,10 @@ const ProductHome = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const displayedProducts = filteredProducts.slice(0, displayCount);
-  // Read more
-  const handleViewMore = () => {
-    setDisplayCount(30);
-    setShowButton(false);
-  };
+  // Display is limited to 8 products
+  const displayedProducts = products.slice(0, displayCount);
 
-  // Get send ID
-  const navigate = useNavigate();
+  
 
   // Handle product
   const handleProduct = (id) => {
@@ -63,12 +150,16 @@ const ProductHome = () => {
           <div className="categoryBoxfiler">
             <form className="boxfilterseach">
               <label>Select Filter</label>
-              <select className="filter_priceProduct">
-                <option value="default">All Product</option>
-                <option value="higherPrice">Higher Price</option>
-                <option value="lowerPrice">Lower Price</option>
-                <option value="newProducts">New Products</option>
-                <option value="popularProducts">Popular Products</option>
+              <select
+                className="filter_priceProduct"
+                onClick={(event) => setValue(event.target.value)}
+                defaultValue={value}
+              >
+                <option value="all">All Product</option>
+                <option value="higher">Higher Price</option>
+                <option value="lower">Lower Price</option>
+                <option value="new">New Products</option>
+                <option value="popular">Popular Products</option>
               </select>
             </form>
             <box-icon name="filter"></box-icon>
@@ -121,11 +212,6 @@ const ProductHome = () => {
             </div>
           ))}
         </div>
-        {showButton && filteredProducts.length > displayCount && (
-          <button className="btnViewProduct" onClick={handleViewMore}>
-            View More
-          </button>
-        )}
       </section>
     </div>
   );
