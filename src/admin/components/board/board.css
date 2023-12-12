@@ -1,13 +1,13 @@
 /* Board */
 body {
-    background-color: #F5F5F5;
+    background-color: #f5f5f53f;
 }
 
-.boxspentainer{
+.boxspentainer {
     height: 10vh;
 }
 
-.board{
+.board {
     padding: 2rem;
     width: 84%;
     overflow: hidden;
@@ -296,9 +296,9 @@ body {
 }
 
 @media screen and (max-width: 1250px) {
-    .board{
-        padding:  1rem 3rem;
+    .board {
+        padding: 1rem 3rem;
         display: inline-block;
         max-width: 80%;
     }
-} 
+}
