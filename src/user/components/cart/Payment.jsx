@@ -50,7 +50,7 @@ const Payment = () => {
     } else if (productsCart.length > 0) {
       console.log(productsCart);
     }
-    navigate("/payment");
+    navigate("/cart/payment/");
   };
 
   const handleRadioChange = (event) => {
@@ -84,6 +84,15 @@ const Payment = () => {
 
   const totalPrice = totalProductPrice();
 
+  // Confirm transfer Choose image
+  const [mainImage, setMainImage] = useState(null);
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMainImage(URL.createObjectURL(file)); // Use createObjectURL directly
+    }
+  };
+
   return (
     <>
       <Header />
@@ -105,7 +114,19 @@ const Payment = () => {
                 {/* Get from address */}
               </div>
               {/* procuts */}
-              {products.length > 0 ? (
+              <div className="detailsProductInPayMentBox">
+                <h3>Details</h3>
+                <ul>
+                  <li className="detailsProduct_li" >
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </li>
+                </ul>
+              </div>
+              {/* {products.length > 0 ? (
                 <div className="detailsProductInPayMentBox">
                   <h3>Details</h3>
                   <ul>
@@ -126,7 +147,7 @@ const Payment = () => {
                 </div>
               ) : (
                 <div></div>
-              )}
+              )} */}
               {/* Procuts Cart */}
               {productsCart.length > 0 ? (
                 <div className="detailsProductInPayMentBox">
@@ -189,6 +210,22 @@ const Payment = () => {
                   )}
                 </div>
               </div>
+
+              <div className="box_description">
+                <h3>Confirm transfer</h3>
+                <div className="image_confirm_transfer">
+                  <label htmlFor="img">
+                    {mainImage ? (
+                      <img src={mainImage} alt="Main Product" />
+                    ) : (
+                      <p>Choose image</p>
+                    )}
+                    <input type="file" id="img" onChange={handleImage} />
+                  </label>
+
+                </div>
+              </div>
+
               <div className="save">
                 {/* <Link to="/cart/successfulBuy/"> */}
                 <button

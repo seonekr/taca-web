@@ -1,24 +1,22 @@
 /*payment page*/
 #payment {
     margin-top: 5rem;
-    margin-bottom: 15rem;
+    margin-bottom: 5rem;
     width: 100%;
 }
 
 .guopBoxPayment {
     width: 70%;
-    height: 110vh;
-}
-
-.guopBoxPayment {
     margin: auto;
     background-color: #fff;
+
 }
 
-.header_box{
+.header_box {
     padding-top: 1rem;
     text-align: center;
 }
+
 #payment .adress-payment {
     display: grid;
 }
@@ -43,32 +41,38 @@
     font-family: "saysettha ot";
     color: #1589FF;
     border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
 }
 
 #payment .adress-payment .box .address {
-    background-color: #3498DB;
+    background-color: #FA442C;
     font-size: 1.3rem;
     width: 80%;
     margin: 0 auto;
     color: #fff;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 4px 4px 0 0;
     padding: 5px 0;
     cursor: pointer;
 }
-.detailsProductInPayMentBox h3{
+
+.detailsProductInPayMentBox h3 {
     text-align: center;
     padding-bottom: 10px;
 }
-.detailsProductInPayMentBox ul{
+
+.detailsProductInPayMentBox ul {
     list-style: none;
     width: 80%;
     margin: auto;
     border: 1px solid #ccc;
     padding: 10px 20px;
+    border-radius: 5px;
 }
 
-.detailsProduct_li{
+.detailsProduct_li {
     display: grid;
     gap: 8px;
 }
@@ -122,12 +126,65 @@
 .save button {
     cursor: pointer;
     border: none;
-    background: #2E86C1;
-    border-radius: 10px;
-    padding: 0.5rem 3rem;
+    background: #FA442C;
+    border-radius: 5px;
+    padding: 0.5rem 2.5rem;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
+
+.btn_orderbill {
+    border: none;
+    background: #27A7EF;
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* ========= box_confirm_transfer ======== */
+
+.box_description h3 {
+    margin-left: 12rem;
+    padding: 20px 0;
+}
+
+.image_confirm_transfer {
+    width: 60%;
+    display: grid;
+    height: 50vh;
+    margin-top: 1rem;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+.image_confirm_transfer label p {
+    display: grid;
+    background-color: #FA442C;
+    border-radius: 4px;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin: auto;
+}
+
+.image_confirm_transfer label input {
+    display: none;
+}
+
+.image_confirm_transfer img {
+    width: 100%;
+    height: 50vh;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+
+
 
 /* Address shipping */
 #address form {
@@ -200,7 +257,7 @@
     #payment .adress-payment .box .qr {
         width: 70%;
     }
-  
+
 }
 
 @media screen and (max-width: 376px) {
