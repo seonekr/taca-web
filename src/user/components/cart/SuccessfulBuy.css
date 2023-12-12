@@ -1,9 +1,71 @@
+.group_lisblecackk {
+    width: 60%;
+    margin: 6rem auto 4rem auto;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+}
 
-.box_bill_productS{
+.box_bill_productS {
     padding-top: 2rem;
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
+
+.box_guopoidHead {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box_icon_Check {
+    display: flex;
+    background-color: blue;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    color: #FFF;
+}
+
+.box_icon_Check_iconn {
+    font-size: 20px;
+}
+
+.bill_product_name,
+.order_billGopBox {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.order_billGopBox,
+.box_titlePrice {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detial,
+.box_place-on {
+    display: grid;
+    gap: 10px;
+
+}
+
+.box_title_product,
+.box_titlePrice,
+.box_place-on {
+    margin: 10px;
+}
+
+.box_titlePrice {
+    padding: 1rem 0;
+    font-weight: 600;
+    font-size: 19px;
+}
+
 
 /* For smartphones with a maximum width of 480px */
 @media only screen and (max-width: 480px) {
