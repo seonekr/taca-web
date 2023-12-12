@@ -6,6 +6,7 @@
 
 /* ============ container_body =========== */
 
+
 .container_box_users{
     width: 100%;
     height: auto;
@@ -171,4 +172,18 @@
 .update{
     border: none;
 }
+
+/*=======img========*/
+#image {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+    margin-left: 4.5rem;
+    overflow: hidden;
+    color: #fff;
+}
+
+
 /* ================ Responsive ==================*/

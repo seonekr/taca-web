@@ -174,24 +174,7 @@ const Product = () => {
             ) : (
               <p>No Product!</p>
             )}
-            {isConfirmationPopupOpen && (
-              <div className="confirmation-popup">
-                <p>Are you sure you want to delete?</p>
-                <div className="btn_ok_on">
-                  <button
-                    onClick={() => {
-                      DeleteProduct(deleteProductId);
-                    }}
-                    className="btn_yes"
-                  >
-                    Yes
-                  </button>
-                  <button onClick={closeConfirmationPopup} className="btn_on">
-                    No
-                  </button>
-                </div>
-              </div>
-            )}
+
           </div>
 
           <div className="box_container_next_product">
@@ -220,6 +203,27 @@ const Product = () => {
           </div>
         </div>
       </section>
+      {isConfirmationPopupOpen && (
+        <div className="boxAlertDelete">
+          <div className="confirmation-popup">
+            <p>Do you want to delete?</p>
+            <div className="btn_ok_on">
+              <button onClick={closeConfirmationPopup} className="btn_on">
+                No
+              </button>
+              <button
+                onClick={() => {
+                  DeleteProduct(deleteProductId);
+                }}
+                className="btn_yes"
+              >
+                Yes
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
   function prePage() {
