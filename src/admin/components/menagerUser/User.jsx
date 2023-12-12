@@ -4,9 +4,7 @@ import { FaAngleLeft } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { MdOutlineEmail } from "react-icons/md";
-import { LuUser } from "react-icons/lu";
-import { FiPhone } from "react-icons/fi";
+import user from "../../../img/user.png";
 
 const User = () => {
   // DFor delete User
@@ -79,102 +77,59 @@ const User = () => {
   return (
     <>
       <AdminMenu />
-      <section id="addAmin">
-        <div className="goback">
-          <Link to="/users" className="box_guopIconbAck">
-            <FaAngleLeft id="box_icon_Back" />
-            <p>Back</p>
+      <section id="user">
+        <div className="back">
+          <Link to="/users" className="link-back">
+            <FaAngleLeft id="icon_back_user" />
+            Back
           </Link>
+          <div>User</div>
         </div>
-        <div className="box_addAdmin">
-          <form>
-            <div className="addAdminForm">
-              <div className="del-update">
-                <div
-                  className="del"
-                  onClick={() => openConfirmationPopup(userDetail.reg_id)}
-                >
-                  <AiOutlineDelete />
-                </div>
-              </div>
-              <div className="add-box">
-                <label htmlFor="fname" className="titlelabel">User ID:</label>
-                <div className="boxiconnandinput">
-                  <LuUser className="iconinput" />
-                  <div className="input">
-                    <p>{userDetail.id}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="add-box">
-                <label htmlFor="fname" className="titlelabel">User Name:</label>
-                <div className="boxiconnandinput">
-                  <LuUser className="iconinput" />
-                  <div className="input">
-                    <p>{userDetail.fname} {userDetail.lname}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="add-box">
-                <label htmlFor="email" className="titlelabel">Email:</label>
-                <div className="boxiconnandinput">
-                  <MdOutlineEmail className="iconinput" />
-                  <div className="input">
-                    <p>{userDetail.email}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="add-box">
-                <label htmlFor="phone" className="titlelabel">Phone number:</label>
-                <div className="boxiconnandinput">
-                  <FiPhone className="iconinput" />
-                  <div className="input">
-                    <p>{userDetail.tel}</p>
-                  </div>
-                </div>
-
-              </div>
-              <div className="add-box">
-                <label htmlFor="adminImage" className="titlelabel">Profile image:</label>
-                <div className="BorderinputThenImage">
-                  <div className="input">
-                    <img
-                      src={
-                        import.meta.env.VITE_API +
-                        "/uploads/images/" +
-                        userDetail.profile_image
-                      }
-                      alt="admin profile"
-                    />
-                  </div>
-                </div>
-              </div>
+        <h3>{error && error}</h3>
+        <div className="userInfo">
+          <div className="info">
+            <div>User ID: {userDetail.id}</div>
+            <div>
+              User Name: {userDetail.fname} {userDetail.lname}
             </div>
-          </form>
+            <div>User Email: {userDetail.email}</div>
+            <div>User Phone number: {userDetail.tel}</div>
+            <div>Password: ********</div>
+            <div
+              className="del"
+              onClick={() => openConfirmationPopup(userDetail.reg_id)}
+            >
+              <AiOutlineDelete />
+            </div>
+          </div>
+          <div className="img">
+            <img
+              src={
+                import.meta.env.VITE_API +
+                "/uploads/images/" +
+                userDetail.profile_image
+              }
+              alt="admin profile"
+            />
+          </div>
         </div>
       </section>
 
       {isConfirmationPopupOpen && (
-        <div className="boxAlertDelete">
-          <div className="confirmation-popup">
-            <div>
-              <AiOutlineDelete className="iconndelete" />
-              <p>Do you want to delete?</p>
-            </div>
-            <div className="btn_ok_on">
-              <button onClick={closeConfirmationPopup} className="btn_on">
-                No
-              </button>
-              <button
-                onClick={() => {
-                  DeleteUser(userDetail.reg_id);
-                }}
-                className="btn_yes"
-              >
-                Yes
-              </button>
-            </div>
+        <div className="confirmation-popup">
+          <p>Are you sure you want to delete?</p>
+          <div className="btn_ok_on">
+            <button
+              onClick={() => {
+                DeleteUser(userDetail.reg_id);
+              }}
+              className="btn_yes"
+            >
+              Yes
+            </button>
+            <button onClick={closeConfirmationPopup} className="btn_on">
+              No
+            </button>
           </div>
         </div>
       )}

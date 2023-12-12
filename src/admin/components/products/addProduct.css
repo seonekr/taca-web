@@ -1,19 +1,19 @@
 #post {
-    position: absolute;
-    width: 99%;
-    padding: 1.5rem 1.5rem 0 17rem;
+    display: flex;
 }
 
 /* input text */
-
+.boxcontainerSpan_Box {
+    width: 20%;
+}
 
 .box_container_product {
-    width: 100%;
+    width: 96%;
+    margin-top: 6.5rem;
     margin-right: 1rem;
-    padding: 0.5rem;
+    padding: 1rem 2.5rem 2.5rem 2.5rem;
     flex-direction: column;
-    box-shadow: 0 2px 6px 0 rgba(67, 89, 113, 0.15);
-    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
 .box_text h2 {
@@ -22,6 +22,7 @@
 
 #post .edit-product-form {
     margin-right: 1rem;
+    padding: 1rem 2.5rem 2.5rem 2.5rem;
     display: flex;
 }
 
@@ -98,7 +99,7 @@
 
 #post .edit-product-form .input-img .image label p {
     display: grid;
-    background-color: #ff7446;
+    background-color: #3498DB;
     border-radius: 4px;
     width: fit-content;
     padding: 0.5rem 1rem;
@@ -156,7 +157,7 @@
 
 /* Add gallery button */
 #post .edit-product-form .input-img .gallery .gallery-box .add-gallery {
-    background-color: #ff7446;
+    background-color: #3498DB;
     border-radius: 4px;
     text-align: center;
     padding: 0.7rem 10px;
@@ -291,7 +292,7 @@
 }
 
 #post .edit-product-form .submit1 button {
-    background-color: #ff7446;
+    background-color: #3498DB;
     color: #fff;
     border-radius: 5px;
     font-size: 1rem;

@@ -87,41 +87,36 @@ const AdminMenu = () => {
               <p>Log Out</p>
             </div>
             {showConfirmation && (
-              <div className="boxAlertDelete2">
-                <div className="confirmation-popup">
-                  <p>Do you want to Log out?</p>
-                  <div className="btn_ok_on">
-                    <button onClick={handleConfirmLogout} className="btn_yes">
-                      Yes
-                    </button>
-                    <button onClick={handleCancelLogout} className="btn_on">
-                      No
-                    </button>
-                  </div>
+              <div className="confirmation-popup">
+                <p>Are you sure you want to logout?</p>
+                <div className="btn_ok_on">
+                  <button onClick={handleConfirmLogout} className="btn_yes">
+                    Yes
+                  </button>
+                  <button onClick={handleCancelLogout} className="btn_on">
+                    No
+                  </button>
                 </div>
               </div>
             )}
           </div>
           <div className="right">
-            <div>
-              <NavLink to="/dashboard" className="logo">
-                <span>
-                  <img src={Logo1} alt="" />
-                </span>
-              </NavLink>
-            </div>
-            <div className="boximage_admin">
-              <NavLink to="/admin/acount" className="userAdminImage">
-                <img
-                  src={
-                    import.meta.env.VITE_API +
-                    "/uploads/images/" +
-                    userDetail.profile_image
-                  }
-                  alt="admin profile"
-                />
-              </NavLink>
-            </div>
+            <NavLink to="/dashboard" className="logo">
+              <span>
+                <img src={Logo1} alt="" />
+              </span>
+            </NavLink>
+
+            <NavLink to="/admin/acount" className="userAdminImage">
+              <img
+                src={
+                  import.meta.env.VITE_API +
+                  "/uploads/images/" +
+                  userDetail.profile_image
+                }
+                alt="admin profile"
+              />
+            </NavLink>
           </div>
         </div>
       </section>

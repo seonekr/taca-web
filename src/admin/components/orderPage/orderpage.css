@@ -62,14 +62,14 @@
     color: #FFF;
 }
 .btn_pending{
-    width: 100px;
-    height: 40px;
+    width: 80px;
+    height: 25px;
     display: flex;
-    color: #FA442C;
+    color: #FFF;
     align-items: center;
     justify-content: center;
-    border: 1px solid #FA442C;
-    border-radius: 7px;
+    background: #FA442C;
+    border-radius: 5px;
 }
 .btn_paid{
     width: 80px;
@@ -82,7 +82,7 @@
     border-radius: 5px;
 }
 .btn_view{
-    width: 100px;
+    width: 65px;
     height: 40px;
     display: flex;
     color: #FFF;
@@ -91,7 +91,7 @@
     align-items: center;
     justify-content: center;
     background: #27A7EF;
-    border-radius: 7px;
+    border-radius: 10px;
 }
 
 

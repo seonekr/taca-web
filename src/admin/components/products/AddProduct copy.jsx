@@ -181,6 +181,7 @@ const AddProduct = () => {
     <>
       <AdminMenu />
       <section id="post">
+        <div className="boxcontainerSpan_Box"></div>
         <div className="box_container_product">
           <div className="box_text">
             <h2>Add Product</h2>

@@ -2,11 +2,8 @@ import "./addAmin.css";
 import AdminMenu from "../adminMenu/AdminMenu";
 import { useState, useEffect } from "react";
 import user from "../../../img/user.png";
-import { MdOutlineEmail } from "react-icons/md";
-import { LuUser } from "react-icons/lu";
+
 import { FaAngleLeft } from "react-icons/fa";
-import { CiImageOn } from "react-icons/ci";
-import { FiPhone } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const AddAdmin = () => {
@@ -105,92 +102,72 @@ const AddAdmin = () => {
     <>
       <AdminMenu />
       <section id="addAmin">
-        <div className="goback">
-          <Link to="/admins" className="box_guopIconbAck">
-            <FaAngleLeft id="box_icon_Back" />
-            <p>Back</p>
-          </Link>
-        </div>
         <div className="box_addAdmin">
+          <div className="container_add_admin">
+            <Link to="/admins" className="box_guopIconbAck">
+              <FaAngleLeft id="box_icon_Back" />
+              <p>Back</p>
+            </Link>
+            <h2>Add Admin</h2>
+            <div></div>
+          </div>
           {/* <h3>{message && message}</h3> */}
           <form onSubmit={handleSubmit}>
             <div className="addAdminForm">
-              <div className="boxhead_subminandtitle">
-                <h2 className="titleaddmin">Add Admin</h2>
-                <div>
-                  <button type="submit" className="submit">Add</button>
-                </div>
-              </div>
-
               <div className="add-box">
-                <label htmlFor="fname" className="titlelabel">First name:</label>
-                <div className="boxiconnandinput">
-                  <LuUser className="iconinput" />
-                  <input
-                    type="text"
-                    id="fname"
-                    className="input"
-                    placeholder="Fist name..."
-                    value={firstName}
-                    onChange={handleFirstNameChange}
-                  />
-                  {errorMsg.firstName && <p className="error_message">{errorMsg.firstName}</p>}
-                </div>
+                <label htmlFor="fname">First name</label>
+                <input
+                  type="text"
+                  id="fname"
+                  placeholder="Fist name"
+                  value={firstName}
+                  onChange={handleFirstNameChange}
+                />
+                {errorMsg.firstName && <p className="error-message">{errorMsg.firstName}</p>}
               </div>
               <div className="add-box">
-                <label htmlFor="lname" className="titlelabel">Last name:</label>
-                <div className="boxiconnandinput">
-                  <LuUser className="iconinput" />
-                  <input
-                    type="text"
-                    id="lname"
-                    className="input"
-                    placeholder="Last name..."
-                    value={lastName}
-                    onChange={handleLastNameChange}
-                  />
-                  {errorMsg.lastName && <p className="error_message">{errorMsg.lastName}</p>}
-                </div>
-              </div>
-
-              <div className="add-box">
-                <label htmlFor="email" className="titlelabel">Email:</label>
-                <div className="boxiconnandinput">
-                  <MdOutlineEmail className="iconinput" />
-                  <input
-                    type="email"
-                    id="email"
-                    className="input"
-                    placeholder="Email address..."
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                  {errorMsg.email && <p className="error_message">{errorMsg.email}</p>}
-                </div>
+                <label htmlFor="lname">Last name</label>
+                <input
+                  type="text"
+                  id="lname"
+                  placeholder="last name"
+                  value={lastName}
+                  onChange={handleLastNameChange}
+                />
+                {errorMsg.lastName && <p className="error-message">{errorMsg.lastName}</p>}
               </div>
               <div className="add-box">
-                <label htmlFor="phone" className="titlelabel">Phone number:</label>
-                <div className="boxiconnandinput">
-                  <FiPhone className="iconinput" />
-                  <input
-                    type="text"
-                    id="phone"
-                    className="input"
-                    placeholder="Phone number..."
-                    value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                  />
-                  {errorMsg.phoneNumber && <p className="error_message">{errorMsg.phoneNumber}</p>}
-                </div>
-
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+                {errorMsg.email && <p className="error-message">{errorMsg.email}</p>}
               </div>
               <div className="add-box">
-                <label htmlFor="adminImage" className="titlelabel">Profile image:</label>
-                <div className="boxiconnandinput">
-                  <CiImageOn className="iconinput" />
-                  <input type="file" className="input"/>
-                </div>
+                <label htmlFor="phone">Phone</label>
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="Phone number"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                />
+                {errorMsg.phoneNumber && <p className="error-message">{errorMsg.phoneNumber}</p>}
               </div>
+            </div>
+            <div className="imageAdmin">
+              <div className="image">
+                <label htmlFor="adminImage">
+                  <img src={"../../../../public/images/profile.png"} />
+                </label>
+              </div>
+            </div>
+            <div className="submit">
+              <button type="submit">Add</button>
             </div>
           </form>
         </div>
