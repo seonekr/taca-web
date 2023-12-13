@@ -6,6 +6,8 @@ import user from "../../../img/user.png";
 import Menu from "../menu/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Button } from "@mui/base";
+import { Diversity1 } from "@mui/icons-material";
 
 const Account = () => {
   const [userDetail, setUserDetail] = useState([]);
@@ -47,22 +49,27 @@ const Account = () => {
       <Header />
 
       <section id="account" className="accountContainer">
-        <div className="account_navbarr">
-          <div className="header_boxBack">
-            <Link to="/" className="guopIconbAck">
-              <FaAngleLeft className="iconnBack" />
-              Back
-            </Link>
-          </div>
-          <div className="headerTiele">Account</div>
-          <div className="header-box"></div>
-        </div>
 
         <div className="personal-info">
+          <div className="box_account">
+            <h2>Account</h2>
+            <div className="text-info">
+              <Link to="/account/general">
+                <span>General</span>
+                <FaAngleRight />
+              </Link>
+              <Link to="/account/contact">
+                <span>Contact</span>
+                <FaAngleRight />
+              </Link>
+              <Link to="/account/password">
+                <span>Password</span>
+                <FaAngleRight />
+              </Link>
+            </div>
+          </div>
+
           <div className="profile">
-            {/* <div className="box-image">
-              <span>{<img src={userDetail.profile_image} alt="" />}</span>
-            </div> */}
             <div className="box-image">
               <span>
                 {
@@ -78,33 +85,18 @@ const Account = () => {
               </span>
             </div>
             <span className="name">
-              Name<p>{userDetail.email}</p>
+              Name: <p>{userDetail.email}</p>
             </span>
-          </div>
-          <div className="text-info">
-            <Link to="/account/general">
-              <span>General</span>
-              <FaAngleRight />
-            </Link>
-            <Link to="/account/contact">
-              <span>Contact</span>
-              <FaAngleRight />
-            </Link>
-            <Link to="/account/password">
-              <span>Password</span>
-              <FaAngleRight />
-            </Link>
-          </div>
-
-          <div className="about-account">
-            <Link onClick={handleLogout} className="logout">
-              <div className="icon-logout">
-                <BiLogOut />
+            <div className="about-account">
+              <div onClick={handleLogout} className="logout">
+                <div className="icon-logout">
+                  <BiLogOut />
+                </div>
+                <div className="text-logout">Logout</div>
               </div>
-              <div className="text-logout">Logout</div>
-            </Link>
-            <Link to="/">Delete account</Link>
+            </div>
           </div>
+           
         </div>
       </section>
       <Menu />

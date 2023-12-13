@@ -48,15 +48,15 @@ const General = () => {
         <div className="personal-info">
           <div className="text-info">
             <a>
-              <span>Email</span>
+              <span>Email: </span>
               <p>{userDetail.email}</p>
             </a>
             <a>
-              <span>Phone</span>
+              <span>Phone: </span>
               <p>{userDetail.tel}</p>
             </a>
             <a>
-              <span>Password</span>
+              <span>Password: </span>
               <p>**********</p>
             </a>
           </div>

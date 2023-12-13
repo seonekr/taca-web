@@ -48,17 +48,9 @@ const Password = () => {
                 </div>
                 <form onSubmit={handleSubmit} className="personal-info">
                     <div className="contact-info">
+
                         <div className="contact">
-                            <label htmlFor="password">New password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={handlePassword}
-                            />
-                        </div>
-                        <div className="contact">
-                            <label htmlFor="oldPassword">Old password:</label>
+                            <label htmlFor="oldPassword" className="contact_label">Old password:</label>
                             <input
                                 type="password"
                                 id="oldPassword"
@@ -67,6 +59,16 @@ const Password = () => {
                                 onChange={handleOldPassword}
                             />
                         </div>
+                        <div className="contact">
+                            <label htmlFor="password" className="contact_label">New password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                value={password}
+                                onChange={handlePassword}
+                            />
+                        </div>
+                        
                     </div>
                     <div className="submit">
                         <div className="save">

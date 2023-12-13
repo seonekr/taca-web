@@ -102,34 +102,34 @@ const Contact = () => {
                 </span>
               )}
               <input id="choose-image" type="file" onChange={handleImage} />
-              <label htmlFor="choose-image">Edit</label>
+              <label htmlFor="choose-image" >Edit</label>
             </div>
             <div className="contact">
-              <label htmlFor="name">Change name:</label>
+              <label htmlFor="name" className="contact_label" >Change name:</label>
               <input
                 type="text"
                 id="name"
                 value={name}
-                placeholder="Your name here"
+                placeholder="Your name..."
                 onChange={handleName}
               />
             </div>
             <div className="contact">
-              <label htmlFor="email">Change email:</label>
+              <label htmlFor="email" className="contact_label" >Change email:</label>
               <input
                 type="email"
                 id="email"
-                placeholder="...@example.com"
+                placeholder="Your email..."
                 value={email}
                 onChange={handleEmail}
               />
             </div>
             <div className="contact">
-              <label htmlFor="phone">Change phone:</label>
+              <label htmlFor="phone" className="contact_label" >Change phone:</label>
               <input
                 type="text"
                 id="phone"
-                placeholder=".....9972"
+                placeholder=" Your phone number..."
                 value={phone}
                 onChange={handlePhone}
               />

@@ -1,35 +1,53 @@
 /* Account header */
 #account {
-    margin: 7rem 0;
+    margin: 4rem 0;
 }
 .header_boxBack {
-    margin-left: 10rem;
+    margin-top: 2rem;
+    margin-left: 11rem;
+}
+.guopIconbAck{
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+}
+.accountContainer{
+    display: flex;
+}
+#iconnBack{
+    font-size: 1.5rem;
+    color: #666;
 }
 
 .headerTiele {
     text-align: center;
+    font-size: 20px;
 }
 
 /* Account infofation */
 #account .personal-info {
-    width: 80%;
+    width: 60%;
     margin: auto;
     margin-top: 2rem;
+    display: grid;
 }
 
+
 /* Image profile */
+
 #account .personal-info .profile {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    
 }
 
 #account .personal-info .profile .box-image {
     width: 150px;
     height: 150px;
-    margin: 0 auto;
     border: 2px solid #0009;
     border-radius: 50%;
     overflow: hidden;
+    margin-left: 2rem;
 }
 
 #account .personal-info .profile .box-image img {
@@ -40,38 +58,48 @@
 
 /* User name */
 #account .personal-info .profile .name {
-    display: flex;
+    
     font-size: 1.3rem;
-    justify-content: center;
-    margin-top: 1rem;
 }
 
 /* name in page account */
 #account .personal-info .profile .name p {
     padding: 0 0.5rem;
-    color: #FF5733;
+    color: #444;
 }
 
 /* User information */
 #account .personal-info ul {
     list-style-type: none;
 }
+.text-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box_account{
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
 
 #account .personal-info .text-info a {
     display: flex;
+    gap: 3rem;
     text-decoration: none;
     justify-content: space-between;
-    color: #000;
-    font-size: 1.3em;
-    font-weight: 600;
+    color: #444;
+    font-size: 1.2em;
     margin: 0.3rem 0;
     padding: 1rem 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
 }
 
 /* About account */
 #account .personal-info .about-account {
-    display: grid;
+    display: flex;
     grid-gap: 2rem;
     margin: 2rem 1rem;
 }
@@ -86,17 +114,23 @@
 /* Down here is logout button */
 #account .personal-info .about-account .logout {
     display: flex;
-    width: 13%;
-    padding: 0.3em 1.2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4em 3rem;
     border: none !important;
-    border-radius: 7px;
-    background-color: #4395F7;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ccc;
+    background-color: #FA442C;
 }
 
 #account .personal-info .about-account .logout .icon-logout {
     color: #fff;
     padding-right: 0.5rem;
     margin-top: 0.1rem;
+    font-size: 1.2rem;
 }
 
 #account .personal-info .about-account .logout .text-logout {
@@ -115,7 +149,11 @@
     justify-content: space-evenly;
     font-size: 1.3rem;
 }
-
+.contact_label{
+    width: 150px;
+    color: #444;
+    font-size: 1.2rem;
+}
 #account .personal-info .contact-info .contact input {
     /*====================*/
     width: 90%;
@@ -128,7 +166,7 @@
 }
 
 #account .personal-info .contact-info .contact input::placeholder {
-    text-align: right;
+    text-align: left;
 }
 
 /* image change */
@@ -146,7 +184,12 @@
 #account .personal-info .contact-info .box-image label {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 850%);
+    cursor: pointer;
+    font-weight: 600;
+    border: 1px solid #FA442C;
+    border-radius: 3px;
+    padding: 0.2rem 1rem;
+    transform: translate(-50%, 590%);
 }
 
 #account .personal-info .contact-info .box-image img {
@@ -175,11 +218,11 @@
     cursor: pointer;
     border: none;
     background: none;
-    border-radius: 10px;
-    background: #2E86C1;
-    padding: 0.5rem 3rem;
+    border-radius: 5px;
+    background: #FA442C;
+    padding: 0.4rem 2rem;
     color: #ffffff;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 
@@ -208,13 +251,14 @@
 
     #account .personal-info .contact-info .contact {
         font-size: 1.3rem;
+
     }
 
     #account .personal-info .contact-info .contact input {
         width: 35%;
         /* Change width to 100% */
         border: none;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #e42e2e;
     }
 
     #account .personal-info .submit {
