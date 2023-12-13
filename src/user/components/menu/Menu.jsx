@@ -5,6 +5,8 @@ import QrdownloadApp from '../../../img/QrdownloadApp.png'
 import {FaCartShopping} from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsShop, BsClipboardCheck  } from "react-icons/bs";
+import Logo1 from "../../../img/Logo1.png";
+
 const Menu = () => {
     return (
         <section>
@@ -14,8 +16,12 @@ const Menu = () => {
             <footer className="footerBox">
                 <div className="footer_Container">
                     <div className="footconentBox">
-                        <h3 className="txt_footHead">About us</h3>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
+                        <div className="logo_footer">
+                            <Link to="/">
+                            <img src={Logo1} alt="Logo" />
+                            </Link>
+                        </div>
+
                         <p><Link to="/" className="txt_pFoot">Something</Link></p>
                         <p><Link to="/" className="txt_pFoot">Something</Link></p>
                         <p><Link to="/" className="txt_pFoot">Something</Link></p>
@@ -27,7 +33,7 @@ const Menu = () => {
                         <p><Link to="/" className="txt_pFoot">Phone: 020 998878788</Link></p>
                         <p><Link to="/" className="txt_pFoot">Phone: 020 998878788</Link></p>
                         <p><Link to="/" className="txt_pFoot">Email: humascot@gmail.com</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Address: Asean mall</Link></p>
+                        <p><Link to="/" className="txt_pFoot">Address: Asian mall</Link></p>
                     </div>
                     <div className="footconentBox3">
                         <h3 className="txt_footHead txh3">Download App</h3>

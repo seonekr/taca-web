@@ -76,6 +76,9 @@
     font-size: 23px;
     color: #444;
 }
+.logo_footer img {
+    width: 30%;
+}
 
 /*---------- Menu For Mobile ----------*/
 .menubar {
