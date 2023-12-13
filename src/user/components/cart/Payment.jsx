@@ -50,7 +50,7 @@ const Payment = () => {
     } else if (productsCart.length > 0) {
       console.log(productsCart);
     }
-    navigate("/cart/payment/");
+    navigate("/cart/payment");
   };
 
   const handleRadioChange = (event) => {
@@ -84,6 +84,15 @@ const Payment = () => {
 
   const totalPrice = totalProductPrice();
 
+  // Confirm transfer Choose image
+  const [mainImage, setMainImage] = useState(null);
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMainImage(URL.createObjectURL(file)); // Use createObjectURL directly
+    }
+  };
+
   return (
     <>
       <Header />
@@ -105,49 +114,51 @@ const Payment = () => {
                 {/* Get from address */}
               </div>
               {/* procuts */}
-              {products.length > 0 ? (
-                <div className="detailsProductInPayMentBox">
-                  <h3>Details</h3>
-                  <ul>
-                    {products.map((product) => (
-                      <li className="detailsProduct_li" key={product.productID}>
-                        <div>Product ID: {product.productID}</div>
-                        <div>Product Name: {product.productName}</div>
-                        <div>Size: {product.size}</div>
-                        <div>Color: {product.color}</div>
-                        <div>Price: {product.price}</div>
-                        <div>Product Counts: {product.productCounts}</div>
-                        <div>
-                          Have to pay: {product.productCounts * product.price}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <div></div>
-              )}
-              {/* Procuts Cart */}
-              {productsCart.length > 0 ? (
-                <div className="detailsProductInPayMentBox">
-                  <ul>
-                    {productsCart.map((product) => (
-                      <li key={product.productID}>
-                        <div>Product ID: {product.productID}</div>
-                        <div>Product Name: {product.productName}</div>
-                        <div>Size: {product.size}</div>
-                        <div>Color: {product.color}</div>
-                        <div>Price: {product.price}</div>
-                        <div>Product Counts: {product.productCounts}</div>
-                      </li>
-                    ))}
-                    <div>Have to pay: {totalPrice}</div>
-                  </ul>
-                </div>
-              ) : (
-                <div></div>
-              )}
+              <div className="detailsProductInPayMentBox">
+                <h3>Details</h3>
 
+                <div className="paymentbill">
+                  <table className="group_tble">
+                    <thead className="theaed_tble">
+                      <tr className="tr_txt">
+                        <th>Product Name</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Product Counts</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody className="tbody_tble">
+                      <tr className="tr_txt">
+                        <td>Pro0</td>
+                        <td>L</td>
+                        <td>red</td>
+                        <td>3</td>
+                        <td>1500</td>
+                      </tr>
+                      <tr className="tr_txt">
+                        <td>Pro01</td>
+                        <td>L</td>
+                        <td>red</td>
+                        <td>3</td>
+                        <td>150</td>
+                      </tr>
+                      <tr className="tr_txt">
+                        <td>Pro01</td>
+                        <td>L</td>
+                        <td>red</td>
+                        <td>3</td>
+                        <td>150</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <hr className="hr" />
+                  <div className="payment_total_Price">
+                    <h3>Total:</h3>
+                    <p>450</p>
+                  </div>
+                </div>
+              </div>
               <div className="box">
                 <div className="transfer">
                   <div className="select-option">
@@ -158,7 +169,7 @@ const Payment = () => {
                       checked={selectedOption === "onePay"}
                       onChange={handleRadioChange}
                     />
-                    <label htmlFor="onePay">Bcel One</label>
+                    <label htmlFor="onePay">BcelOne</label>
                   </div>
                   <div className="select-option">
                     <input
@@ -189,20 +200,36 @@ const Payment = () => {
                   )}
                 </div>
               </div>
+
+              <div className="box_description">
+                <h3>Confirm transfer</h3>
+                <div className="image_confirm_transfer">
+                  <label htmlFor="img">
+                    {mainImage ? (
+                      <img src={mainImage} alt="Main Product" />
+                    ) : (
+                      <p>Choose image</p>
+                    )}
+                    <input type="file" id="img" onChange={handleImage} />
+                  </label>
+
+                </div>
+              </div>
+
               <div className="save">
-                {/* <Link to="/cart/successfulBuy/"> */}
+                <Link to="/cart/successfulBuy/">
                 <button
-                  type="submit"
-                  disabled={
-                    !selectedOption ||
-                    address == 0 ||
-                    (products == 0 && productsCart == 0)
-                  }
+                  // type="submit"
+                  // disabled={
+                  //   !selectedOption ||
+                  //   address == 0 ||
+                  //   (products == 0 && productsCart == 0)
+                  // }
                 >
                   Confirm
                 </button>
                 {/* The button will show when user input information */}
-                {/* </Link>  */}
+                </Link>
               </div>
             </div>
           </form>

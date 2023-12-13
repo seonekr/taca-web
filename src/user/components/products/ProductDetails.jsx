@@ -168,7 +168,7 @@ function ProductDetails() {
   }, [width, slideIndex]);
 
   const handleBuyNow = () => {
-    navigate("/cart/payment");
+    navigate("/payment");
   };
 
   const handleAddToCart = () => {
