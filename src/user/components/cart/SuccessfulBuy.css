@@ -31,6 +31,13 @@
     color: #FFF;
 }
 
+.order_successfulBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .box_icon_Check_iconn {
     font-size: 20px;
 }
@@ -50,7 +57,7 @@
 .detial,
 .box_place-on {
     display: grid;
-    gap: 10px;
+    gap: 15px;
 
 }
 
@@ -67,9 +74,43 @@
 }
 
 
-/* For smartphones with a maximum width of 480px */
-@media only screen and (max-width: 480px) {
+/* Responsive Screen */
+@media screen and (max-width: 1025px) {
+    .group_lisblecackk {
+        width: 70%;
+        margin: 6rem auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .group_lisblecackk {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 431px) {
+    .group_lisblecackk {
+        width: 95%;
+        padding: 20px 0;
+    }
+
     .box_bill_product {
         padding: 0;
     }
+
+    .box_guopoidHead {
+        justify-content: start;
+        gap: 5rem;
+    }
+
+    .spenboxspad {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .group_lisblecackk {
+        width: 100%;
+    }
+
 }

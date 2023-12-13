@@ -3,6 +3,7 @@ import './SuccessfulBuy.css'
 import { Link } from "react-router-dom";
 import { ImCheckmark } from 'react-icons/im';
 import Header from "../header/Header";
+import Menu from "../menu/Menu";
 
 function SuccessfulBuy() {
     return (
@@ -16,12 +17,13 @@ function SuccessfulBuy() {
                             <p>ID: 4</p>
                             <p>Name: Acer</p>
                         </div>
-                        <div>
+                        <div className='order_successfulBox'>
                             <div className='box_icon_Check'>
                                 <ImCheckmark className='box_icon_Check_iconn' />
                             </div>
+                            <p>Takes 24 hours to deliver</p>
                         </div>
-                        <div></div>
+                        <div className='spenboxspad'></div>
                     </div>
 
                     <div className='box_bill_productS'>
@@ -65,6 +67,7 @@ function SuccessfulBuy() {
                     </Link>
                 </div>
             </form>
+            <Menu />
         </>
     )
 }
