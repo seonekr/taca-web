@@ -143,9 +143,6 @@ body {
     width: 25px;
     height: 25px;
     cursor: pointer;
-    border-radius: 1000px;
-    border: 3px solid black;
-
 }
 
 .echSize {
@@ -185,19 +182,14 @@ body {
 }
 
 .btnBut {
-    background-color: #ff5016ec;
+    background-color: #FF4F16;
     color: #FFF;
     border: 1px solid #FF4F16;
 
 }
 
-.btnBut:hover {
-    background-color: #FF4F16;
-    color: #FFF;
-}
-
 .btnAdd {
-    border: #FF4F16 1px solid;
+    border: #FF4F16 2px solid;
     color: #FF4F16;
     cursor: pointer;
     background-color: #fff;

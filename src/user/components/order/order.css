@@ -18,22 +18,35 @@
 .guopIconbAck {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
 }
 
 #container_order_item .box_item_order {
     width: 100%;
-    height: auto;
-    display: flex;
+    height: 13vh;
+    overflow: hidden;
     text-align: left;
-    gap: 1.9rem;
-    margin-top: 0.6rem;
+    margin-top: 1rem;
     padding: 20px 40px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);
     background-color: #fff;
-    border-radius: 7px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
+#container_order_item .box_item_order:hover{
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
+
+}
+
+.box_item_order_text{
+    width: 100%;
+}
+.boxAndNodate{
+    display: flex;
+    justify-content: space-between;
+}
 .iconnBack {
     font-size: 25px;
 }
@@ -42,7 +55,6 @@
 #container_order_item .box_item_order_text p {
     margin-top: 0.3rem;
 }
-
 
 .txtheadeproductorder {
     font-weight: 600;

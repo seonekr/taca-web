@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import DataTable from "react-data-table-component";
+// import DataTable from "react-data-table-component";
 
 const columns = [
   {
