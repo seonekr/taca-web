@@ -62,7 +62,7 @@ function SuccessfulBuy() {
                             </div>
                         </div>
                     </div>
-                    <Link to="/product_search">
+                    <Link to="/">
                         <button className="btnViewProduct" >Go To Shop More</button>
                     </Link>
                 </div>

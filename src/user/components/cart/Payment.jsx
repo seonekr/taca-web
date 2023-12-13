@@ -217,19 +217,19 @@ const Payment = () => {
               </div>
 
               <div className="save">
-                {/* <Link to="/cart/successfulBuy/"> */}
+                <Link to="/cart/successfulBuy/">
                 <button
-                  type="submit"
-                  disabled={
-                    !selectedOption ||
-                    address == 0 ||
-                    (products == 0 && productsCart == 0)
-                  }
+                  // type="submit"
+                  // disabled={
+                  //   !selectedOption ||
+                  //   address == 0 ||
+                  //   (products == 0 && productsCart == 0)
+                  // }
                 >
                   Confirm
                 </button>
                 {/* The button will show when user input information */}
-                {/* </Link> */}
+                </Link>
               </div>
             </div>
           </form>
