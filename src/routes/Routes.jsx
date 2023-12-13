@@ -16,6 +16,8 @@ import Login from "../user/components/login_register/Login";
 import Register from "../user/components/login_register/Register";
 import Order from "../user/components/order/Order";
 import ProductDetails from "../user/components/products/ProductDetails";
+import Products from "../user/components/products/Products";
+import Products2 from "../user/components/products/Products2";
 
 
 /* ========= Admin Page ========= */
@@ -49,6 +51,8 @@ const Links = () => {
         <Route exact path="/contacts" Component={Contacts} />
         <Route exact path="/order" Component={Order} />
         <Route exact path="/cart/successfulBuy" Component={SuccessfulBuy} />
+        <Route exact path="/products" Component={Products} />
+        <Route exact path="/products2" Component={Products2} />
         <Route exact path="/productdetails/:id" Component={ProductDetails} />
         <Route exact path="/login" Component={Login} />
         <Route exact path="/register" Component={Register} />

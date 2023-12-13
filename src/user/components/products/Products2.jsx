@@ -11,12 +11,12 @@ import DataTable from "react-data-table-component";
 
 const columns = [
   {
-    name: "Title",
-    selector: (row) => row.title,
+    name: "ID",
+    selector: (row) => row.id,
   },
   {
-    name: "Year",
-    selector: (row) => row.year,
+    name: "Name",
+    selector: (row) => row.name,
   },
 ];
 
@@ -29,7 +29,7 @@ const Products = () => {
 	const fetchData = async page => {
 		setLoading(true);
 
-		const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=${perPage}&delay=1`);
+		const response = await axios.get(`http://localhost:5000/searchProducts?page=${page}&per_page=${perPage}&delay=1`);
 
 		setData(response.data.data);
 		setTotalRows(response.data.total);
@@ -43,7 +43,7 @@ const Products = () => {
 	const handlePerRowsChange = async (newPerPage, page) => {
 		setLoading(true);
 
-		const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=${newPerPage}&delay=1`);
+		const response = await axios.get(`http://localhost:5000/searchProducts?page=${page}&per_page=${newPerPage}&delay=1`);
 
 		setData(response.data.data);
 		setPerPage(newPerPage);
