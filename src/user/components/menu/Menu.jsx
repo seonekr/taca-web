@@ -22,10 +22,10 @@ const Menu = () => {
                             </Link>
                         </div>
 
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
-                        <p><Link to="/" className="txt_pFoot">Something</Link></p>
+                        <p><Link to="/product_search" className="txt_pFoot">Products</Link></p>
+                        <p><Link to="/" className="txt_pFoot">All Womwn's fashion</Link></p>
+                        <p><Link to="/" className="txt_pFoot">All Electronic device</Link></p>
+                        <p><Link to="/" className="txt_pFoot">About Humascot</Link></p>
                     </div>
 
                     <div className="footconentBox">
@@ -40,8 +40,8 @@ const Menu = () => {
                         <div className="foot_contentItem">
                             <img src={QrdownloadApp} alt="QrdownloadApp" />
                             <div className="guop_btndownl">
-                                <Link to="/" className="footLink">Play Store</Link>
-                                <Link to="/" className="footLink">App Store</Link>
+                                <Link to="https://play.google.com/store/apps" className="footLink">Play Store</Link>
+                                <Link to="https://www.apple.com/app-store/" className="footLink">App Store</Link>
                             </div>
                         </div>
                     </div>
