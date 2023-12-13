@@ -161,7 +161,7 @@ const Payment = () => {
               </div>
               <div className="box">
                 <div className="transfer">
-                  <div className="select-option">
+                  <label htmlFor="onePay" className="select-option">
                     <input
                       type="radio"
                       id="onePay"
@@ -169,9 +169,10 @@ const Payment = () => {
                       checked={selectedOption === "onePay"}
                       onChange={handleRadioChange}
                     />
-                    <label htmlFor="onePay">BcelOne</label>
-                  </div>
-                  <div className="select-option">
+                    <span class="checkmark"></span>
+                    <span>BcelOne</span>
+                  </label>
+                  <label htmlFor="wechat" className="select-option">
                     <input
                       type="radio"
                       id="wechat"
@@ -179,8 +180,8 @@ const Payment = () => {
                       checked={selectedOption === "wechat"}
                       onChange={handleRadioChange}
                     />
-                    <label htmlFor="wechat">WeChat</label>
-                  </div>
+                    <span >WeChat</span>
+                  </label>
                 </div>
                 <div className="boxImageqr">
                   {selectedOption === "onePay" && (
@@ -218,17 +219,17 @@ const Payment = () => {
 
               <div className="save">
                 <Link to="/cart/successfulBuy/">
-                <button
+                  <button
                   // type="submit"
                   // disabled={
                   //   !selectedOption ||
                   //   address == 0 ||
                   //   (products == 0 && productsCart == 0)
                   // }
-                >
-                  Confirm
-                </button>
-                {/* The button will show when user input information */}
+                  >
+                    Confirm
+                  </button>
+                  {/* The button will show when user input information */}
                 </Link>
               </div>
             </div>
