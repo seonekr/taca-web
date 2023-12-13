@@ -183,7 +183,10 @@ const Order = () => {
                 className="box_item_order"
               >
                 <div className="box_item_order_text">
-                  <p>No: {order.orderID}</p>
+                  <div className="boxAndNodate">
+                    <p>No: {order.orderID}</p>
+                    <p>{order.orderDate}</p>
+                  </div>
                   <p className="txtheadeproductorder">
                     {order.products.slice(0, 2).map((product, index) => (
                       <span key={product.productID}>
@@ -194,7 +197,7 @@ const Order = () => {
                       </span>
                     ))}
                   </p>
-                  <p>{order.orderDate}</p>
+
                 </div>
               </div>
             </div>
