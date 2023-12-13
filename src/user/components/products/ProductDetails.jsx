@@ -4,7 +4,6 @@ import "./productBuy.css";
 import Menu from "../menu/Menu";
 import Header from "../header/Header";
 import { IoIosArrowBack } from "react-icons/io";
-
 function ProductDetails() {
   // For authenticate user if user didn't login, So thay can't go to see the product details
   const token = localStorage.getItem("token");
@@ -159,7 +158,7 @@ function ProductDetails() {
       slideRef.current.scrollLeft -= width;
     }
   }
-  
+
   useEffect(() => {
     if (!slideRef.current || !width) return;
     let numOfThumb = Math.round(slideRef.current.offsetWidth / width);
@@ -211,7 +210,7 @@ function ProductDetails() {
   // console.log(size)
   // console.log(color)
   // console.log(quantity)
-  
+
 
   return (
     <>
@@ -230,15 +229,15 @@ function ProductDetails() {
                   <div className="product-page-img">
                     {JSON.stringify(product.gallery)
                       ? JSON.parse(product.gallery).map((image, index) => (
-                          <div
-                            key={index}
-                            className="myslides"
-                            style={{
-                              display:
-                                index + 1 === slideIndex ? "block" : "none",
-                            }}
-                          >
-                            <img
+                        <div
+                          key={index}
+                          className="myslides"
+                          style={{
+                            display:
+                              index + 1 === slideIndex ? "block" : "none",
+                          }}
+                        >
+                          <img
                               key={image}
                               src={
                                 import.meta.env.VITE_API +
@@ -247,8 +246,8 @@ function ProductDetails() {
                               }
                               alt="Additional Image"
                             />
-                          </div>
-                        ))
+                        </div>
+                      ))
                       : null}
 
                     <div
@@ -261,23 +260,22 @@ function ProductDetails() {
                     >
                       {JSON.stringify(product.gallery)
                         ? JSON.parse(product.gallery).map((image, index) => (
-                            <div
-                              key={index}
-                              className={`slider-box ${
-                                index + 1 === slideIndex && "active"
+                          <div
+                            key={index}
+                            className={`slider-box ${index + 1 === slideIndex && "active"
                               }`}
-                              onClick={() => setSlideIndex(index + 1)}
-                            >
-                              <img
-                                src={
-                                  import.meta.env.VITE_API +
-                                  "/uploads/images/" +
-                                  image
-                                }
-                                alt=""
-                              />
-                            </div>
-                          ))
+                            onClick={() => setSlideIndex(index + 1)}
+                          >
+                            <img
+                              src={
+                                import.meta.env.VITE_API +
+                                "/uploads/images/" +
+                                image
+                              }
+                              alt=""
+                            />
+                          </div>
+                        ))
                         : null}
                     </div>
                   </div>
@@ -299,17 +297,17 @@ function ProductDetails() {
                 <div className="color_product">
                   {JSON.stringify(product.colors)
                     ? JSON.parse(product.colors).map((e, index) => (
-                        <div key={index}>
-                          <label htmlFor={e}>{e}</label>
-                          <input
-                            className="echColor"
-                            type="radio"
-                            id={e}
-                            checked={e === color}
-                            onChange={handleColorChange}
-                          />
-                        </div>
-                      ))
+                      <div key={index}>
+                        <label htmlFor={e}>{e}</label>
+                        <input
+                          className="echColor"
+                          type="radio"
+                          id={e}
+                          checked={e === color}
+                          onChange={handleColorChange}
+                        />
+                      </div>
+                    ))
                     : null}
                 </div>
 
