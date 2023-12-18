@@ -116,25 +116,21 @@
     display: flex;
     cursor: pointer;
     align-items: center;
-    justify-content: center;
     padding: 0.4em 3rem;
     border: none !important;
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
-    color: #ccc;
-    background-color: #FA442C;
+}
+#account .personal-info .about-account .logout:hover {
+    color: #FA442C;
+    transition: 0.5s;
 }
 
 #account .personal-info .about-account .logout .icon-logout {
-    color: #fff;
     padding-right: 0.5rem;
     margin-top: 0.1rem;
     font-size: 1.2rem;
-}
-
-#account .personal-info .about-account .logout .text-logout {
-    color: #fff;
 }
 
 /* Chang contact: Emait and phone */
