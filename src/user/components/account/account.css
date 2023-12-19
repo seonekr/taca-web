@@ -28,7 +28,7 @@
 #account .personal-info {
     width: 60%;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: grid;
 }
 
@@ -58,14 +58,29 @@
 
 /* User name */
 #account .personal-info .profile .name {
-    
-    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 20px 40px;
 }
 
 /* name in page account */
+.box_profile{
+    display: flex;
+}
 #account .personal-info .profile .name p {
     padding: 0 0.5rem;
     color: #444;
+}
+
+/* Delete Account*/
+.delete_account{
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 /* User information */
@@ -77,17 +92,29 @@
     align-items: center;
     justify-content: center;
 }
+.text-info1 a{
+    display: flex;
+    margin-left: -10rem;
+    justify-content: space-between;
+    color: #444;
+    font-size: 1.2em;
+    padding: 1rem 1rem;
+    border-bottom: 2px solid #eee;
+}
 .box_account{
     display: flex;
-    gap: 5rem;
+    gap: 13rem;
     align-items: center;
     justify-content: center;
     margin: auto;
 }
+.box_account h2{
+    padding: 0 4rem;
+}
 
 #account .personal-info .text-info a {
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
     text-decoration: none;
     justify-content: space-between;
     color: #444;
@@ -96,6 +123,8 @@
     padding: 1rem 1rem;
     border-bottom: 2px solid #eee;
 }
+
+
 
 /* About account */
 #account .personal-info .about-account {
@@ -108,7 +137,7 @@
     /* This incloud logout and delete button */
     text-decoration: none;
     color: #fc0000;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 /* Down here is logout button */
@@ -116,11 +145,9 @@
     display: flex;
     cursor: pointer;
     align-items: center;
-    padding: 0.4em 3rem;
     border: none !important;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 600;
 }
 #account .personal-info .about-account .logout:hover {
     color: #FA442C;
@@ -128,6 +155,11 @@
 }
 
 #account .personal-info .about-account .logout .icon-logout {
+    padding-right: 0.5rem;
+    margin-top: 0.1rem;
+    font-size: 1.2rem;
+}
+#icon-delete{
     padding-right: 0.5rem;
     margin-top: 0.1rem;
     font-size: 1.2rem;

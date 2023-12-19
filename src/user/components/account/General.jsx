@@ -37,15 +37,15 @@ const General = () => {
     <>
       <Header />
       <div id="account" className="accountContainer">
-        <div className="account_navbarr">
+        {/* <div className="account_navbarr">
           <div className="header_boxBack">
             <Link to="/account" className="guopIconbAck">
               <FaAngleLeft className="iconnBack" />
               Back
             </Link>
           </div>
-        </div>
-        <div className="personal-info">
+        </div> */}
+        {/* <div className="personal-info">
           <div className="text-info">
             <a>
               <span>Email: </span>
@@ -60,7 +60,7 @@ const General = () => {
               <p>**********</p>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
       <Menu />
     </>
